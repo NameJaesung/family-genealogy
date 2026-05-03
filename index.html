@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>전주이씨 해안대군파 가족 족보</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Serif+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+<style>
+  :root {
+    --hanji-bg:        #f3e7d0;
+    --hanji-bg-dark:   #ead9b8;
+    --hanji-paper:     #faf3e2;
+    --ink:             #1f1a14;
+    --ink-soft:        #3d3528;
+    --ink-faint:       #6b5f4a;
+    --seal-red:        #9a3324;
+    --seal-red-soft:   #b94a3a;
+    --gold:            #b8860b;
+    --line:            #8b7355;
+    --line-soft:       #c4ad84;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--hanji-bg);
+    color: var(--ink);
+    font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
+    line-height: 1.7;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(139,115,85,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(154,51,36,0.05) 0%, transparent 50%),
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(139,115,85,0.02) 40px,
+        rgba(139,115,85,0.02) 41px
+      );
+  }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ────────── 표지 ────────── */
+  header.cover {
+    background: var(--hanji-paper);
+    border: 2px double var(--line);
+    padding: 60px 40px;
+    text-align: center;
+    margin-bottom: 32px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(31,26,20,0.08);
+  }
+
+  header.cover::before,
+  header.cover::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--line);
+  }
+  header.cover::before { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+  header.cover::after  { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+  .cover .seal {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    border: 3px solid var(--seal-red);
+    border-radius: 6px;
+    color: var(--seal-red);
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 28px;
+    padding: 4px;
+    margin-bottom: 20px;
+    transform: rotate(-3deg);
+    background: rgba(154,51,36,0.05);
+  }
+  .cover h1 {
+    font-size: 38px;
+    margin: 0 0 10px;
+    letter-spacing: 4px;
+    font-weight: 800;
+  }
+  .cover .subtitle {
+    font-size: 17px;
+    color: var(--ink-soft);
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+  .cover .meta {
+    display: inline-flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--ink-faint);
+    border-top: 1px solid var(--line-soft);
+    padding-top: 16px;
+    margin-top: 8px;
+  }
+  .cover .meta span { display: inline-block; }
+
+  /* ────────── 네비게이션 ────────── */
+  nav.toc {
+    background: var(--hanji-paper);
+    border: 1px solid var(--line);
+    padding: 16px 24px;
+    margin-bottom: 32px;
+    display: flex;
+    gap: 8px 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 8px rgba(31,26,20,0.05);
+  }
+  nav.toc a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 4px 10px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  nav.toc a:hover {
+    color: var(--seal-red);
+    border-bottom-color: var(--seal-red);
+  }
+
+  /* ────────── 섹션 ────────── */
+  section {
+    background: var(--hanji-paper);
+    border: 1px solid var(--line);
+    padding: 36px 40px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 12px rgba(31,26,20,0.05);
+    page-break-inside: avoid;
+  }
+
+  section h2 {
+    font-size: 28px;
+    margin: 0 0 8px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--line);
+    position: relative;
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+  section h2::before {
+    content: '❖';
+    color: var(--seal-red);
+    margin-right: 12px;
+    font-size: 20px;
+  }
+  section .lead {
+    color: var(--ink-faint);
+    font-size: 14px;
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+  }
+
+  section h3 {
+    font-size: 20px;
+    margin: 32px 0 14px;
+    color: var(--ink);
+    border-left: 4px solid var(--seal-red);
+    padding-left: 12px;
+    font-weight: 700;
+  }
+
+  section h4 {
+    font-size: 16px;
+    margin: 20px 0 10px;
+    color: var(--ink-soft);
+    font-weight: 700;
+  }
+
+  /* ────────── 표 ────────── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 14px;
+    background: rgba(255,255,255,0.4);
+  }
+  table th, table td {
+    border: 1px solid var(--line-soft);
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table th {
+    background: var(--hanji-bg-dark);
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--ink);
+  }
+  table td.center { text-align: center; }
+  table td.gen {
+    background: var(--hanji-bg);
+    font-weight: 700;
+    text-align: center;
+    color: var(--seal-red);
+    width: 70px;
+  }
+
+  /* ────────── 직계 카드 ────────── */
+  .gen-card {
+    background: rgba(255,255,255,0.5);
+    border: 1px solid var(--line-soft);
+    border-left: 4px solid var(--seal-red);
+    padding: 18px 22px;
+    margin: 14px 0;
+    position: relative;
+  }
+  .gen-card.is-self {
+    border-left-color: var(--gold);
+    background: rgba(184,134,11,0.08);
+  }
+  .gen-card .gen-no {
+    display: inline-block;
+    background: var(--seal-red);
+    color: var(--hanji-paper);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .gen-card.is-self .gen-no {
+    background: var(--gold);
+  }
+  .gen-card .name {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-right: 12px;
+  }
+  .gen-card .name-han {
+    font-size: 16px;
+    color: var(--ink-faint);
+  }
+  .gen-card .dates {
+    margin-top: 8px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.9;
+  }
+  .gen-card .dates span.label {
+    display: inline-block;
+    width: 60px;
+    color: var(--ink-faint);
+    font-size: 13px;
+  }
+  .gen-card .spouse {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--line-soft);
+    font-size: 14px;
+  }
+  .gen-card .spouse strong { color: var(--seal-red); }
+  .gen-card .note {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--ink-faint);
+    background: rgba(184,134,11,0.08);
+    padding: 8px 12px;
+    border-left: 2px solid var(--gold);
+  }
+
+  /* ────────── 가족 그리드 (사진 4 기반) ────────── */
+  .family-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 18px 0;
+  }
+  .family-card {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid var(--line-soft);
+    padding: 14px 16px;
+  }
+  .family-card.self-line {
+    border: 2px solid var(--gold);
+    background: rgba(184,134,11,0.08);
+  }
+  .family-card .role {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--seal-red);
+    background: rgba(154,51,36,0.08);
+    padding: 2px 8px;
+    margin-bottom: 6px;
+  }
+  .family-card.self-line .role {
+    color: var(--gold);
+    background: rgba(184,134,11,0.12);
+  }
+  .family-card .couple {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 4px 0 6px;
+  }
+  .family-card .children {
+    font-size: 13px;
+    color: var(--ink-soft);
+    border-top: 1px dashed var(--line-soft);
+    padding-top: 6px;
+    margin-top: 6px;
+  }
+  .family-card .children .label {
+    color: var(--ink-faint);
+    font-size: 12px;
+    margin-right: 6px;
+  }
+
+  /* ────────── 트리 다이어그램 ────────── */
+  .mermaid-wrap {
+    background: rgba(255,255,255,0.5);
+    border: 1px solid var(--line-soft);
+    padding: 24px;
+    margin: 20px 0;
+    overflow-x: auto;
+  }
+  .mermaid-wrap .caption {
+    text-align: center;
+    color: var(--ink-faint);
+    font-size: 13px;
+    margin-top: 12px;
+    letter-spacing: 1px;
+  }
+
+  /* ────────── 인용/메모 ────────── */
+  .quote {
+    border-left: 3px solid var(--gold);
+    background: rgba(184,134,11,0.06);
+    padding: 14px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .quote .label {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-right: 8px;
+  }
+
+  .uncertain {
+    color: var(--ink-faint);
+    font-style: italic;
+    border-bottom: 1px dotted var(--ink-faint);
+    cursor: help;
+  }
+  .uncertain::after { content: '?'; color: var(--seal-red); font-size: 11px; vertical-align: super; }
+
+  /* ────────── 묘소 박스 ────────── */
+  .tomb-box {
+    background: rgba(184,134,11,0.06);
+    border: 1px dashed var(--gold);
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .tomb-box .icon { color: var(--gold); margin-right: 6px; font-weight: 700; }
+
+  /* ────────── 푸터 ────────── */
+  footer {
+    text-align: center;
+    color: var(--ink-faint);
+    font-size: 13px;
+    margin-top: 40px;
+    padding: 20px;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  /* ────────── 반응형 ────────── */
+  @media (max-width: 720px) {
+    .wrap { padding: 20px 12px 60px; }
+    header.cover { padding: 36px 20px; }
+    .cover h1 { font-size: 28px; letter-spacing: 2px; }
+    section { padding: 24px 18px; }
+    section h2 { font-size: 22px; }
+    table { font-size: 12px; }
+    table th, table td { padding: 6px 8px; }
+    nav.toc { font-size: 13px; padding: 12px 8px; gap: 4px 12px; }
+  }
+
+  /* 인쇄 */
+  @media print {
+    body { background: white; }
+    nav.toc { display: none; }
+    section { box-shadow: none; border: 1px solid #888; page-break-inside: avoid; }
+    header.cover { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ═══════════ 표지 ═══════════ -->
+  <header class="cover" id="top">
+    <div class="seal">家譜</div>
+    <h1>全州李氏 海安大君派</h1>
+    <div class="subtitle">전주이씨 해안대군파 가족 족보</div>
+    <div class="meta">
+      <span>編 · 가전 수기 자료 정리</span>
+      <span>記 · 직계 5대 + 친족 네트워크</span>
+      <span>更新 · 2026年</span>
+    </div>
+  </header>
+
+  <!-- ═══════════ 목차 ═══════════ -->
+  <nav class="toc">
+    <a href="#intro">序文</a>
+    <a href="#dynasty">조선왕조 계보</a>
+    <a href="#haean">해안대군파 세보</a>
+    <a href="#direct">직계 5대</a>
+    <a href="#family">친족 가계도</a>
+    <a href="#notes">기록 출처</a>
+  </nav>
+
+  <!-- ═══════════ 序文 ═══════════ -->
+  <section id="intro">
+    <h2>序文 · 들어가며</h2>
+    <p class="lead">집안에 전해 내려온 수기 자료를 바탕으로 정리한 가족 족보입니다.</p>
+    <p>
+      본 문서는 <strong>전주이씨(全州李氏) 해안대군파(海安大君派)</strong>의 가계 기록을 정리한 것으로,
+      네 페이지의 가전 수기 노트를 디지털화하여 보존·열람·공유가 용이하도록 재구성한 것이다.
+    </p>
+    <p>
+      문서는 크게 네 부분으로 구성된다. 첫째 <strong>조선왕조 계보</strong>는 본가의 출자(出自) 배경이 되는
+      태조부터 순종에 이르는 27대 왕통이다. 둘째 <strong>해안대군파 세보</strong>는 1세부터 16세까지의 항렬자(行列字)이다.
+      셋째 <strong>직계 5대</strong>는 본인(이재성)의 5대 직계 조상의 생몰년월일과 묘소를 정리한 것이다.
+      넷째 <strong>친족 가계도</strong>는 조부 이한석의 자손 전체 네트워크를 도식화한 것이다.
+    </p>
+    <div class="quote">
+      <span class="label">凡例 / 일러두기</span>
+      <span class="uncertain">밑줄점선</span>으로 표시된 부분은 원본 수기의 판독이 어려워 추정한 항목이다.
+      추후 정확한 내용 확인 시 수정 가능하다.
+    </div>
+  </section>
+
+  <!-- ═══════════ 조선왕조 계보 ═══════════ -->
+  <section id="dynasty">
+    <h2>朝鮮王朝 系譜 · 조선왕조 계보</h2>
+    <p class="lead">목조 → 익조 → 도조 → 환조 → 태조(이성계) 이후 27대 왕통.</p>
+
+    <div class="quote">
+      <span class="label">出自 / 출자</span>
+      해안대군파의 시조는 <strong>중종(中宗)의 왕자</strong> 계열에서 비롯한다.
+      본가 자료에는 1세를 '해안대군'으로 기록하고 있으며, 일반 사적에서는 '해안군(海安君)'으로 표기되기도 한다.
+      문중 전승에 따라 본 문서는 '해안대군파'로 통일한다.
+    </div>
+
+    <h3>추존 4조 — 태조 즉위 전 추존</h3>
+    <div class="mermaid-wrap">
+      <div class="mermaid">
+graph LR
+  classDef king fill:#faf3e2,stroke:#9a3324,stroke-width:2px,color:#1f1a14
+  classDef pos fill:#ead9b8,stroke:#8b7355,color:#3d3528
+  M[목조 穆祖]:::pos --> I[익조 翼祖]:::pos
+  I --> D[도조 度祖]:::pos
+  D --> H[환조 桓祖]:::pos
+  H --> T1["태조 太祖<br/>이성계"]:::king
+      </div>
+      <div class="caption">태조 이성계의 4대 조부모는 즉위 후 추존되었다.</div>
+    </div>
+
+    <h3>27대 왕통 본계</h3>
+    <div class="mermaid-wrap">
+      <div class="mermaid">
+graph TD
+  classDef king fill:#faf3e2,stroke:#9a3324,stroke-width:2px,color:#1f1a14,font-weight:bold
+  classDef sub fill:#fffaf0,stroke:#b8860b,color:#3d3528
+  classDef father fill:#ead9b8,stroke:#8b7355,color:#3d3528,stroke-dasharray:3 3
+  classDef origin fill:#fff5e6,stroke:#9a3324,stroke-width:3px,color:#9a3324,font-weight:bold
+
+  K01["1대 太祖 태조<br/>이성계"]:::king
+  K02["2대 定宗 정종"]:::king
+  K03["3대 太宗 태종"]:::king
+  K04["4대 世宗 세종"]:::king
+  K05["5대 文宗 문종"]:::king
+  K06["6대 端宗 단종"]:::king
+  K07["7대 世祖 세조"]:::king
+  GJ["덕종(德宗)<br/>의경세자 추존"]:::father
+  K08["8대 睿宗 예종"]:::king
+  K09["9대 成宗 성종"]:::king
+  K10["10대 燕山君 연산군"]:::king
+  K11["11대 中宗 중종"]:::king
+  HG["★ 해안대군 ★<br/>本派 始祖"]:::origin
+  K12["12대 仁宗 인종"]:::king
+  K13["13대 明宗 명종"]:::king
+  DH["덕흥대원군"]:::father
+  K14["14대 宣祖 선조"]:::king
+  K15["15대 光海君 광해군"]:::king
+  WJ["원종(元宗)<br/>정원군 추존"]:::father
+  K16["16대 仁祖 인조"]:::king
+  K17["17대 孝宗 효종"]:::king
+  K18["18대 顯宗 현종"]:::king
+  K19["19대 肅宗 숙종"]:::king
+  K20["20대 景宗 경종"]:::king
+  K21["21대 英祖 영조"]:::king
+  JJ["진종(眞宗)<br/>효장세자 추존"]:::father
+  JJO["장조(莊祖)<br/>사도세자 추존"]:::father
+  K22["22대 正祖 정조"]:::king
+  K23["23대 純祖 순조"]:::king
+  IJ["익종(翼宗)<br/>효명세자 추존"]:::father
+  K24["24대 憲宗 헌종"]:::king
+  K25["25대 哲宗 철종"]:::king
+  K26["26대 高宗 고종"]:::king
+  K27["27대 純宗 순종"]:::king
+
+  K01 --> K02
+  K01 --> K03
+  K03 --> K04
+  K04 --> K05
+  K04 --> K07
+  K05 --> K06
+  K07 --> GJ
+  K07 --> K08
+  GJ --> K09
+  K09 --> K10
+  K09 --> K11
+  K11 --> HG
+  K11 --> K12
+  K11 --> K13
+  K11 --> DH
+  DH --> K14
+  K14 --> K15
+  K14 --> WJ
+  WJ --> K16
+  K16 --> K17
+  K17 --> K18
+  K18 --> K19
+  K19 --> K20
+  K19 --> K21
+  K21 --> JJ
+  K21 --> JJO
+  JJ --> K22
+  JJO --> K22
+  K22 --> K23
+  K23 --> IJ
+  IJ --> K24
+  K25 -.- K23
+  IJ --> K26
+  K26 --> K27
+      </div>
+      <div class="caption">★ 해안대군: 본가의 시조. 11대 중종의 왕자 / 점선·연한 색: 추존왕</div>
+    </div>
+
+    <h4>추존 왕 정리</h4>
+    <table>
+      <thead>
+        <tr><th>추존 묘호</th><th>본명/지위</th><th>관계</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>덕종(德宗)</td><td>의경세자</td><td>세조의 장남, 성종의 부</td></tr>
+        <tr><td>원종(元宗)</td><td>정원군</td><td>선조의 5남, 인조의 부</td></tr>
+        <tr><td>진종(眞宗)</td><td>효장세자</td><td>영조의 장남, 정조의 양부</td></tr>
+        <tr><td>장조(莊祖)</td><td>사도세자</td><td>영조의 차남, 정조의 생부</td></tr>
+        <tr><td>익종(翼宗) / 문조(文祖)</td><td>효명세자</td><td>순조의 장남, 헌종의 부</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════ 해안대군파 세보 ═══════════ -->
+  <section id="haean">
+    <h2>海安大君派 世譜 · 해안대군파 세보</h2>
+    <p class="lead">1세 해안대군부터 16세까지 항렬(行列) 정리.</p>
+
+    <div class="quote">
+      <span class="label">本派 / 본파</span>
+      <strong>해안대군(海安大君)</strong>은 조선 제11대 왕 중종의 왕자로 전해진다.
+      해안대군의 후손은 전주이씨 분파 중 하나인 <strong>해안대군파</strong>를 형성하며,
+      본가는 그 계보를 잇는 한 갈래이다.
+    </div>
+
+    <h3>1세 ~ 16세 항렬 일람</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:80px">세대</th>
+          <th>주요 인물 / 항렬자</th>
+          <th>비고</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="gen">1세</td><td>해안대군(海安大君)</td><td>본파의 시조 — 중종(中宗)의 왕자</td></tr>
+        <tr><td class="gen">2세</td><td>서원군 · 보산군 · 오산군 · 사로군 · <span class="uncertain">9-군</span></td><td>해안대군의 자(子) 항렬</td></tr>
+        <tr><td class="gen">3세</td><td>선신 · 선건 · <span class="uncertain">선겨</span> 등</td><td>'선(善)' 자 항렬</td></tr>
+        <tr><td class="gen">4세</td><td>학신감 · 학신연 · 학신선 / 학희근(학희)</td><td>'학(學)' 자 항렬</td></tr>
+        <tr><td class="gen">5세</td><td>수(壽) · 수문 · 수보 등</td><td>'수(壽)' 자 항렬</td></tr>
+        <tr><td class="gen">6세</td><td>권신(權信)</td><td></td></tr>
+        <tr><td class="gen">7세</td><td>두재</td><td></td></tr>
+        <tr><td class="gen">8세</td><td>기관 · 시강 / 지관</td><td></td></tr>
+        <tr><td class="gen">9세</td><td>두자 / 두긴(?)</td><td></td></tr>
+        <tr><td class="gen">10세</td><td>광택 · 광백서 · <span class="uncertain">신문</span></td><td></td></tr>
+        <tr><td class="gen">11세</td><td>우로 · 손이 · 상로 / <span class="uncertain">김교현</span></td><td></td></tr>
+        <tr><td class="gen">12세</td><td>병성 · 병전 · 병학 · 병업 · 병탕</td><td>'병(柄)' 자 항렬</td></tr>
+        <tr><td class="gen">13세</td><td>거오 · 기로</td><td></td></tr>
+        <tr><td class="gen">14세</td><td>청호(승호) · 천호(축로) · 식호(북진)</td><td></td></tr>
+        <tr><td class="gen">15세</td><td>천부 · 천성 · 천선</td><td>'천(千)' 자 항렬</td></tr>
+        <tr><td class="gen">16세</td><td>식양 · 동영 · 친영 · 등주 · 정미 · 산영 · 천오 · 두자 · 사후 · 휴혁 · 신화 · 정희</td><td>김상수 · 김봉수 · 김반수(외손)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="quote">
+      <span class="label">注 / 주</span>
+      위 항렬자는 본가에 전해진 수기 자료를 바탕으로 정리한 것이며, 종친회 공식 세보와 차이가 있을 수 있다.
+      특히 2세~11세 일부 인명은 원본 판독이 어려워 추정 표기되었다.
+    </div>
+
+    <h3>분파 메모</h3>
+    <table>
+      <thead>
+        <tr><th>분파</th><th>주요 인물</th><th>묘소 / 비고</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>사로근파</strong></td>
+          <td>12세 이섭(李燮) → 13세 이옥 → 14세 이수</td>
+          <td>묘소: 백곡산성 일대</td>
+        </tr>
+        <tr>
+          <td><strong>하이근파</strong></td>
+          <td>13세 이상(?) → 14세 이산만(?)</td>
+          <td>묘소: 백곡산성 일대</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════ 직계 5대 ═══════════ -->
+  <section id="direct">
+    <h2>直系 五代 · 직계 5대</h2>
+    <p class="lead">본인(이재성) 기준 5대 직계 조상의 생몰년월일 및 묘소.</p>
+
+    <div class="gen-card">
+      <span class="gen-no">5代祖 · 高祖父</span>
+      <span class="name">이번순</span><span class="name-han">(李番淳)</span>
+      <div class="dates">
+        <div><span class="label">生</span> 1846. 12. 20</div>
+        <div><span class="label">卒</span> 1890. 09. 08</div>
+      </div>
+      <div class="spouse">
+        <strong>配</strong> 김방악(金芳岳)
+        <div style="margin-top:4px;color:var(--ink-faint);font-size:13px">
+          生 1858. 09. 09 / 卒 1911. 10. 11
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-card">
+      <span class="gen-no">高祖父</span>
+      <span class="name">이용선</span><span class="name-han">(李容善)</span>
+      <div class="dates">
+        <div><span class="label">生</span> 1886. 09. 15</div>
+        <div><span class="label">卒</span> 1969. 09. 23</div>
+      </div>
+      <div class="spouse">
+        <strong>配</strong> 김유하(金有河)
+        <div style="margin-top:4px;color:var(--ink-faint);font-size:13px">
+          生 1888. 09. 09 / 卒 1968. 12. 15
+        </div>
+      </div>
+    </div>
+
+    <div class="gen-card">
+      <span class="gen-no">曾祖父</span>
+      <span class="name">이복규</span><span class="name-han">(李福圭)</span>
+      <div class="dates">
+        <div><span class="label">生</span> 1908. 11. 30</div>
+        <div><span class="label">卒</span> 1970. 06. 16</div>
+      </div>
+      <div class="spouse">
+        <strong>配</strong> 박학수(朴學秀)
+        <div style="margin-top:4px;color:var(--ink-faint);font-size:13px">
+          生 1906. 10. 20 / 卒 1984. 05. 12
+        </div>
+      </div>
+      <div class="tomb-box">
+        <span class="icon">墓</span> 가산공원 135호 <span style="color:var(--ink-faint)">(이복규·박학수 합장 추정)</span>
+      </div>
+    </div>
+
+    <div class="gen-card">
+      <span class="gen-no">祖父</span>
+      <span class="name">이한석</span><span class="name-han">(李漢錫)</span>
+      <div class="dates">
+        <div><span class="label">生</span> 1930. 11. 29 <span style="color:var(--ink-faint);font-size:13px">(陰 11. 06)</span></div>
+        <div><span class="label">卒</span> 2017. 08. 24</div>
+      </div>
+      <div class="spouse">
+        <strong>配</strong> 허공녀(許公女)
+        <div style="margin-top:4px;color:var(--ink-faint);font-size:13px">
+          生 1932. ○. ○ <span class="uncertain">일자 보완 필요</span> / 卒 2012. 02. 20
+        </div>
+      </div>
+      <div class="tomb-box">
+        <span class="icon">墓</span> <span class="uncertain">춘천 소재 묘역</span> <span style="color:var(--ink-faint)">(원본: '구읍시면 현춘천 310078' — 행정명 보완 필요)</span>
+      </div>
+    </div>
+
+    <div class="gen-card">
+      <span class="gen-no">父</span>
+      <span class="name">이용영</span><span class="name-han">(李容榮)</span>
+      <div class="dates">
+        <div><span class="label">生</span> ─</div>
+        <div><span class="label">卒</span> ─</div>
+      </div>
+      <div class="spouse">
+        <strong>配</strong> 백현숙(白賢淑)
+      </div>
+      <div class="note">생년월일은 본 공개용 문서에서 생략. 비공개 버전에 별도 기록 권장.</div>
+    </div>
+
+    <div class="gen-card is-self">
+      <span class="gen-no">本人</span>
+      <span class="name">이재성</span><span class="name-han">(李在成)</span>
+      <div class="spouse">
+        <strong>配</strong> 김유명(金有明) <span class="uncertain">한자 표기 추정</span>
+      </div>
+      <div class="note">자녀: 이차은 · 이차윤</div>
+    </div>
+
+    <h3>직계 5대 요약 표</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>대수</th>
+          <th>본인</th>
+          <th>생몰</th>
+          <th>배우자</th>
+          <th>배우자 생몰</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="gen">5代祖</td>
+          <td><strong>이번순</strong></td>
+          <td>1846.12.20 ~ 1890.09.08</td>
+          <td>김방악</td>
+          <td>1858.09.09 ~ 1911.10.11</td>
+        </tr>
+        <tr>
+          <td class="gen">高祖</td>
+          <td><strong>이용선</strong></td>
+          <td>1886.09.15 ~ 1969.09.23</td>
+          <td>김유하</td>
+          <td>1888.09.09 ~ 1968.12.15</td>
+        </tr>
+        <tr>
+          <td class="gen">曾祖</td>
+          <td><strong>이복규</strong></td>
+          <td>1908.11.30 ~ 1970.06.16</td>
+          <td>박학수</td>
+          <td>1906.10.20 ~ 1984.05.12</td>
+        </tr>
+        <tr>
+          <td class="gen">祖</td>
+          <td><strong>이한석</strong></td>
+          <td>1930.11.29 ~ 2017.08.24</td>
+          <td>허공녀</td>
+          <td>1932.○.○ ~ 2012.02.20</td>
+        </tr>
+        <tr>
+          <td class="gen">父</td>
+          <td><strong>이용영</strong></td>
+          <td>─</td>
+          <td>백현숙</td>
+          <td>─</td>
+        </tr>
+        <tr style="background:rgba(184,134,11,0.10)">
+          <td class="gen" style="color:var(--gold)">本人</td>
+          <td><strong>이재성</strong></td>
+          <td>─</td>
+          <td>김유명</td>
+          <td>─</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════ 친족 가계도 (사진 4 기반) ═══════════ -->
+  <section id="family">
+    <h2>親族 家系圖 · 친족 가계도</h2>
+    <p class="lead">조부 이한석 · 허공녀의 자손 전체 도식 (사진 4 기반).</p>
+
+    <h3>3대 가계도 — 조부모 / 부모세대 / 본인세대 / 자녀세대</h3>
+    <div class="mermaid-wrap">
+      <div class="mermaid">
+graph TD
+  classDef gp fill:#ead9b8,stroke:#9a3324,stroke-width:3px,color:#1f1a14,font-weight:bold
+  classDef parent fill:#faf3e2,stroke:#8b7355,color:#1f1a14,font-weight:bold
+  classDef self fill:#fff5e6,stroke:#b8860b,stroke-width:3px,color:#1f1a14,font-weight:bold
+  classDef cousin fill:#fffaf0,stroke:#c4ad84,color:#3d3528
+  classDef child fill:#f8f0e0,stroke:#8b7355,color:#3d3528
+
+  G["李漢錫 이한석 ⚭ 許公女 허공녀<br/>(祖父母)"]:::gp
+
+  P1["李成榮 이성영 ⚭ 許德姬 허덕희"]:::parent
+  P2["李容榮 이용영 ⚭ 白賢淑 백현숙<br/>(父母)"]:::self
+  P3["李玉子 이옥자 ⚭ 文昌俊 문창준"]:::parent
+  P4["李振榮 이진영 ⚭ 鄭眞美 정진미"]:::parent
+  P5["李貞愛 이정애 ⚭ 金正東 김정동"]:::parent
+
+  C1["李亨炫 이형현 ⚭ 김간터"]:::cousin
+  C2A["李在炫 이재현"]:::cousin
+  C2B["★ 李在成 이재성 ⚭ 金有明 김유명 ★"]:::self
+  C3["文錫贊 문석찬"]:::cousin
+  C4A["李在펀 이재현(?)"]:::cousin
+  C4B["李赫樂 이혁락(?)"]:::cousin
+  C5A["金朝賢 김조현"]:::cousin
+  C5B["金笑藝 김소예"]:::cousin
+
+  D1A["李仁俊 이인준"]:::child
+  D1B["李康俊 이강준"]:::child
+  D2A["李差恩 이차은"]:::child
+  D2B["李差潤 이차윤"]:::child
+  D3["李夏雲 이하운(?)"]:::child
+  D4A["李自由 이자유"]:::child
+  D4B["李夏潤 이하윤(?)"]:::child
+
+  G --> P1
+  G --> P2
+  G --> P3
+  G --> P4
+  G --> P5
+
+  P1 --> C1
+  P2 --> C2A
+  P2 --> C2B
+  P3 --> C3
+  P4 --> C4A
+  P4 --> C4B
+  P5 --> C5A
+  P5 --> C5B
+
+  C1 --> D1A
+  C1 --> D1B
+  C2B --> D2A
+  C2B --> D2B
+  C3 --> D3
+  C4A --> D4A
+  C4B --> D4B
+      </div>
+      <div class="caption">★: 본인(이재성) / 굵은 노란 테두리: 직계 라인 / 자녀 세대 일부 인명은 판독 추정.</div>
+    </div>
+
+    <h3>이한석 · 허공녀의 5자녀 — 부모 세대</h3>
+    <div class="family-grid">
+      <div class="family-card">
+        <span class="role">長男 系</span>
+        <div class="couple">이성영 ⚭ 허덕희</div>
+        <div class="children"><span class="label">子女</span>이형현 (배우자: 김간터)</div>
+      </div>
+      <div class="family-card self-line">
+        <span class="role">本人 父母</span>
+        <div class="couple">이용영 ⚭ 백현숙</div>
+        <div class="children"><span class="label">子女</span>이재현 · <strong>이재성(本人)</strong></div>
+      </div>
+      <div class="family-card">
+        <span class="role">姉/妹</span>
+        <div class="couple">이옥자 ⚭ 문창준</div>
+        <div class="children"><span class="label">子女</span>문석찬</div>
+      </div>
+      <div class="family-card">
+        <span class="role">兄弟 系</span>
+        <div class="couple">이진영 ⚭ 정진미</div>
+        <div class="children"><span class="label">子女</span><span class="uncertain">이재현</span> · <span class="uncertain">이혁락</span></div>
+      </div>
+      <div class="family-card">
+        <span class="role">姉/妹</span>
+        <div class="couple">이정애 ⚭ 김정동</div>
+        <div class="children"><span class="label">子女</span>김조현 · 김소예</div>
+      </div>
+    </div>
+
+    <h3>이재성(본인) 형제 및 사촌 — 본인 세대</h3>
+    <table>
+      <thead>
+        <tr><th>관계</th><th>본인/배우자</th><th>자녀</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>사촌(從)</td>
+          <td>이형현 ⚭ 김간터</td>
+          <td>이인준 · 이강준</td>
+        </tr>
+        <tr>
+          <td>친형/제</td>
+          <td>이재현</td>
+          <td>─</td>
+        </tr>
+        <tr style="background:rgba(184,134,11,0.10)">
+          <td style="color:var(--gold);font-weight:700">本人</td>
+          <td><strong>이재성 ⚭ 김유명</strong></td>
+          <td><strong>이차은 · 이차윤</strong></td>
+        </tr>
+        <tr>
+          <td>고종(姑從)</td>
+          <td>문석찬</td>
+          <td><span class="uncertain">이하운(?)</span></td>
+        </tr>
+        <tr>
+          <td>사촌(從)</td>
+          <td><span class="uncertain">이재현</span> / <span class="uncertain">이혁락</span></td>
+          <td><span class="uncertain">이자유 · 이하윤(?)</span></td>
+        </tr>
+        <tr>
+          <td>이종(姨從)</td>
+          <td>김조현 · 김소예</td>
+          <td>─</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="quote">
+      <span class="label">注 / 주</span>
+      본인 세대의 일부 사촌 인명(이재현/이혁락 등) 및 자녀 세대 인명(이하운/이하윤 등)은 원본 사진의
+      판독이 어려워 추정 표기되었다. 정확한 한자 표기와 한글 표기는 직접 확인 후 보완이 필요하다.
+    </div>
+  </section>
+
+  <!-- ═══════════ 기록 출처 ═══════════ -->
+  <section id="notes">
+    <h2>記錄 出處 · 기록 출처 및 보완 사항</h2>
+
+    <h3>원본 자료</h3>
+    <p>본 문서는 가전(家傳) 수기 노트를 디지털화한 것이다. 원본 사진은 다음과 같다.</p>
+    <ul>
+      <li><code>KakaoTalk_20260503_100251996.jpg</code> — 직계 4대 명단(이번순~이한석) 및 우측 가계도</li>
+      <li><code>KakaoTalk_20260503_100251996_01.jpg</code> — 해안대군파 1세~16세 항렬</li>
+      <li><code>KakaoTalk_20260503_100251996_02.jpg</code> — 조선왕조 27대 계보</li>
+      <li><code>KakaoTalk_추가</code> — 이한석·허공녀 자손 가계도 (본인 직계 위아래)</li>
+    </ul>
+
+    <h3>판독 보완 권장 항목</h3>
+    <table>
+      <thead>
+        <tr><th>구분</th><th>판독 추정</th><th>보완 메모</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>조모(허공녀) 생일 일자</td>
+          <td>1932. ○. ○</td>
+          <td>원본 글자 흐림 — 호적/제적등본 확인 필요</td>
+        </tr>
+        <tr>
+          <td>이한석 묘소 주소</td>
+          <td>'구읍시면 현춘천 310078'</td>
+          <td>춘천시 ○○면 등 공식 행정명 확인 필요</td>
+        </tr>
+        <tr>
+          <td>본인 세대 사촌 인명</td>
+          <td>이재현 · 이혁락 등</td>
+          <td>이진영·정진미의 자녀 인명 — 원본 글씨 확인 필요</td>
+        </tr>
+        <tr>
+          <td>자녀 세대 인명</td>
+          <td>이하운 · 이하윤 · 이자유 등</td>
+          <td>'운/윤' 등 받침 구분 불명확</td>
+        </tr>
+        <tr>
+          <td>2세 ~ 11세 항렬자 일부</td>
+          <td>표 참조</td>
+          <td>해안대군파 종친회 공식 세보와 대조 권장</td>
+        </tr>
+        <tr>
+          <td>분파 주(註) 부분</td>
+          <td>"조조 1581 김유는 6번~1593" 등</td>
+          <td>역사적 사건 또는 묘비문 인용 추정 — 원문 재확인 필요</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>git 배포 가이드</h3>
+    <p>본 문서는 단일 <code>index.html</code> 파일로 작성되어, GitHub Pages 등 정적 호스팅 환경에 그대로 업로드 가능하다.</p>
+    <ol>
+      <li>GitHub에 신규 저장소 생성 (예: <code>family-genealogy</code>)</li>
+      <li><code>index.html</code> 업로드</li>
+      <li>저장소 Settings → Pages → Source: <code>main</code> 브랜치 선택</li>
+      <li>몇 분 후 <code>https://&lt;username&gt;.github.io/family-genealogy/</code> 로 접속 가능</li>
+    </ol>
+    <div class="quote">
+      <span class="label">注意</span>
+      본 문서는 본인·부모·조부모·자녀 등 <strong>생존 인물의 실명·관계·생년월일 등 개인정보</strong>를 포함한다.
+      공개 저장소(Public)에 그대로 올릴 경우 가족 전체의 개인정보가 노출되므로,
+      반드시 <strong>Private 저장소</strong>로 운영하거나 외부 공유용 별도 버전(생년·실명 마스킹)을 작성할 것을 권장한다.
+    </div>
+  </section>
+
+  <footer>
+    家譜는 자손이 조상을 잊지 않게 하는 글이다.<br>
+    <span style="font-size:11px">Generated 2026 · 전주이씨 해안대군파</span>
+  </footer>
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      primaryColor: '#faf3e2',
+      primaryTextColor: '#1f1a14',
+      primaryBorderColor: '#8b7355',
+      lineColor: '#6b5f4a',
+      fontFamily: 'Nanum Myeongjo, Noto Serif KR, serif',
+      fontSize: '14px'
+    },
+    flowchart: { curve: 'basis', padding: 18 }
+  });
+</script>
+</body>
+</html>
