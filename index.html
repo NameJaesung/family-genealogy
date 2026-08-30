@@ -733,22 +733,34 @@
       overflow-y: auto; z-index: 100;
       box-shadow: 6px 0 24px rgba(0,0,0,.35);
     }
-    nav.toc::before {
-      content: '全州李氏\A海安君 靖僖公派';
-      white-space: pre;
-      font-size: 15px; font-weight: 800; letter-spacing: 3px; line-height: 1.9;
-      color: var(--gold);
-      padding: 4px 14px 18px;
-      border-bottom: 1px solid rgba(212,171,95,.25);
-      margin-bottom: 14px;
-    }
     nav.toc::after {
-      content: '家譜는 자손이 조상을\A잊지 않게 하는 글이다';
+      content: '가보(家譜)는 자손이\A조상을 잊지 않게 하는 글이다';
       white-space: pre;
       margin-top: auto; padding: 18px 14px 4px;
       border-top: 1px solid rgba(212,171,95,.2);
-      font-size: 11px; line-height: 1.9; letter-spacing: 1px;
+      font-size: 13px; line-height: 1.9; letter-spacing: 1px;
       color: var(--ink-faint);
+    }
+    .side-brand {
+      display: flex; align-items: center; gap: 13px;
+      padding: 4px 10px 18px;
+      border-bottom: 1px solid rgba(212,171,95,.25);
+      margin-bottom: 14px;
+    }
+    .brand-icon {
+      flex: 0 0 auto; width: 56px; height: 56px;
+      border: 1.5px solid rgba(212,171,95,.55); border-radius: 12px;
+      background: rgba(212,171,95,.07);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .brand-icon svg { width: 42px; height: 42px; }
+    .brand-title {
+      font-weight: 800; font-size: 18px; letter-spacing: 1.5px; line-height: 1.5;
+      color: var(--gold);
+    }
+    .brand-title small {
+      display: block; font-size: 11px; font-weight: 400;
+      color: var(--ink-faint); letter-spacing: .5px; margin-top: 5px;
     }
     nav.toc a {
       padding: 10px 14px;
@@ -770,6 +782,96 @@
       padding: 44px 3.5vw 80px;
     }
     .wrap > :not(nav) { max-width: 1100px; margin-left: auto; margin-right: auto; }
+  }
+
+  /* ── 큰 글씨 모드 (어르신 가독성, 기존 대비 약 1.6배) ── */
+  @media (max-width: 1099.98px) { .side-brand { display: none; } }
+  .gen-card [style*="font-size:13px"] { font-size: 15px !important; }
+  body { font-size: 19px; line-height: 1.85; word-break: keep-all; overflow-wrap: break-word; }
+  .cover h1 { font-size: 54px; }
+  .cover .subtitle { font-size: 22px; letter-spacing: 3px; }
+  .cover .meta { font-size: 17px; }
+  .cover .seal { width: 88px; height: 88px; font-size: 24px; line-height: 1.3; padding: 12px 4px; }
+  .cover .seal span { display: block; font-size: 13px; letter-spacing: 4px; font-weight: 700; margin-top: 3px; }
+  nav.toc { font-size: 19px; }
+  section h2 { font-size: 34px; }
+  section .lead { font-size: 18px; }
+  section h3 { font-size: 26px; }
+  section h4 { font-size: 21px; }
+  table { font-size: 18px; }
+  table th, table td { padding: 12px 14px; }
+  table td.gen { width: 92px; }
+  .quote { font-size: 18px; }
+  .quote .label { font-size: 15px; }
+  .gen-card .gen-no { font-size: 15px; }
+  .gen-card .name { font-size: 30px; }
+  .gen-card .name-han { font-size: 19px; }
+  .gen-card .dates { font-size: 19px; }
+  .gen-card .dates span.label { width: 88px; font-size: 17px; }
+  .gen-card .spouse { font-size: 19px; }
+  .gen-card .spouse div { font-size: 17px !important; }
+  .gen-card .note { font-size: 17px; }
+  .gen-card .portrait { width: 122px; min-height: 152px; }
+  .gen-card .portrait .pseal { font-size: 19px; }
+  .gen-card .portrait .ph-note { font-size: 12px; }
+  .family-card .role { font-size: 14px; }
+  .family-card .couple { font-size: 21px; }
+  .family-card .children { font-size: 17px; }
+  .family-grid { grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+  .chain .cnode { font-size: 19px; padding: 10px 20px; }
+  .chain .cnode small { font-size: 15px; }
+  .mermaid-wrap .caption { font-size: 15px; }
+  .tomb-box { font-size: 17px; }
+  footer { font-size: 17px; }
+  .sec-deco svg { width: min(560px, 84%); }
+
+  .royal-line::before { left: 38px; }
+  .royal-line li { padding: 8px 0 8px 94px; min-height: 66px; }
+  .royal-line .st { left: 8px; width: 60px; height: 60px; font-size: 16px; }
+  .royal-line .stno { left: 52px; margin-top: 13px; width: 21px; height: 21px; font-size: 12px; }
+  .royal-line .kname { font-size: 21px; }
+  .royal-line .khan { font-size: 15px; }
+  .royal-line .kdesc, .royal-line .knote { font-size: 15.5px; }
+  .origin-spur .spur { margin-left: 26px; padding: 12px 18px; }
+  .origin-spur .spur::before { left: -80px; width: 80px; }
+  .origin-spur .spur .t { font-size: 20px; }
+  .origin-spur .spur small { font-size: 15px; }
+  .spur-hj { width: 38px; height: 38px; font-size: 16px; }
+
+  .otree { min-width: 1160px; }
+  .otree .p { font-size: 17px; padding: 9px 14px; }
+  .otree .p small { font-size: 13.5px; }
+  .otree .p.gp { font-size: 19px; }
+  .otree .p.kid { font-size: 16px; }
+  #kpreview .cap { font-size: 15px; }
+
+  @media (max-width: 720px) {
+    body { font-size: 17px; }
+    .cover h1 { font-size: 33px; letter-spacing: 3px; }
+    .cover .subtitle { font-size: 16px; letter-spacing: 1.5px; }
+    section h2 { font-size: 26px; }
+    section h3 { font-size: 22px; }
+    table { font-size: 15px; }
+    table th, table td { padding: 8px 9px; }
+    .gen-card .name { font-size: 23px; }
+    .gen-card .gen-no { font-size: 13px; display: table; }
+    .gen-card .dates { font-size: 17px; }
+    .gen-card .dates span.label { width: 62px; font-size: 15px; }
+    .gen-card .spouse { font-size: 17px; }
+    .gen-card .portrait { width: 96px; min-height: 122px; margin-left: 10px; }
+    .royal-line::before { left: 32px; }
+    .royal-line li { padding-left: 80px; min-height: 58px; }
+    .royal-line .st { left: 6px; width: 52px; height: 52px; font-size: 14px; }
+    .royal-line .stno { left: 44px; margin-top: 11px; }
+    .origin-spur .spur { margin-left: 8px; }
+    .origin-spur .spur::before { left: -60px; width: 60px; }
+  }
+
+  @media (min-width: 1100px) {
+    nav.toc { width: 21vw; max-width: 350px; }
+    nav.toc a { font-size: 18px; padding: 12px 16px; }
+    .wrap { margin-left: clamp(230px, 21vw, 350px); }
+    .wrap > :not(nav) { max-width: 1180px; }
   }
 
   @media print {
@@ -901,18 +1003,32 @@
       <!-- 물결 문양 -->
       <rect x="0" y="342" width="1200" height="58" fill="url(#waves)"/>
     </svg>
-    <div class="seal">家譜</div>
-    <h1>全州李氏 海安君 靖僖公派</h1>
-    <div class="subtitle">전주이씨 해안군 정희공파 가족 족보</div>
+    <div class="seal">家譜<span>가보</span></div>
+    <h1>전주이씨 해안군 정희공파</h1>
+    <div class="subtitle">全州李氏 海安君 靖僖公派 · 가족 족보</div>
     <div class="meta">
-      <span>編 · 가전 수기 자료 정리</span>
-      <span>更新 · 2026年 8月</span>
+      <span>엮음 · 가전 수기 자료 정리</span>
+      <span>갱신 · 2026년 8월</span>
     </div>
   </header>
 
   <!-- ═══════════ 목차 ═══════════ -->
   <nav class="toc">
-    <a href="#intro">序文</a>
+    <div class="side-brand">
+      <span class="brand-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48">
+          <g fill="#d4ab5f">
+            <path d="M8 20 Q14 24 18 24.5 L30 24.5 Q34 24 40 20 Q31 13.5 24 13.5 Q17 13.5 8 20 Z"/>
+            <rect x="10" y="34" width="28" height="3.5" rx="1"/>
+            <rect x="7" y="37.5" width="34" height="3.5" rx="1"/>
+          </g>
+          <rect x="14" y="24" width="20" height="10" fill="#a8493d" stroke="#d4ab5f" stroke-width="1"/>
+          <circle cx="24" cy="8.5" r="3" fill="#f2e6c8"/>
+        </svg>
+      </span>
+      <span class="brand-title">전주이씨<br>해안군 정희공파<small>全州李氏 海安君 靖僖公派</small></span>
+    </div>
+    <a href="#intro">서문</a>
     <a href="#dynasty">조선왕조 계보</a>
     <a href="#haean">정희공파 세보</a>
     <a href="#direct">직계</a>
@@ -1102,95 +1218,95 @@
     <p class="lead">세보의 직계 라인(굵은 글씨) — 12세부터 17세까지의 생몰년월일 및 묘소.</p>
 
     <div class="gen-card">
-      <span class="gen-no">12世</span>
+      <span class="gen-no">12세 十二世</span>
       <div class="portrait"><span class="pseal">이병근</span></div>
       <span class="name">이병근</span>
       <div class="dates">
-        <div><span class="label">生</span> 1846. 12. 20</div>
-        <div><span class="label">卒</span> 1890. 09. 08</div>
+        <div><span class="label">생(生)</span> 1846. 12. 20</div>
+        <div><span class="label">졸(卒)</span> 1890. 09. 08</div>
       </div>
       <div class="spouse">
-        <strong>配</strong> 밀양박씨 <span style="color:var(--ink-faint);font-size:13px">(원본에 성씨만 기록)</span>
+        <strong>배(配)</strong> 밀양박씨 <span style="color:var(--ink-faint);font-size:13px">(원본에 성씨만 기록)</span>
         <div style="margin-top:4px;color:var(--ink-faint);font-size:13px">
-          生 1858. 09. 09 / 卒 1911. 10. 11
+          생(生) 1858. 09. 09 / 졸(卒) 1911. 10. 11
         </div>
       </div>
     </div>
 
     <div class="gen-card">
-      <span class="gen-no">13世</span>
+      <span class="gen-no">13세 十三世</span>
       <div class="portrait"><span class="pseal">이윤삼</span></div>
       <span class="name">이윤삼</span><span class="name-han">(세보명 기보)</span>
       <div class="dates">
-        <div><span class="label">生</span> 1886. 09. 15</div>
-        <div><span class="label">卒</span> 1967. 09. 23</div>
+        <div><span class="label">생(生)</span> 1886. 09. 15</div>
+        <div><span class="label">졸(卒)</span> 1967. 09. 23</div>
       </div>
       <div class="spouse">
-        <strong>配</strong> 김윤자
+        <strong>배(配)</strong> 김윤자
         <div style="margin-top:4px;color:var(--ink-faint);font-size:13px">
-          生 1888. 09. 27 / 卒 1958. 12. 15
+          생(生) 1888. 09. 27 / 졸(卒) 1958. 12. 15
         </div>
       </div>
       <div class="note">세보에는 '기보'로 기록 — 족보명(기보) / 호적명(윤삼) 병기로 추정.</div>
     </div>
 
     <div class="gen-card">
-      <span class="gen-no">14世</span>
+      <span class="gen-no">14세 十四世</span>
       <div class="portrait"><span class="pseal">이봉길</span></div>
       <span class="name">이봉길</span><span class="name-han">(세보명 철호)</span>
       <div class="dates">
-        <div><span class="label">生</span> 1908. 11. 30</div>
-        <div><span class="label">卒</span> 1935. 06. 26</div>
+        <div><span class="label">생(生)</span> 1908. 11. 30</div>
+        <div><span class="label">졸(卒)</span> 1935. 06. 26</div>
       </div>
       <div class="spouse">
-        <strong>配</strong> 박양수
+        <strong>배(配)</strong> 박양수
         <div style="margin-top:4px;color:var(--ink-faint);font-size:13px">
-          生 1906. 10. 20 / 卒 1984. 05. 12
+          생(生) 1906. 10. 20 / 졸(卒) 1984. 05. 12
         </div>
       </div>
       <div class="tomb-box">
-        <span class="icon">墓</span> 화성추모공원 135호
+        <span class="icon">묘(墓)</span> 화성추모공원 135호
       </div>
     </div>
 
     <div class="gen-card">
-      <span class="gen-no">15世</span>
+      <span class="gen-no">15세 十五世</span>
       <div class="portrait"><span class="pseal">이한석</span><span class="ph-note">사진 준비 중</span></div>
       <span class="name">이한석</span>
       <div class="dates">
-        <div><span class="label">生</span> 1930. 11. 27 <span style="color:var(--ink-faint);font-size:13px">(31. 12. 06 — <span class="uncertain">음력/호적 추정</span>)</span></div>
-        <div><span class="label">卒</span> 2017. 08. 24</div>
+        <div><span class="label">생(生)</span> 1930. 11. 27 <span style="color:var(--ink-faint);font-size:13px">(31. 12. 06 — <span class="uncertain">음력/호적 추정</span>)</span></div>
+        <div><span class="label">졸(卒)</span> 2017. 08. 24</div>
       </div>
       <div class="spouse">
-        <strong>配</strong> 최공녀
+        <strong>배(配)</strong> 최공녀
         <div style="margin-top:4px;color:var(--ink-faint);font-size:13px">
-          生 1933. 05. 22 (32. 06. 24 — <span class="uncertain">음력/호적 추정</span>) / 卒 2012. 02. 20
+          생(生) 1933. 05. 22 (32. 06. 24 — <span class="uncertain">음력/호적 추정</span>) / 졸(卒) 2012. 02. 20
         </div>
       </div>
       <div class="tomb-box">
-        <span class="icon">墓</span> 국립서울현충원 310078
+        <span class="icon">묘(墓)</span> 국립서울현충원 310078
       </div>
     </div>
 
     <div class="gen-card">
-      <span class="gen-no">16世</span>
+      <span class="gen-no">16세 十六世</span>
       <div class="portrait"><span class="pseal">이동영</span><span class="ph-note">사진 준비 중</span></div>
       <span class="name">이동영</span>
       <div class="dates">
-        <div><span class="label">生</span> ─</div>
-        <div><span class="label">卒</span> ─</div>
+        <div><span class="label">생(生)</span> ─</div>
+        <div><span class="label">졸(卒)</span> ─</div>
       </div>
       <div class="spouse">
-        <strong>配</strong> 백현숙
+        <strong>배(配)</strong> 백현숙
       </div>
     </div>
 
     <div class="gen-card">
-      <span class="gen-no">17世</span>
+      <span class="gen-no">17세 十七世</span>
       <div class="portrait"><span class="pseal">이재성</span><span class="ph-note">사진 준비 중</span></div>
       <span class="name">이재성</span>
       <div class="spouse">
-        <strong>配</strong> 김주경
+        <strong>배(配)</strong> 김주경
       </div>
       <div class="note">자녀: 이차은 · 이차준 (18세)</div>
     </div>
@@ -1335,27 +1451,27 @@
       <div class="family-card">
         <span class="role">장남</span>
         <div class="couple">이성영 ⚭ 허경희</div>
-        <div class="children"><span class="label">子女</span>이형현 (배우자: 김잔디)</div>
+        <div class="children"><span class="label">자녀</span>이형현 (배우자: 김잔디)</div>
       </div>
       <div class="family-card self-line">
         <span class="role">차남 · 직계</span>
         <div class="couple">이동영 ⚭ 백현숙</div>
-        <div class="children"><span class="label">子女</span>이재헌 · 이재성</div>
+        <div class="children"><span class="label">자녀</span>이재헌 · 이재성</div>
       </div>
       <div class="family-card">
         <span class="role">장녀</span>
         <div class="couple">이옥자 ⚭ 문왕곤</div>
-        <div class="children"><span class="label">子女</span>문석환</div>
+        <div class="children"><span class="label">자녀</span>문석환</div>
       </div>
       <div class="family-card">
         <span class="role">삼남</span>
         <div class="couple">이진영 ⚭ 정진미</div>
-        <div class="children"><span class="label">子女</span>이재일 · 이형학</div>
+        <div class="children"><span class="label">자녀</span>이재일 · 이형학</div>
       </div>
       <div class="family-card">
         <span class="role">차녀</span>
         <div class="couple">이정미 ⚭ 김상동</div>
-        <div class="children"><span class="label">子女</span><span class="uncertain">김소현</span> · 김소예</div>
+        <div class="children"><span class="label">자녀</span><span class="uncertain">김소현</span> · 김소예</div>
       </div>
     </div>
 
@@ -1364,12 +1480,12 @@
       <div class="family-card">
         <span class="role">이한석의 형</span>
         <div class="couple">이한규 ⚭ 박○ <span style="font-weight:400;color:var(--ink-faint)">(성만 전해짐)</span></div>
-        <div class="children"><span class="label">子女</span>이준영 · 이복자 · 이영숙 · 이옥님 · 이현호 · 이미자 · 이정화</div>
+        <div class="children"><span class="label">자녀</span>이준영 · 이복자 · 이영숙 · 이옥님 · 이현호 · 이미자 · 이정화</div>
       </div>
       <div class="family-card">
         <span class="role">이한석의 누이</span>
         <div class="couple">이한순 ⚭ 김동석</div>
-        <div class="children"><span class="label">子女</span>김상수 · <span class="uncertain">김향수</span> · 김철수 · 김경수</div>
+        <div class="children"><span class="label">자녀</span>김상수 · <span class="uncertain">김향수</span> · 김철수 · 김경수</div>
       </div>
     </div>
 
@@ -1486,8 +1602,8 @@
       </g>
       <rect x="0" y="34" width="1200" height="30" fill="url(#waves)"/>
     </svg>
-    家譜는 자손이 조상을 잊지 않게 하는 글이다.<br>
-    <span style="font-size:11px">全州李氏 海安君 靖僖公派 · 2026</span>
+    가보(家譜)는 자손이 조상을 잊지 않게 하는 글이다.<br>
+    <span style="font-size:13px">전주이씨 해안군 정희공파 · 全州李氏 海安君 靖僖公派 · 2026</span>
   </footer>
 </div>
 
