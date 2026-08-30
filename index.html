@@ -518,7 +518,6 @@
   .footer-art { display: block; width: 100%; height: auto; margin: 28px auto 14px; opacity: .85; }
 
   /* ── 단청 밴드 · 구름 디바이더 · 모서리 장식 ── */
-  .dancheong-band { display: block; width: 100%; height: 26px; }
   .sec-deco { text-align: center; margin: 2px 0 8px; }
   .sec-deco svg { width: min(520px, 82%); height: auto; opacity: .9; vertical-align: middle; }
   section { position: relative; }
@@ -730,7 +729,7 @@
       gap: 4px; padding: 30px 18px;
       border: none; border-right: 1px solid rgba(212,171,95,.3);
       background: linear-gradient(180deg, #0c1020 0%, #0b0d14 100%);
-      overflow-y: auto; z-index: 100;
+      overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; z-index: 100;
       box-shadow: 6px 0 24px rgba(0,0,0,.35);
     }
     nav.toc::after {
@@ -868,9 +867,9 @@
   }
 
   @media (min-width: 1100px) {
-    nav.toc { width: 21vw; max-width: 350px; }
+    nav.toc { width: clamp(230px, 21vw, 400px); }
     nav.toc a { font-size: 18px; padding: 12px 16px; }
-    .wrap { margin-left: clamp(230px, 21vw, 350px); }
+    .wrap { margin-left: clamp(230px, 21vw, 400px); }
     .wrap > :not(nav) { max-width: 1180px; }
   }
 
@@ -947,32 +946,613 @@
     #kpreview img { width: min(500px, 42vw); }
     #kpreview .cap { font-size: 20px; }
 
-    nav.toc { width: 22vw; min-width: 280px; max-width: 430px; padding: 34px 20px; }
-    nav.toc a { font-size: 24px; padding: 15px 18px; }
-    nav.toc::after { font-size: 17px; }
+    nav.toc { width: clamp(230px, 21vw, 400px); }
+
+
     .side-brand { gap: 16px; padding: 6px 12px 22px; }
     .brand-icon { width: 74px; height: 74px; border-radius: 16px; }
     .brand-icon svg { width: 56px; height: 56px; }
-    .brand-title { font-size: 25px; }
+    .brand-title { font-size: 21px; }
     .brand-title small { font-size: 14px; }
-    .wrap { margin-left: clamp(280px, 22vw, 430px); padding: 52px 3vw 90px; }
+    .wrap { margin-left: clamp(230px, 21vw, 400px); padding: 52px 3vw 90px; }
     .wrap > :not(nav) { max-width: 1440px; }
   }
 
+  /* ════════ 한자 병기 · 직계 강조 ════════ */
+  .hanja {
+    font-size: .84em; color: var(--gold); letter-spacing: .06em;
+    white-space: nowrap; opacity: .95;
+  }
+  b.lin, .lin {
+    color: var(--seal-red-soft); font-weight: 700;
+    text-shadow: 0 0 12px rgba(184,74,58,.22);
+  }
+  b.lin .hanja, .lin .hanja { color: var(--seal-red-soft); opacity: .8; }
+  tbody tr:has(b.lin) { background: rgba(184,74,58,.06); }
+  tbody tr:has(b.lin) td:first-child { box-shadow: inset 3px 0 0 var(--seal-red-soft); }
+  b.ok {
+    display: inline-block; font-size: .78em; font-weight: 700; letter-spacing: .08em;
+    color: #1d2b1a; background: linear-gradient(180deg, #cfe0a8, #a9c47a);
+    border-radius: 3px; padding: 1px 7px; margin-right: 4px; vertical-align: .1em;
+  }
+  .otree .p small { display: block; font-size: .74em; color: var(--gold); opacity: .85; letter-spacing: .04em; }
+
+  /* ════════ 왕통 노선도 — 능묘 사진 + 어진 보조 ════════ */
+  .royal-line li { padding-right: 80px; }
+  .royal-line .ktomb {
+    display: block; margin-top: 5px; font-size: 12px; letter-spacing: .02em;
+    color: var(--gold); opacity: .92;
+  }
+  .royal-line .ktomb::before {
+    content: '陵'; display: inline-block; margin-right: 6px; padding: 0 5px;
+    font-size: 10px; border: 1px solid currentColor; border-radius: 3px;
+    opacity: .8; vertical-align: 1px;
+  }
+  .royal-line .ktomb .uncertain { color: var(--ink-faint); }
+  .royal-line .eojin {
+    position: absolute; top: 50%; right: 4px; transform: translateY(-50%);
+    width: 60px; text-align: center; line-height: 1;
+  }
+  .royal-line .eojin img {
+    display: block; width: 100%; height: 74px; object-fit: cover;
+    border: 1px solid var(--line-soft); border-radius: 4px;
+    background: var(--hanji-bg-dark); cursor: zoom-in;
+  }
+  .royal-line .eojin i {
+    display: block; margin-top: 4px; font-style: normal; font-size: 10px;
+    letter-spacing: .12em; color: var(--gold); opacity: .85;
+  }
+  @media (max-width: 700px) {
+    .royal-line li { padding-right: 62px; }
+    .royal-line .eojin { width: 46px; right: 2px; }
+    .royal-line .eojin img { height: 58px; }
+    .royal-line .eojin i { font-size: 9px; }
+    .royal-line .ktomb { font-size: 11px; }
+  }
+  @media (min-width: 1100px) {
+    .royal-line li { padding-right: 122px; }
+    .royal-line .eojin { width: 92px; right: 10px; }
+    .royal-line .eojin img { height: 114px; }
+    .royal-line .eojin i { font-size: 13px; }
+    .royal-line .ktomb { font-size: 15px; }
+  }
+  .doc-head { display: none; }
+
+  /* ════════ PC 페이지 모드 ════════ */
+  .pagebar { display: none; }
+  @media (min-width: 1100px) {
+    body.paged { overflow: hidden; height: 100vh; }
+    body.paged .wrap {
+      height: 100vh; overflow: hidden; display: flex; flex-direction: column;
+      padding-top: 26px; padding-bottom: 0;
+    }
+    body.paged .wrap > .sec-deco,
+    body.paged .wrap > footer { display: none; }
+    body.paged .wrap > header.cover,
+    body.paged .wrap > section { display: none; }
+    body.paged .wrap > header.cover.is-page,
+    body.paged .wrap > section.is-page {
+      display: block; flex: 1 1 auto; min-height: 0;
+      overflow-y: auto; overscroll-behavior: contain;
+      scrollbar-gutter: stable both-edges;
+      animation: pgin .34s ease both;
+    }
+    @keyframes pgin { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    body.paged .pagebar {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      flex: 0 0 auto; margin: 14px auto 18px; width: 100%; max-width: 1180px;
+      padding: 12px 20px; border-radius: 10px;
+      background: linear-gradient(180deg, rgba(30,26,18,.72), rgba(18,15,10,.82));
+      border: 1px solid var(--line-soft);
+      box-shadow: 0 6px 22px rgba(0,0,0,.35);
+    }
+    .pagebar button {
+      font: inherit; font-size: 15px; cursor: pointer; color: var(--gold);
+      background: transparent; border: 1px solid var(--line-soft); border-radius: 6px;
+      padding: 8px 18px; letter-spacing: .04em; white-space: nowrap;
+    }
+    .pagebar button:hover:not(:disabled) { background: rgba(212,171,95,.14); color: #f2e6c8; }
+    .pagebar button:disabled { opacity: .3; cursor: default; }
+    .pagebar .pgnum { font-size: 13.5px; color: var(--ink-faint); letter-spacing: .08em; text-align: center; }
+    .pagebar .pgnum b { color: var(--gold); font-weight: 700; }
+    nav.toc .toc-tools {
+      margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line-soft);
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    nav.toc .toc-tools button, nav.toc .toc-tools .tool-link {
+      font: inherit; font-size: 14px; cursor: pointer; text-align: left; text-decoration: none; display: block;
+      color: var(--ink-soft); background: transparent; border: 1px solid var(--line-soft);
+      border-radius: 6px; padding: 8px 12px; letter-spacing: .03em;
+    }
+    nav.toc .toc-tools button:hover, nav.toc .toc-tools .tool-link:hover { color: var(--gold); border-color: var(--gold); }
+  }
+  @media (max-width: 1099px) { nav.toc .toc-tools { display: none; } }
+  /* ════════ 인쇄 ════════ */
+  /* ════════ 제목 옆 보기 전환 · 노선도 펼치기 ════════ */
+  .h3-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .viewswitch {
+    font-size: 13px; font-weight: 600; letter-spacing: .04em; white-space: nowrap;
+    color: var(--gold); text-decoration: none;
+    border: 1px solid var(--line-soft); border-radius: 999px; padding: 5px 14px;
+  }
+  .viewswitch:hover { background: rgba(212,171,95,.15); color: #f2e6c8; border-color: var(--gold); }
+  .rl-toggle { margin: 6px 0 4px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .rl-toggle button {
+    font: inherit; font-size: 14px; font-weight: 700; letter-spacing: .04em; cursor: pointer;
+    color: var(--gold); background: rgba(212,171,95,.08);
+    border: 1px dashed var(--line-soft); border-radius: 8px; padding: 10px 18px;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .rl-toggle button:hover { background: rgba(212,171,95,.18); border-style: solid; color: #f2e6c8; }
+  .rl-toggle button .arw { transition: transform .2s; }
+  .rl-toggle button[aria-expanded="true"] .arw { transform: rotate(180deg); }
+  .rl-toggle .hint { font-size: 12.5px; color: var(--ink-faint); }
+  .rl-tail[hidden] { display: none; }
+
+  /* ════════ 용어집 ════════ */
+  .gl-list { margin: 0 0 22px; }
+  .gl-list dt {
+    margin: 16px 0 0; font-weight: 700; font-size: 16.5px; letter-spacing: .03em;
+    color: #f2e6c8; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+    padding-left: 13px; border-left: 3px solid var(--gold);
+  }
+  .gl-list dt em { font-style: normal; font-size: .84em; color: var(--gold); opacity: .9; }
+  .gl-list dd {
+    margin: 6px 0 0 16px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.85;
+  }
+  .gl-list dd b { color: #ecd9a8; font-weight: 700; }
+  .gl-list dd .ex {
+    display: block; margin-top: 6px; padding: 8px 12px;
+    background: rgba(212,171,95,.07); border-left: 2px solid rgba(212,171,95,.4);
+    border-radius: 0 6px 6px 0; font-size: 13.5px; color: var(--ink-faint);
+  }
+  .gl-list dd .ex b { color: var(--gold); }
+  .gl-list dd .ex::before {
+    content: '이 족보에서'; display: block; font-size: 11px; letter-spacing: .1em;
+    color: var(--gold); opacity: .75; margin-bottom: 3px;
+  }
+
+  /* 본문 자동 밑줄 + 말풍선 */
+  .gl, .gl-demo {
+    border-bottom: 1px dotted var(--gold); cursor: help;
+    text-underline-offset: 3px;
+  }
+  .gl { background: none; color: inherit; font: inherit; padding: 0; }
+  .gl:hover, .gl:focus-visible { color: var(--gold); border-bottom-style: solid; outline: none; }
+  #gltip {
+    position: fixed; z-index: 950; max-width: min(420px, 88vw);
+    padding: 14px 16px; border-radius: 10px;
+    border: 1px solid var(--gold); background: #14121a;
+    box-shadow: 0 10px 34px rgba(0,0,0,.6);
+    font-size: 14px; line-height: 1.8; color: var(--ink-soft);
+    opacity: 0; visibility: hidden; transform: translateY(6px);
+    transition: opacity .14s, transform .14s, visibility .14s;
+  }
+  #gltip.on { opacity: 1; visibility: visible; transform: none; }
+  #gltip .h { font-weight: 700; color: #f2e6c8; font-size: 15.5px; margin-bottom: 6px; display: block; }
+  #gltip .h em { font-style: normal; color: var(--gold); font-size: .86em; margin-left: 6px; }
+  #gltip .ex { display: block; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line-soft); font-size: 13px; color: var(--ink-faint); }
+  #gltip .ex::before { content: '이 족보에서 '; color: var(--gold); opacity: .8; }
+  #gltip .more { display: block; margin-top: 8px; font-size: 12px; color: var(--gold); opacity: .8; }
+  @media (min-width: 1100px) {
+    .gl-list dt { font-size: 19px; }
+    .gl-list dd { font-size: 16.5px; }
+    .gl-list dd .ex { font-size: 15px; }
+    #gltip { font-size: 15.5px; max-width: 480px; }
+  }
+  @media print {
+    .gl, .gl-demo { border-bottom: none; }
+    #gltip { display: none !important; }
+    .gl-list dt { color: #14100a !important; border-left-color: #7a5a12 !important; break-after: avoid; }
+    .gl-list dt em { color: #4a3a10 !important; }
+    .gl-list dd { color: #2f2519 !important; break-inside: avoid; }
+    .gl-list dd b { color: #14100a !important; }
+    .gl-list dd .ex { background: #f7f2e6 !important; border-left-color: #7a6647 !important; color: #5d5040 !important; }
+    .gl-list dd .ex b { color: #4a3a10 !important; }
+  }
+
+  /* ════════ 표지 — 궁궐 사진 ════════ */
+  header.cover.has-photo {
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    min-height: clamp(420px, 68vh, 780px);
+    padding: 0 0 clamp(30px, 5vh, 66px);
+    background: #05070f;
+  }
+  header.cover.has-photo .hero-sky { display: none; }
+  .cover-photo {
+    position: absolute; inset: 0; z-index: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 42%;
+  }
+  .cover-veil {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      radial-gradient(120% 70% at 50% 12%, rgba(255,236,196,.10), transparent 62%),
+      linear-gradient(180deg,
+        rgba(5,7,15,.72) 0%,
+        rgba(5,7,15,.26) 26%,
+        rgba(5,7,15,.30) 46%,
+        rgba(5,7,15,.80) 76%,
+        rgba(5,7,15,.96) 100%);
+  }
+  header.cover.has-photo .cover-text {
+    position: relative; z-index: 3; margin-top: auto;
+    padding: 0 clamp(18px, 4vw, 64px); text-align: center;
+  }
+  header.cover.has-photo .seal {
+    margin-left: auto; margin-right: auto;
+    background: rgba(12,10,16,.42); backdrop-filter: blur(2px);
+    box-shadow: 0 6px 28px rgba(0,0,0,.5);
+  }
+  header.cover.has-photo h1 {
+    text-shadow: 0 2px 18px rgba(0,0,0,.75), 0 0 42px rgba(0,0,0,.55);
+  }
+  header.cover.has-photo .subtitle,
+  header.cover.has-photo .meta {
+    text-shadow: 0 1px 10px rgba(0,0,0,.8);
+  }
+  header.cover.has-photo::before,
+  header.cover.has-photo::after { z-index: 4; }
+  @media (max-width: 700px) {
+    header.cover.has-photo { min-height: clamp(340px, 58vh, 520px); }
+    .cover-photo { object-position: center 40%; }
+  }
+  @media print {
+    header.cover.has-photo { min-height: 0; padding: 0 0 8mm; background: #fff; }
+    .cover-photo { position: relative; height: 62mm; object-position: center 42%; }
+    .cover-veil { display: none; }
+    header.cover.has-photo .cover-text { margin-top: 6mm; }
+    header.cover.has-photo h1,
+    header.cover.has-photo .subtitle,
+    header.cover.has-photo .meta { text-shadow: none; }
+    header.cover.has-photo .seal { background: none; box-shadow: none; }
+  }
+
+  /* ════════ 사이드바 — 해상도·확대율에 상관없이 무너지지 않게 ════════
+     핵심: flex-wrap 을 반드시 nowrap 으로 되돌린다.
+     세로 방향 flex 에 wrap 이 남아 있으면 높이가 모자랄 때 항목이
+     오른쪽 두 번째 열로 넘어가 잘려 보인다. */
+  @media (max-width: 1099px) {
+    nav.toc .toc-links { display: contents; }
+  }
+  @media (min-width: 1100px) {
+    nav.toc {
+      display: flex; flex-direction: column; flex-wrap: nowrap;
+      align-items: stretch; justify-content: flex-start; gap: 0;
+      height: 100vh; height: 100dvh; max-height: 100vh; max-height: 100dvh;
+      overflow: hidden;
+      padding: 22px 14px 16px;
+      font-size: 16px;
+    }
+    nav.toc .side-brand { flex: 0 0 auto; }
+    nav.toc .toc-links {
+      flex: 1 1 auto; min-height: 0;
+      overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain;
+      display: flex; flex-direction: column; flex-wrap: nowrap; gap: 3px;
+      padding: 4px 6px 4px 0; margin: 4px 0;
+      scrollbar-width: thin; scrollbar-color: rgba(212,171,95,.45) transparent;
+    }
+    nav.toc .toc-links::-webkit-scrollbar { width: 8px; }
+    nav.toc .toc-links::-webkit-scrollbar-track { background: transparent; }
+    nav.toc .toc-links::-webkit-scrollbar-thumb { background: rgba(212,171,95,.38); border-radius: 6px; }
+    nav.toc .toc-links::-webkit-scrollbar-thumb:hover { background: rgba(212,171,95,.62); }
+    nav.toc a {
+      flex: 0 0 auto;
+      font-size: 16px;
+      padding: 10px 14px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    nav.toc .toc-tools {
+      flex: 0 0 auto; flex-wrap: nowrap;
+      margin-top: 14px; padding-top: 12px;
+    }
+    nav.toc .toc-tools button, nav.toc .toc-tools .tool-link {
+      font-size: 14px;
+      padding: 9px 12px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    nav.toc::after {
+      flex: 0 0 auto; margin-top: 14px;
+      font-size: 12.5px; line-height: 1.7;
+      padding: 14px 10px 0;
+    }
+    .side-brand { gap: 12px; padding: 2px 8px 16px; }
+    .brand-icon { width: 52px; height: 52px; }
+    .brand-icon svg { width: 72%; height: 72%; }
+    .brand-title { font-size: 17px; line-height: 1.35; }
+    .brand-title small { font-size: 11.5px; }
+  }
+  /* 세로가 짧으면 아래 문구부터 접어 목록 자리를 확보한다 */
+  @media (min-width: 1100px) and (max-height: 1000px) {
+    nav.toc::after { display: none; }
+  }
+  @media (min-width: 1100px) and (max-height: 640px) {
+    .brand-title small { display: none; }
+    .side-brand { padding-bottom: 8px; }
+  }
+
+  /* ════════ 왕통 가지도 — 좌→우로 이어지는 한 그루 트리 ════════ */
+  .dwrap { margin: 16px 0 10px; }
+  .dscroll-hint { font-size: 12.5px; color: var(--ink-faint); margin: 0 0 8px; letter-spacing: .02em; }
+  .dscroll-hint b { color: var(--gold); font-weight: 700; }
+  /* ── 축소 미리보기 ── */
+  .dmini {
+    position: relative; overflow: hidden; cursor: zoom-in;
+    padding: 16px; border: 1px solid var(--line-soft); border-radius: 10px;
+    background: linear-gradient(180deg, rgba(30,26,18,.46), rgba(18,15,10,.34));
+    transition: border-color .18s, box-shadow .18s;
+  }
+  .dmini:hover, .dmini:focus-visible {
+    border-color: var(--gold); box-shadow: 0 0 0 2px rgba(212,171,95,.18);
+    outline: none;
+  }
+  .dmini .dsizer { position: relative; }
+  .dmini .dstage { position: absolute; top: 0; left: 0; transform-origin: top left; pointer-events: none; }
+  .dmini-cta {
+    position: absolute; right: 14px; bottom: 12px; z-index: 3;
+    font-size: 13px; font-weight: 700; letter-spacing: .04em;
+    color: #17130a; background: linear-gradient(180deg, #e0bd76, #c39a4a);
+    border-radius: 999px; padding: 7px 16px; box-shadow: 0 3px 14px rgba(0,0,0,.45);
+  }
+  .dmini::after {
+    content: ''; position: absolute; inset: auto 0 0 0; height: 56px; z-index: 2;
+    background: linear-gradient(180deg, transparent, rgba(12,10,6,.6));
+    pointer-events: none;
+  }
+
+  /* ── 전체 화면 팝업 ── */
+  .dmodal { position: fixed; inset: 0; z-index: 900; display: flex; flex-direction: column; background: #07080e; }
+  .dmodal[hidden] { display: none; }
+  .dmodal-bar {
+    flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap; padding: 12px 18px;
+    border-bottom: 1px solid var(--line-soft);
+    background: linear-gradient(180deg, rgba(28,24,16,.95), rgba(14,12,8,.95));
+  }
+  .dmodal-bar .t { font-weight: 700; letter-spacing: .06em; color: #f2e6c8; font-size: 16px; }
+  .dmodal-bar .t small { display: block; font-size: 12px; font-weight: 400; color: var(--ink-faint); letter-spacing: .02em; margin-top: 2px; }
+  .dmodal-bar .ctl { display: flex; align-items: center; gap: 8px; }
+  .dmodal-bar button {
+    font: inherit; font-size: 14px; cursor: pointer; color: var(--gold);
+    background: transparent; border: 1px solid var(--line-soft); border-radius: 7px;
+    padding: 7px 14px; letter-spacing: .03em; white-space: nowrap;
+  }
+  .dmodal-bar button:hover { background: rgba(212,171,95,.16); color: #f7ecd6; border-color: var(--gold); }
+  .dmodal-bar button.close { color: #f0b7ab; border-color: rgba(184,74,58,.55); }
+  .dmodal-bar button.close:hover { background: rgba(184,74,58,.2); color: #ffd9cf; }
+  .dmodal-bar .zv { min-width: 56px; text-align: center; font-size: 13.5px; color: var(--ink-faint); }
+  .dmodal-body {
+    flex: 1 1 auto; min-height: 0; overflow: auto; padding: 22px;
+    background:
+      radial-gradient(1200px 700px at 20% 0%, rgba(212,171,95,.05), transparent 70%),
+      #0a0b12;
+    cursor: grab; overscroll-behavior: contain;
+  }
+  .dmodal-body.grabbing { cursor: grabbing; }
+  .dmodal-body .dsizer { position: relative; }
+  .dmodal-body .dstage { position: absolute; top: 0; left: 0; transform-origin: top left; }
+  .dmodal .dlegend { padding: 0; margin: 0; font-size: 12.5px; }
+  @media (max-width: 700px) {
+    .dmodal-bar { padding: 10px 12px; gap: 10px; }
+    .dmodal-bar .t { font-size: 14px; }
+    .dmodal-bar .t small { display: none; }
+    .dmodal-bar button { font-size: 13px; padding: 6px 10px; }
+    .dmodal-body { padding: 12px; }
+    .dmini-cta { right: 10px; bottom: 10px; font-size: 12px; padding: 6px 13px; }
+  }
+
+  .dpre { margin: 0 0 14px; padding: 0 0 12px; border-bottom: 1px dashed var(--line-soft); width: max-content; }
+  .dpre > .bt { display: block; font-size: 12px; letter-spacing: .1em; color: var(--ink-faint); margin: 0 0 9px; }
+  .dchain { display: flex; align-items: center; gap: 0; }
+  .darrow { color: var(--ink-faint); margin: 0 8px; }
+
+  :root { --dnode: 180px; --dgap: 40px; }
+
+  /* 노드(왼쪽) | 자식들(오른쪽) 을 가로로 배치한다 */
+  .dtree, .dtree ul { list-style: none; margin: 0; padding: 0; }
+  .dtree { width: max-content; display: flex; flex-direction: column; }
+  .dtree ul { display: flex; flex-direction: column; justify-content: center; position: relative; margin-left: var(--dgap); }
+  .dtree li { display: flex; align-items: center; position: relative; padding: 3px 0; }
+
+  /* 부모 노드 → 자식 묶음 세로선까지의 가로 스텁 */
+  .dtree li > ul::before {
+    content: ''; position: absolute; top: 50%; left: calc(var(--dgap) * -1);
+    width: calc(var(--dgap) / 2); border-top: 1.5px solid var(--line-soft);
+  }
+  /* 자식 묶음의 세로선 + 각 자식으로 가는 가로선 */
+  .dtree ul > li::before {
+    content: ''; position: absolute; top: 0; bottom: 0; left: calc(var(--dgap) / -2);
+    border-left: 1.5px solid var(--line-soft);
+  }
+  .dtree ul > li::after {
+    content: ''; position: absolute; top: 50%; left: calc(var(--dgap) / -2);
+    width: calc(var(--dgap) / 2); border-top: 1.5px solid var(--line-soft);
+  }
+  .dtree ul > li:first-child::before { top: 50%; }
+  .dtree ul > li:last-child::before { bottom: auto; height: 50%; }
+  .dtree ul > li:only-child::before { display: none; }
+
+  .n {
+    display: inline-flex; align-items: center; gap: 9px; flex: 0 0 auto;
+    width: var(--dnode); box-sizing: border-box; min-height: 46px;
+    padding: 6px 11px; border-radius: 8px;
+    border: 1px solid var(--line-soft); background: rgba(20,17,11,.72);
+    transition: border-color .15s, background .15s, box-shadow .15s;
+  }
+  .n.sm { width: auto; min-height: 0; padding: 5px 12px; }
+  .n .no {
+    display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto;
+    width: 22px; height: 22px; border-radius: 50%;
+    font-size: 11.5px; font-weight: 700; letter-spacing: 0;
+    background: var(--gold); color: #17130a;
+  }
+  .n .tx { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }
+  .n .nm { font-weight: 700; font-size: 14.5px; color: #f2e6c8; letter-spacing: .03em; white-space: nowrap; }
+  .n .nm em { font-style: normal; font-size: .8em; color: var(--gold); opacity: .85; margin-left: 4px; }
+  .n .sub { font-size: 10.5px; color: var(--ink-faint); letter-spacing: 0; line-height: 1.4; margin-top: 2px; }
+
+  .n.k { border-color: rgba(212,171,95,.55); background: rgba(212,171,95,.12); }
+  .n.pr { border-style: dashed; }
+  .n.pr .nm { color: #dccfae; }
+  .n.dg { border-color: rgba(150,133,196,.6); background: rgba(138,122,176,.15); }
+  .n.dg .nm { color: #ded4f2; }
+  .n.dg .no { background: #9b8ac4; }
+  .n.pf {
+    border-color: var(--seal-red-soft); background: rgba(184,74,58,.22);
+    box-shadow: 0 0 0 3px rgba(184,74,58,.12);
+  }
+  .n.pf .nm { color: #ffd9cf; }
+  .n.pf .no { background: var(--seal-red-soft); color: #fff3ef; }
+  .n.ours-note {
+    border-style: dashed; border-color: var(--seal-red-soft);
+    background: rgba(184,74,58,.08); width: 212px;
+  }
+  .n.ours-note .nm { color: #f0b7ab; font-size: 13px; white-space: normal; }
+
+  /* 본가로 이어지는 길 — 늘 붉게 켜 둔다 */
+  .dtree li.ours > .n { border-color: rgba(184,74,58,.8); }
+  .dtree ul > li.ours::before, .dtree ul > li.ours::after,
+  .dtree li.ours > ul::before { border-color: var(--seal-red-soft); }
+  .dtree ul.ours-tail > li::before, .dtree ul.ours-tail > li::after { border-color: var(--seal-red-soft); border-style: dashed; }
+
+  /* 마우스를 올린 마디 — 뿌리부터 그 마디까지의 길이 금색으로 켜진다 */
+  .dtree li:hover > .n {
+    border-color: var(--gold); background: rgba(212,171,95,.24);
+    box-shadow: 0 0 0 2px rgba(212,171,95,.3);
+  }
+  .dtree li:hover > .n .nm { color: #fff6e2; }
+  .dtree ul > li:hover::before, .dtree ul > li:hover::after,
+  .dtree li:hover > ul::before {
+    border-color: var(--gold); border-left-width: 2px; border-top-width: 2px;
+  }
+
+  .dlegend {
+    display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 14px 0 0;
+    font-size: 12.5px; color: var(--ink-faint); align-items: center;
+  }
+  .dlegend > span { display: inline-flex; align-items: center; gap: 7px; }
+  .dlegend .n { pointer-events: none; }
+
+  @media (max-width: 700px) {
+    :root { --dnode: 150px; --dgap: 26px; }
+    .dscroll { padding: 12px 12px 16px; max-height: none; }
+    .n { min-height: 40px; padding: 5px 8px; gap: 7px; }
+    .n .no { width: 19px; height: 19px; font-size: 10px; }
+    .n .nm { font-size: 12.5px; }
+    .n .sub { font-size: 9.5px; }
+    .n.ours-note { width: 172px; }
+  }
+  @media (min-width: 1100px) {
+    :root { --dnode: 206px; --dgap: 46px; }
+    .n { min-height: 54px; padding: 8px 14px; }
+    .n .no { width: 26px; height: 26px; font-size: 13.5px; }
+    .n .nm { font-size: 16.5px; }
+    .n .sub { font-size: 12.5px; }
+    .n.ours-note { width: 248px; }
+    .dscroll-hint { font-size: 15px; }
+    .dlegend { font-size: 15px; }
+    .dpre > .bt { font-size: 14px; }
+  }
+
+  @page { size: A4 portrait; margin: 14mm 12mm 16mm; }
+
   @media print {
     :root {
-      --hanji-bg:#ffffff; --hanji-bg-dark:#ead9b8; --hanji-paper:#ffffff;
-      --ink:#1f1a14; --ink-soft:#3d3528; --ink-faint:#6b5f4a;
-      --seal-red:#9a3324; --seal-red-soft:#b94a3a; --gold:#b8860b;
-      --line:#8b7355; --line-soft:#c4ad84;
+      --hanji-bg:#ffffff; --hanji-bg-dark:#f2ead9; --hanji-paper:#ffffff;
+      --ink:#14100a; --ink-soft:#2f2519; --ink-faint:#5d5040;
+      --seal-red:#8c2d1f; --seal-red-soft:#a4392a; --gold:#7a5a12;
+      --line:#7a6647; --line-soft:#b9a785;
     }
-    html, body { background: #fff; background-image: none; }
-    .hero-sky, .footer-art { display: none; }
-    header.cover { background: #fff; padding: 40px 20px; box-shadow: none; }
-    .cover h1 { background: none; -webkit-background-clip: initial; background-clip: initial; color: var(--ink); filter: none; }
-    section { background: #fff; box-shadow: none; }
-    table { background: #fff; }
-    .gen-card, .family-card { background: #fff; }
+    html, body {
+      background: #fff !important; background-image: none !important;
+      font-size: 10.5pt; line-height: 1.55; color: #14100a;
+    }
+    body.paged { overflow: visible !important; height: auto !important; }
+
+    /* 화면 전용 요소 감추기 */
+    nav.toc, .pagebar, .no-print, .hero-sky, .footer-art, .sec-deco,
+    #kpreview { display: none !important; }
+    .print-only { display: block !important; }
+
+    /* 페이지 모드였더라도 인쇄 때는 전부 펼친다 */
+    body.paged .wrap { height: auto !important; overflow: visible !important; display: block !important; padding: 0 !important; }
+    body.paged .wrap > header.cover,
+    body.paged .wrap > section { display: block !important; animation: none !important; overflow: visible !important; }
+    .wrap { margin: 0 !important; padding: 0 !important; max-width: none !important; }
+    .wrap > :not(nav) { max-width: none !important; }
+
+    header.cover {
+      background: #fff !important; box-shadow: none !important; border: none;
+      padding: 0 0 10mm !important; break-after: page;
+    }
+    .cover h1 {
+      background: none !important; -webkit-background-clip: initial; background-clip: initial;
+      color: #14100a !important; filter: none !important;
+    }
+    section {
+      background: #fff !important; box-shadow: none !important;
+      border: none; border-top: 1.4pt solid #7a6647;
+      padding: 6mm 0 8mm !important; margin: 0 !important;
+      break-inside: auto; break-before: page;
+    }
+    section:first-of-type { break-before: auto; }
+    h2 { break-after: avoid; font-size: 15pt; margin: 0 0 4mm; }
+    h3 { break-after: avoid; font-size: 12pt; margin: 6mm 0 2mm; }
+    p, li { orphans: 3; widows: 3; }
+
+    table { background: #fff !important; width: 100%; border-collapse: collapse; font-size: 9.5pt; break-inside: auto; }
+    thead { display: table-header-group; }
+    tr { break-inside: avoid; }
+    table th, table td { border: .6pt solid #b9a785 !important; padding: 1.6mm 2mm !important; background: #fff !important; }
+    table th { background: #f3ecdd !important; color: #14100a !important; }
+    tbody tr:has(b.lin) { background: #fbf3f1 !important; }
+    tbody tr:has(b.lin) td { background: #fbf3f1 !important; }
+    b.lin, .lin { color: #8c2d1f !important; text-shadow: none !important; }
+    .hanja { color: #4a3a10 !important; }
+    b.ok { background: none !important; color: #2c4416 !important; border: .6pt solid #2c4416; }
+
+    .gen-card, .family-card {
+      background: #fff !important; box-shadow: none !important;
+      border: .8pt solid #b9a785 !important; break-inside: avoid;
+    }
+    .gen-card .portrait, .gen-card .portrait .pseal { background: #fff !important; }
+    .quote { background: #f7f2e6 !important; border-left: 2.4pt solid #7a6647 !important; break-inside: avoid; }
+    .caption { color: #5d5040 !important; font-size: 8.5pt; }
+
+    .royal-line li { break-inside: avoid; padding-right: 34mm !important; }
+    .royal-line .st { border-color: #b9a785 !important; }
+    .royal-line .eojin { width: 24mm !important; right: 2mm !important; }
+    .royal-line .eojin img { height: 30mm !important; border-color: #b9a785 !important; }
+    .royal-line .ktomb { color: #4a3a10 !important; }
+    .otree .p { background: #fff !important; border-color: #b9a785 !important; }
+    img { max-width: 100%; }
+    /* 접힌 왕통 구간·가지도 */
+    .rl-tail[hidden] { display: block !important; }
+    .rl-toggle, .viewswitch { display: none !important; }
+    .dscroll {
+      background: #fff !important; border: .8pt solid #b9a785 !important;
+      break-inside: avoid; overflow: visible !important; padding: 4mm 5mm !important;
+    }
+    .dpre > .bt { color: #5d5040 !important; font-size: 9pt; }
+    .dtree, .dpre { width: auto !important; }
+    .dscroll-hint { display: none !important; }
+    .dtree ul > li::before, .dtree ul > li::after { border-color: #b9a785 !important; }
+    .n { background: #fff !important; border-color: #b9a785 !important; font-size: 9pt !important; padding: 1mm 2mm !important; }
+    .n .nm { color: #14100a !important; }
+    .n .hj { color: #4a3a10 !important; }
+    .n .sub { color: #5d5040 !important; font-size: 8pt !important; }
+    .n .no { background: #7a5a12 !important; color: #fff !important; width: 4.2mm; height: 4.2mm; font-size: 7.5pt; }
+    .n.k { background: #fbf6e9 !important; border-color: #7a5a12 !important; }
+    .n.pf { background: #fbf1ee !important; border-color: #8c2d1f !important; box-shadow: none !important; }
+    .n.dg { background: #f4f2fa !important; border-color: #6d5f92 !important; }
+    .n.dg .nm { color: #2e2745 !important; }
+    .dlegend { color: #5d5040 !important; font-size: 8.5pt; }
+
+    /* 「이 장만 인쇄」 — 지정한 장 외에는 모두 숨긴다 */
+    body.print-one .wrap > *:not(.print-target) { display: none !important; }
+    body.print-one .print-target { break-before: auto !important; border-top: none !important; }
+    body.print-one footer { display: none !important; }
   }
 </style>
 </head>
@@ -980,19 +1560,9 @@
 <div class="wrap">
 
   <!-- ═══════════ 표지 ═══════════ -->
-  <header class="cover" id="top">
-    <svg class="dancheong-band" viewBox="0 0 1200 26" preserveAspectRatio="none" aria-hidden="true">
-      <defs>
-        <pattern id="dcArch" width="56" height="26" patternUnits="userSpaceOnUse">
-          <path d="M2 22 A26 20 0 0 1 54 22 Z" fill="#9e4a3c"/>
-          <path d="M8 22 A20 15 0 0 1 48 22 Z" fill="#c9a24b"/>
-          <path d="M14 22 A14 11 0 0 1 42 22 Z" fill="#456f8c"/>
-          <path d="M20 22 A8 6 0 0 1 36 22 Z" fill="#6f9e8e"/>
-          <circle cx="28" cy="24" r="1.5" fill="#efe6cf"/>
-        </pattern>
-      </defs>
-      <rect width="1200" height="26" fill="url(#dcArch)" opacity=".85"/>
-    </svg>
+  <header class="cover has-photo" id="top">
+    <img class="cover-photo" src="Images/cover-palace.jpg" alt="궁궐 야경" onerror="this.closest(&quot;header&quot;).classList.remove(&quot;has-photo&quot;); this.remove();">
+    <div class="cover-veil" aria-hidden="true"></div>
     <svg class="hero-sky" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax meet" role="img" aria-label="달빛 아래 궁궐 야경">
       <defs>
         <symbol id="cloudDiv" viewBox="0 0 600 40">
@@ -1088,12 +1658,14 @@
       <!-- 물결 문양 -->
       <rect x="0" y="342" width="1200" height="58" fill="url(#waves)"/>
     </svg>
+    <div class="cover-text">
     <div class="seal">家譜<span>가보</span></div>
     <h1>전주이씨 해안군 정희공파</h1>
     <div class="subtitle">全州李氏 海安君 靖僖公派 · 가족 족보</div>
     <div class="meta">
       <span>엮음 · 가전 수기 자료 정리</span>
       <span>갱신 · 2026년 8월</span>
+    </div>
     </div>
   </header>
 
@@ -1113,12 +1685,22 @@
       </span>
       <span class="brand-title">전주이씨<br>해안군 정희공파<small>全州李氏 海安君 靖僖公派</small></span>
     </div>
-    <a href="#intro">서문</a>
-    <a href="#dynasty">조선왕조 계보</a>
-    <a href="#haean">정희공파 세보</a>
-    <a href="#direct">직계</a>
-    <a href="#family">친족 가계도</a>
-    <a href="#notes">기록 출처</a>
+    <div class="toc-links">
+      <a href="#top">표지</a>
+      <a href="#intro">서문</a>
+      <a href="#dynasty">조선왕조 계보</a>
+      <a href="#tree">왕통 가지도</a>
+      <a href="#haean">정희공파 세보</a>
+      <a href="#direct">직계</a>
+      <a href="#family">친족 가계도</a>
+      <a href="#glossary">용어집</a>
+      <a href="#notes">기록 출처</a>
+    </div>
+    <div class="toc-tools">
+      <a href="print.html" target="_blank" rel="noopener" class="tool-link">인쇄본 열기 ⧉</a>
+      <button type="button" onclick="printAll()">이 화면 그대로 인쇄</button>
+      <button type="button" id="modeToggle" onclick="togglePaged()">한 화면씩 보기 · 켜짐</button>
+    </div>
   </nav>
 
   <!-- ═══════════ 序文 ═══════════ -->
@@ -1164,44 +1746,54 @@
       <div class="caption">태조 이성계의 4대 조부는 즉위 후 추존되었다.</div>
     </div>
 
-    <h3>27대 왕통 노선도</h3>
+    <h3 class="h3-row">27대 왕통 노선도
+      <a class="viewswitch no-print" href="#tree">가지도로 보기 <span aria-hidden="true">⤳</span></a>
+    </h3>
     <div class="mermaid-wrap">
       <ol class="royal-line">
-        <li><span class="st"><span class="hj">太祖</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/King_Taejo_Yi_02.jpg/330px-King_Taejo_Yi_02.jpg" alt="태조 어진" loading="lazy" onerror="this.remove()"></span><span class="stno">1</span><span class="kname">태조</span><span class="khan">太祖 · 1392~1398 · 이성계</span><span class="kdesc">조선을 개국하고 한양으로 천도했다.</span><span class="knote">추존 4조(목조→익조→도조→환조)의 뒤를 이어 개국</span></li>
-        <li><span class="st"><span class="hj">定宗</span></span><span class="stno">2</span><span class="kname">정종</span><span class="khan">定宗 · 1398~1400</span><span class="kdesc">개경 환도와 사병 혁파를 거쳐 아우 태종에게 선위했다.</span><span class="knote">태조의 아들</span></li>
-        <li><span class="st"><span class="hj">太宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Heolleung_Royal_Tomb_%28%ED%97%8C%EB%8A%A5%29.jpg/330px-Heolleung_Royal_Tomb_%28%ED%97%8C%EB%8A%A5%29.jpg" alt="헌릉" title="태종 — 헌릉(獻陵) · 서울 서초" loading="lazy" onerror="this.remove()"></span><span class="stno">3</span><span class="kname">태종</span><span class="khan">太宗 · 1400~1418</span><span class="kdesc">사병을 혁파하고 6조 직계제로 왕권을 강화해 국가의 기틀을 다졌다.</span><span class="knote">태조의 아들</span></li>
-        <li><span class="st"><span class="hj">世宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Tomb_of_the_King_Sejong_the_Great_2.jpg/330px-Tomb_of_the_King_Sejong_the_Great_2.jpg" alt="영릉" title="세종 — 영릉(英陵) · 여주" loading="lazy" onerror="this.remove()"></span><span class="stno">4</span><span class="kname">세종</span><span class="khan">世宗 · 1418~1450</span><span class="kdesc">훈민정음을 창제하고 과학·문화를 크게 발전시켰다.</span><span class="knote">태종의 아들</span></li>
-        <li><span class="st"><span class="hj">文宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%ED%98%84%EB%A6%89%28%EB%AC%B8%EC%A2%85%29%EB%8A%A5%EC%B9%A8.jpg/330px-%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%ED%98%84%EB%A6%89%28%EB%AC%B8%EC%A2%85%29%EB%8A%A5%EC%B9%A8.jpg" alt="현릉" title="문종 — 현릉(顯陵) · 구리 동구릉" loading="lazy" onerror="this.remove()"></span><span class="stno">5</span><span class="kname">문종</span><span class="khan">文宗 · 1450~1452</span><span class="kdesc">『고려사』·『고려사절요』 편찬을 완성했다.</span><span class="knote">세종의 아들</span></li>
-        <li><span class="st"><span class="hj">端宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Jangreung_%28Danjong%29%2C_Yeongwol%2C_March_2018.jpg/330px-Jangreung_%28Danjong%29%2C_Yeongwol%2C_March_2018.jpg" alt="장릉" title="단종 — 장릉(莊陵) · 영월" loading="lazy" onerror="this.remove()"></span><span class="stno">6</span><span class="kname">단종</span><span class="khan">端宗 · 1452~1455</span><span class="kdesc">어린 나이에 즉위했으나 계유정난 후 수양대군에게 왕위를 넘겼다.</span><span class="knote">문종의 아들</span></li>
-        <li><span class="st"><span class="hj">世祖</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/%EC%84%B8%EC%A1%B0_%EC%96%B4%EC%A7%84_%EC%B4%88%EB%B3%B8.jpg/330px-%EC%84%B8%EC%A1%B0_%EC%96%B4%EC%A7%84_%EC%B4%88%EB%B3%B8.jpg" alt="세조 어진 초본" loading="lazy" onerror="this.remove()"></span><span class="stno">7</span><span class="kname">세조</span><span class="khan">世祖 · 1455~1468</span><span class="kdesc">계유정난으로 집권해 왕권을 강화하고 『경국대전』 편찬을 시작했다.</span><span class="knote">세종의 아들</span></li>
-        <li><span class="st"><span class="hj">睿宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/%EA%B3%A0%EC%96%91_%EC%84%9C%EC%98%A4%EB%A6%89_%EC%B0%BD%EB%A6%89%28%EC%98%88%EC%A2%85%29_%EB%8A%A5%EC%B9%A8.jpg/330px-%EA%B3%A0%EC%96%91_%EC%84%9C%EC%98%A4%EB%A6%89_%EC%B0%BD%EB%A6%89%28%EC%98%88%EC%A2%85%29_%EB%8A%A5%EC%B9%A8.jpg" alt="창릉" title="예종 — 창릉(昌陵) · 고양 서오릉" loading="lazy" onerror="this.remove()"></span><span class="stno">8</span><span class="kname">예종</span><span class="khan">睿宗 · 1468~1469 · 해양대군</span><span class="kdesc">재위 14개월의 짧은 치세에도 『경국대전』 편찬 사업을 이어갔다.</span><span class="knote">세조의 아들 — 아들: 인성대군 · 제안대군</span></li>
-        <li><span class="st"><span class="hj">成宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Korea-Seoul-Royal_Tombs_0411-07_King_Seongjong.JPG/330px-Korea-Seoul-Royal_Tombs_0411-07_King_Seongjong.JPG" alt="선릉" title="성종 — 선릉(宣陵) · 서울 강남" loading="lazy" onerror="this.remove()"></span><span class="stno">9</span><span class="kname">성종</span><span class="khan">成宗 · 1469~1494 · 자을산군</span><span class="kdesc">『경국대전』을 완성·반포하여 조선의 통치 체제를 확립했다.</span><span class="knote"><b>덕종(의경세자 추존)</b>의 아들 — 형: 월산대군</span></li>
-        <li><span class="st"><span class="hj">燕山</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Yeonsangunmyo%2C2018-04.jpg/330px-Yeonsangunmyo%2C2018-04.jpg" alt="연산군묘" title="연산군 — 연산군묘 · 서울 도봉" loading="lazy" onerror="this.remove()"></span><span class="stno">10</span><span class="kname">연산군</span><span class="khan">燕山君 · 1494~1506</span><span class="kdesc">무오·갑자사화를 일으켰으며 중종반정으로 폐위되었다.</span><span class="knote">성종의 아들</span></li>
-        <li><span class="st"><span class="hj">中宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/%EC%84%9C%EC%9A%B8_%EC%84%A0%EB%A6%89%EA%B3%BC_%EC%A0%95%EB%A6%89_%EC%A0%95%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg/330px-%EC%84%9C%EC%9A%B8_%EC%84%A0%EB%A6%89%EA%B3%BC_%EC%A0%95%EB%A6%89_%EC%A0%95%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg" alt="정릉" title="중종 — 정릉(靖陵) · 서울 강남" loading="lazy" onerror="this.remove()"></span><span class="stno">11</span><span class="kname">중종</span><span class="khan">中宗 · 1506~1544 · 진성대군</span><span class="kdesc">중종반정으로 즉위하여 조광조를 등용해 개혁 정치를 추진했다.</span><span class="knote">성종의 아들</span></li>
+        <li><span class="st has-img"><span class="hj">太祖</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EA%B1%B4%EC%9B%90%EB%A6%89_%EC%A0%84%EA%B2%BD%28%ED%95%AD%EA%B3%B5%29.jpg/500px-%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EA%B1%B4%EC%9B%90%EB%A6%89_%EC%A0%84%EA%B2%BD%28%ED%95%AD%EA%B3%B5%29.jpg" alt="건원릉" title="태조 — 건원릉(健元陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">1</span><span class="kname">태조</span><span class="khan">太祖 · 1392~1398 · 이성계</span><span class="kdesc">조선을 개국하고 한양으로 천도했다.</span><span class="knote">추존 4조(목조→익조→도조→환조)의 뒤를 이어 개국</span><span class="ktomb">健元陵 건원릉 · 경기 구리 동구릉</span><span class="eojin"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/King_Taejo_Yi_02.jpg/330px-King_Taejo_Yi_02.jpg" alt="태조 어진" loading="lazy" onerror="this.parentNode.remove()"><i>어진</i></span></li>
+        <li><span class="st"><span class="hj">定宗</span></span><span class="stno">2</span><span class="kname">정종</span><span class="khan">定宗 · 1398~1400</span><span class="kdesc">개경 환도와 사병 혁파를 거쳐 아우 태종에게 선위했다.</span><span class="knote">태조의 아들</span><span class="ktomb">厚陵 후릉 · 개성(북한) <span class="uncertain">공개 사진 없음</span></span></li>
+        <li><span class="st has-img"><span class="hj">太宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Heolleung_Royal_Tomb_%28%ED%97%8C%EB%8A%A5%29.jpg/330px-Heolleung_Royal_Tomb_%28%ED%97%8C%EB%8A%A5%29.jpg" alt="헌릉" title="태종 — 헌릉(獻陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">3</span><span class="kname">태종</span><span class="khan">太宗 · 1400~1418</span><span class="kdesc">사병을 혁파하고 6조 직계제로 왕권을 강화해 국가의 기틀을 다졌다.</span><span class="knote">태조의 아들</span><span class="ktomb">獻陵 헌릉 · 서울 서초 헌인릉</span></li>
+        <li><span class="st has-img"><span class="hj">世宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Tomb_of_the_King_Sejong_the_Great_2.jpg/330px-Tomb_of_the_King_Sejong_the_Great_2.jpg" alt="영릉" title="세종 — 영릉(英陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">4</span><span class="kname">세종</span><span class="khan">世宗 · 1418~1450</span><span class="kdesc">훈민정음을 창제하고 과학·문화를 크게 발전시켰다.</span><span class="knote">태종의 아들</span><span class="ktomb">英陵 영릉 · 경기 여주</span></li>
+        <li><span class="st has-img"><span class="hj">文宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%ED%98%84%EB%A6%89%28%EB%AC%B8%EC%A2%85%29%EB%8A%A5%EC%B9%A8.jpg/330px-%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%ED%98%84%EB%A6%89%28%EB%AC%B8%EC%A2%85%29%EB%8A%A5%EC%B9%A8.jpg" alt="현릉" title="문종 — 현릉(顯陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">5</span><span class="kname">문종</span><span class="khan">文宗 · 1450~1452</span><span class="kdesc">『고려사』·『고려사절요』 편찬을 완성했다.</span><span class="knote">세종의 아들</span><span class="ktomb">顯陵 현릉 · 경기 구리 동구릉</span></li>
+        <li><span class="st has-img"><span class="hj">端宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Jangreung_%28Danjong%29%2C_Yeongwol%2C_March_2018.jpg/330px-Jangreung_%28Danjong%29%2C_Yeongwol%2C_March_2018.jpg" alt="장릉" title="단종 — 장릉(莊陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">6</span><span class="kname">단종</span><span class="khan">端宗 · 1452~1455</span><span class="kdesc">어린 나이에 즉위했으나 계유정난 후 수양대군에게 왕위를 넘겼다.</span><span class="knote">문종의 아들</span><span class="ktomb">莊陵 장릉 · 강원 영월</span></li>
+        <li><span class="st has-img"><span class="hj">世祖</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/%EA%B4%91%EB%A6%89.JPG/500px-%EA%B4%91%EB%A6%89.JPG" alt="광릉" title="세조 — 광릉(光陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">7</span><span class="kname">세조</span><span class="khan">世祖 · 1455~1468</span><span class="kdesc">계유정난으로 집권해 왕권을 강화하고 『경국대전』 편찬을 시작했다.</span><span class="knote">세종의 아들</span><span class="ktomb">光陵 광릉 · 경기 남양주</span><span class="eojin"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/%EC%84%B8%EC%A1%B0_%EC%96%B4%EC%A7%84_%EC%B4%88%EB%B3%B8.jpg/330px-%EC%84%B8%EC%A1%B0_%EC%96%B4%EC%A7%84_%EC%B4%88%EB%B3%B8.jpg" alt="세조 어진 초본" loading="lazy" onerror="this.parentNode.remove()"><i>어진</i></span></li>
+        <li><span class="st has-img"><span class="hj">睿宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/%EA%B3%A0%EC%96%91_%EC%84%9C%EC%98%A4%EB%A6%89_%EC%B0%BD%EB%A6%89%28%EC%98%88%EC%A2%85%29_%EB%8A%A5%EC%B9%A8.jpg/330px-%EA%B3%A0%EC%96%91_%EC%84%9C%EC%98%A4%EB%A6%89_%EC%B0%BD%EB%A6%89%28%EC%98%88%EC%A2%85%29_%EB%8A%A5%EC%B9%A8.jpg" alt="창릉" title="예종 — 창릉(昌陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">8</span><span class="kname">예종</span><span class="khan">睿宗 · 1468~1469 · 해양대군</span><span class="kdesc">재위 14개월의 짧은 치세에도 『경국대전』 편찬 사업을 이어갔다.</span><span class="knote">세조의 아들 — 아들: 인성대군 · 제안대군</span><span class="ktomb">昌陵 창릉 · 경기 고양 서오릉</span></li>
+        <li><span class="st has-img"><span class="hj">成宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Korea-Seoul-Royal_Tombs_0411-07_King_Seongjong.JPG/330px-Korea-Seoul-Royal_Tombs_0411-07_King_Seongjong.JPG" alt="선릉" title="성종 — 선릉(宣陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">9</span><span class="kname">성종</span><span class="khan">成宗 · 1469~1494 · 자을산군</span><span class="kdesc">『경국대전』을 완성·반포하여 조선의 통치 체제를 확립했다.</span><span class="knote"><b>덕종(의경세자 추존)</b>의 아들 — 형: 월산대군</span><span class="ktomb">宣陵 선릉 · 서울 강남 선정릉</span></li>
+        <li><span class="st has-img"><span class="hj">燕山</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Yeonsangunmyo%2C2018-04.jpg/330px-Yeonsangunmyo%2C2018-04.jpg" alt="연산군묘" title="연산군묘" loading="lazy" onerror="this.remove()"></span><span class="stno">10</span><span class="kname">연산군</span><span class="khan">燕山君 · 1494~1506</span><span class="kdesc">무오·갑자사화를 일으켰으며 중종반정으로 폐위되었다.</span><span class="knote">성종의 아들</span><span class="ktomb">燕山君墓 연산군묘 · 서울 도봉 <span class="uncertain">폐위되어 능(陵)이 아닌 묘(墓)</span></span></li>
+        <li><span class="st has-img"><span class="hj">中宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/%EC%84%9C%EC%9A%B8_%EC%84%A0%EB%A6%89%EA%B3%BC_%EC%A0%95%EB%A6%89_%EC%A0%95%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg/330px-%EC%84%9C%EC%9A%B8_%EC%84%A0%EB%A6%89%EA%B3%BC_%EC%A0%95%EB%A6%89_%EC%A0%95%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg" alt="정릉" title="중종 — 정릉(靖陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">11</span><span class="kname">중종</span><span class="khan">中宗 · 1506~1544 · 진성대군</span><span class="kdesc">중종반정으로 즉위하여 조광조를 등용해 개혁 정치를 추진했다.</span><span class="knote">성종의 아들</span><span class="ktomb">靖陵 정릉 · 서울 강남 선정릉</span></li>
         <li class="origin-spur">
           <div class="spur">
             <span class="spur-hj">海</span><span class="t">★ 해안군 海安君 (1511~1573)</span>
-            <small>중종의 둘째 왕자 · 모 숙의 홍씨 · 1518년 해안군 봉작 — <strong>본파의 파조</strong> · 시호 정희(靖僖)</small>
+            <small>중종의 둘째 왕자 · 모 숙의 홍씨 · 1518년 해안군 봉작 — <strong>본파의 파조</strong> · 시호 정희(靖僖) · 묘 고양시 덕양구 선유동 산46-1</small>
           </div>
         </li>
-        <li><span class="st"><span class="hj">仁宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/%ED%9A%A8%EB%A6%89_%EC%A0%84%EA%B2%BD.jpg/330px-%ED%9A%A8%EB%A6%89_%EC%A0%84%EA%B2%BD.jpg" alt="효릉" title="인종 — 효릉(孝陵) · 고양 서삼릉" loading="lazy" onerror="this.remove()"></span><span class="stno">12</span><span class="kname">인종</span><span class="khan">仁宗 · 1544~1545</span><span class="kdesc">조광조 신원과 현량과 복구를 명했으나 재위 8개월 만에 승하했다.</span><span class="knote">중종의 아들 (장경왕후 소생)</span></li>
-        <li><span class="st"><span class="hj">明宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/%EC%84%9C%EC%9A%B8_%ED%83%9C%EB%A6%89%EA%B3%BC_%EA%B0%95%EB%A6%89_%EA%B0%95%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg/330px-%EC%84%9C%EC%9A%B8_%ED%83%9C%EB%A6%89%EA%B3%BC_%EA%B0%95%EB%A6%89_%EA%B0%95%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg" alt="강릉" title="명종 — 강릉(康陵) · 서울 노원" loading="lazy" onerror="this.remove()"></span><span class="stno">13</span><span class="kname">명종</span><span class="khan">明宗 · 1545~1567</span><span class="kdesc">12세에 즉위해 문정왕후가 수렴청정했으며, 을사사화가 일어났다.</span><span class="knote">중종의 아들 (문정왕후 소생)</span></li>
-        <li><span class="st"><span class="hj">宣祖</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EB%AA%A9%EB%A6%89%28%EC%84%A0%EC%A1%B0%29_%EB%8A%A5%EC%B9%A8.jpg/330px-%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EB%AA%A9%EB%A6%89%28%EC%84%A0%EC%A1%B0%29_%EB%8A%A5%EC%B9%A8.jpg" alt="목릉" title="선조 — 목릉(穆陵) · 구리 동구릉" loading="lazy" onerror="this.remove()"></span><span class="stno">14</span><span class="kname">선조</span><span class="khan">宣祖 · 1567~1608 · 하성군</span><span class="kdesc">사림을 등용해 붕당정치가 시작되었고, 임진왜란을 겪었다.</span><span class="knote"><b>덕흥대원군</b>(중종 9남 · 창빈안씨 소생)의 아들</span></li>
-        <li><span class="st"><span class="hj">光海</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/%EA%B4%91%ED%95%B4%EA%B5%B0%EB%AC%98.jpeg/330px-%EA%B4%91%ED%95%B4%EA%B5%B0%EB%AC%98.jpeg" alt="광해군묘" title="광해군 — 광해군묘 · 남양주" loading="lazy" onerror="this.remove()"></span><span class="stno">15</span><span class="kname">광해군</span><span class="khan">光海君 · 1608~1623</span><span class="kdesc">전후 복구와 중립 외교, 대동법 시행을 추진했으나 인조반정으로 폐위되었다.</span><span class="knote">선조의 아들 — 형: 임해군</span></li>
-        <li><span class="st"><span class="hj">仁祖</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/%ED%8C%8C%EC%A3%BC_%EC%9E%A5%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg/330px-%ED%8C%8C%EC%A3%BC_%EC%9E%A5%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg" alt="장릉" title="인조 — 장릉(長陵) · 파주" loading="lazy" onerror="this.remove()"></span><span class="stno">16</span><span class="kname">인조</span><span class="khan">仁祖 · 1623~1649 · 능양군</span><span class="kdesc">인조반정으로 즉위했으며, 정묘호란과 병자호란을 겪었다.</span><span class="knote"><b>원종(정원군 · 정원대원군 추존)</b>의 아들 — 아우: 능창군</span></li>
-        <li><span class="st"><span class="hj">孝宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Tomb_of_King_Hyojong_of_Joseon.jpg/330px-Tomb_of_King_Hyojong_of_Joseon.jpg" alt="영릉" title="효종 — 영릉(寧陵) · 여주" loading="lazy" onerror="this.remove()"></span><span class="stno">17</span><span class="kname">효종</span><span class="khan">孝宗 · 1649~1659</span><span class="kdesc">북벌을 추진하고 대동법을 확대 시행했다.</span><span class="knote">인조의 아들 — 형: 소현세자</span></li>
-        <li><span class="st"><span class="hj">顯宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/The_Tomb_of_King_Hyeonjong.JPG/330px-The_Tomb_of_King_Hyeonjong.JPG" alt="숭릉" title="현종 — 숭릉(崇陵) · 구리 동구릉" loading="lazy" onerror="this.remove()"></span><span class="stno">18</span><span class="kname">현종</span><span class="khan">顯宗 · 1659~1674</span><span class="kdesc">두 차례 예송을 겪었으며 대동법을 확대했다.</span><span class="knote">효종의 아들</span></li>
-        <li><span class="st"><span class="hj">肅宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Seo-oreung_Myeongneung.JPG/330px-Seo-oreung_Myeongneung.JPG" alt="명릉" title="숙종 — 명릉(明陵) · 고양 서오릉" loading="lazy" onerror="this.remove()"></span><span class="stno">19</span><span class="kname">숙종</span><span class="khan">肅宗 · 1674~1720</span><span class="kdesc">대동법을 전국으로 확대하고 상평통보를 주조해 유통시켰다.</span><span class="knote">현종의 아들</span></li>
-        <li><span class="st"><span class="hj">景宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/%EC%84%9C%EC%9A%B8_%EC%9D%98%EB%A6%89_%EA%B2%BD%EC%A2%85_%EB%8A%A5%EC%B9%A8.jpg/330px-%EC%84%9C%EC%9A%B8_%EC%9D%98%EB%A6%89_%EA%B2%BD%EC%A2%85_%EB%8A%A5%EC%B9%A8.jpg" alt="의릉" title="경종 — 의릉(懿陵) · 서울 석관동" loading="lazy" onerror="this.remove()"></span><span class="stno">20</span><span class="kname">경종</span><span class="khan">景宗 · 1720~1724</span><span class="kdesc">노론과 소론의 당쟁 속에서 4년의 짧은 치세를 보냈다.</span><span class="knote">숙종의 아들 (장희빈 소생)</span></li>
-        <li><span class="st"><span class="hj">英祖</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Korea-Yeongjo-King_of_Joseon_Dynasty-1900.jpg/330px-Korea-Yeongjo-King_of_Joseon_Dynasty-1900.jpg" alt="영조 어진" loading="lazy" onerror="this.remove()"></span><span class="stno">21</span><span class="kname">영조</span><span class="khan">英祖 · 1724~1776 · 연잉군</span><span class="kdesc">탕평책을 펴고 균역법을 시행하여 민생 안정에 힘썼다.</span><span class="knote">숙종의 아들 — 아들: 효장세자(진종 추존) · 사도세자(장조 추존)</span></li>
-        <li><span class="st"><span class="hj">正祖</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/%ED%99%94%EC%84%B1_%EC%9C%B5%EB%A6%89%EA%B3%BC_%EA%B1%B4%EB%A6%89_%EA%B1%B4%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg/330px-%ED%99%94%EC%84%B1_%EC%9C%B5%EB%A6%89%EA%B3%BC_%EA%B1%B4%EB%A6%89_%EA%B1%B4%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg" alt="건릉" title="정조 — 건릉(健陵) · 화성" loading="lazy" onerror="this.remove()"></span><span class="stno">22</span><span class="kname">정조</span><span class="khan">正祖 · 1776~1800</span><span class="kdesc">규장각을 설치하고 수원 화성을 축조하며 개혁 정치를 폈다.</span><span class="knote"><b>장조(사도세자)</b>의 아들 — 진종(효장세자)의 양자로 즉위</span></li>
-        <li><span class="st"><span class="hj">純祖</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Illeung_Royal_Tomb_%28%EC%9D%B8%EB%8A%A5%29.jpg/330px-Illeung_Royal_Tomb_%28%EC%9D%B8%EB%8A%A5%29.jpg" alt="인릉" title="순조 — 인릉(仁陵) · 서울 헌인릉" loading="lazy" onerror="this.remove()"></span><span class="stno">23</span><span class="kname">순조</span><span class="khan">純祖 · 1800~1834</span><span class="kdesc">재위 중 신유박해가 일어나고 안동 김씨 세도정치가 시작되었다.</span><span class="knote">정조의 아들</span></li>
-        <li><span class="st"><span class="hj">憲宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EA%B2%BD%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg/330px-%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EA%B2%BD%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg" alt="경릉" title="헌종 — 경릉(景陵) · 구리 동구릉" loading="lazy" onerror="this.remove()"></span><span class="stno">24</span><span class="kname">헌종</span><span class="khan">憲宗 · 1834~1849</span><span class="kdesc">8세에 즉위하여 순원왕후의 수렴청정을 받았다.</span><span class="knote"><b>익종(효명세자 추존)</b>의 아들 — 순조의 손자</span></li>
-        <li><span class="st"><span class="hj">哲宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/A_portrait_of_Cheoljong.jpg/330px-A_portrait_of_Cheoljong.jpg" alt="철종 어진" loading="lazy" onerror="this.remove()"></span><span class="stno">25</span><span class="kname">철종</span><span class="khan">哲宗 · 1849~1863</span><span class="kdesc">강화도에서 왕위에 올라 삼정이정청을 설치해 민생 안정을 꾀했다.</span><span class="knote"><b>전계대원군</b>의 아들 — 사도세자→은언군→전계대원군 계</span></li>
-        <li><span class="st"><span class="hj">高宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Gojong_of_the_Korean_Empire.jpg/330px-Gojong_of_the_Korean_Empire.jpg" alt="고종 사진" loading="lazy" onerror="this.remove()"></span><span class="stno">26</span><span class="kname">고종</span><span class="khan">高宗 · 1863~1907</span><span class="kdesc">대한제국을 선포하고 광무개혁을 추진했다 (초대 황제).</span><span class="knote"><b>흥선대원군</b>의 아들 — 사도세자→은신군→남연군(양자)→흥선대원군 계</span></li>
-        <li><span class="st"><span class="hj">純宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Sunjong_of_the_Korean_Empire.jpg/330px-Sunjong_of_the_Korean_Empire.jpg" alt="순종 사진" loading="lazy" onerror="this.remove()"></span><span class="stno">27</span><span class="kname">순종</span><span class="khan">純宗 · 1907~1910</span><span class="kdesc">대한제국의 마지막 황제로, 국권 피탈과 함께 왕조가 막을 내렸다.</span><span class="knote">고종의 아들</span></li>
       </ol>
-      <div class="caption">번호 = 왕위 계승 순서 / <span style="color:var(--seal-red-soft)">붉은 글씨</span> = 앞 왕의 아들이 아닌 경우의 생부(生父) / 사진 = 현존 어진·어사진, 어진이 전하지 않는 왕은 <strong>왕릉</strong> 사진(마우스를 올리면 능 이름) / ★ 해안군 = 본파의 파조 / 사진 출처: 위키미디어 공용 — 저작자·라이선스는 '기록 출처' 참조</div>
+      <div class="rl-toggle no-print">
+        <button type="button" id="rlMoreBtn" onclick="toggleRoyalTail()" aria-expanded="false" aria-controls="rlTail">
+          <span class="lbl">인종(12대) ~ 순종(27대) 펼쳐 보기</span><span class="arw">▾</span>
+        </button>
+        <span class="hint">해안군까지가 본파와 직접 이어지는 구간이다. 그 뒤 16대는 접어 두었다.</span>
+      </div>
+      <ol class="royal-line rl-tail" id="rlTail" hidden>
+        <li><span class="st has-img"><span class="hj">仁宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/%ED%9A%A8%EB%A6%89_%EC%A0%84%EA%B2%BD.jpg/330px-%ED%9A%A8%EB%A6%89_%EC%A0%84%EA%B2%BD.jpg" alt="효릉" title="인종 — 효릉(孝陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">12</span><span class="kname">인종</span><span class="khan">仁宗 · 1544~1545</span><span class="kdesc">조광조 신원과 현량과 복구를 명했으나 재위 8개월 만에 승하했다.</span><span class="knote">중종의 아들 (장경왕후 소생)</span><span class="ktomb">孝陵 효릉 · 경기 고양 서삼릉</span></li>
+        <li><span class="st has-img"><span class="hj">明宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/%EC%84%9C%EC%9A%B8_%ED%83%9C%EB%A6%89%EA%B3%BC_%EA%B0%95%EB%A6%89_%EA%B0%95%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg/330px-%EC%84%9C%EC%9A%B8_%ED%83%9C%EB%A6%89%EA%B3%BC_%EA%B0%95%EB%A6%89_%EA%B0%95%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg" alt="강릉" title="명종 — 강릉(康陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">13</span><span class="kname">명종</span><span class="khan">明宗 · 1545~1567</span><span class="kdesc">12세에 즉위해 문정왕후가 수렴청정했으며, 을사사화가 일어났다.</span><span class="knote">중종의 아들 (문정왕후 소생)</span><span class="ktomb">康陵 강릉 · 서울 노원 태강릉</span></li>
+        <li><span class="st has-img"><span class="hj">宣祖</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EB%AA%A9%EB%A6%89%28%EC%84%A0%EC%A1%B0%29_%EB%8A%A5%EC%B9%A8.jpg/330px-%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EB%AA%A9%EB%A6%89%28%EC%84%A0%EC%A1%B0%29_%EB%8A%A5%EC%B9%A8.jpg" alt="목릉" title="선조 — 목릉(穆陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">14</span><span class="kname">선조</span><span class="khan">宣祖 · 1567~1608 · 하성군</span><span class="kdesc">사림을 등용해 붕당정치가 시작되었고, 임진왜란을 겪었다.</span><span class="knote"><b>덕흥대원군</b>(중종 9남 · 창빈안씨 소생)의 아들</span><span class="ktomb">穆陵 목릉 · 경기 구리 동구릉</span></li>
+        <li><span class="st has-img"><span class="hj">光海</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/%EA%B4%91%ED%95%B4%EA%B5%B0%EB%AC%98.jpeg/330px-%EA%B4%91%ED%95%B4%EA%B5%B0%EB%AC%98.jpeg" alt="광해군묘" title="광해군묘" loading="lazy" onerror="this.remove()"></span><span class="stno">15</span><span class="kname">광해군</span><span class="khan">光海君 · 1608~1623</span><span class="kdesc">전후 복구와 중립 외교, 대동법 시행을 추진했으나 인조반정으로 폐위되었다.</span><span class="knote">선조의 아들 — 형: 임해군</span><span class="ktomb">光海君墓 광해군묘 · 경기 남양주 <span class="uncertain">폐위되어 능(陵)이 아닌 묘(墓)</span></span></li>
+        <li><span class="st has-img"><span class="hj">仁祖</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/%ED%8C%8C%EC%A3%BC_%EC%9E%A5%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg/330px-%ED%8C%8C%EC%A3%BC_%EC%9E%A5%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg" alt="장릉" title="인조 — 장릉(長陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">16</span><span class="kname">인조</span><span class="khan">仁祖 · 1623~1649 · 능양군</span><span class="kdesc">인조반정으로 즉위했으며, 정묘호란과 병자호란을 겪었다.</span><span class="knote"><b>원종(정원군 · 정원대원군 추존)</b>의 아들 — 아우: 능창군</span><span class="ktomb">長陵 장릉 · 경기 파주 <span class="uncertain">단종 장릉(莊陵)과 한글 표기가 같다</span></span></li>
+        <li><span class="st has-img"><span class="hj">孝宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Tomb_of_King_Hyojong_of_Joseon.jpg/330px-Tomb_of_King_Hyojong_of_Joseon.jpg" alt="영릉" title="효종 — 영릉(寧陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">17</span><span class="kname">효종</span><span class="khan">孝宗 · 1649~1659</span><span class="kdesc">북벌을 추진하고 대동법을 확대 시행했다.</span><span class="knote">인조의 아들 — 형: 소현세자</span><span class="ktomb">寧陵 영릉 · 경기 여주 <span class="uncertain">세종 영릉(英陵)과 한글 표기가 같다</span></span></li>
+        <li><span class="st has-img"><span class="hj">顯宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/The_Tomb_of_King_Hyeonjong.JPG/330px-The_Tomb_of_King_Hyeonjong.JPG" alt="숭릉" title="현종 — 숭릉(崇陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">18</span><span class="kname">현종</span><span class="khan">顯宗 · 1659~1674</span><span class="kdesc">두 차례 예송을 겪었으며 대동법을 확대했다.</span><span class="knote">효종의 아들</span><span class="ktomb">崇陵 숭릉 · 경기 구리 동구릉</span></li>
+        <li><span class="st has-img"><span class="hj">肅宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Seo-oreung_Myeongneung.JPG/330px-Seo-oreung_Myeongneung.JPG" alt="명릉" title="숙종 — 명릉(明陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">19</span><span class="kname">숙종</span><span class="khan">肅宗 · 1674~1720</span><span class="kdesc">대동법을 전국으로 확대하고 상평통보를 주조해 유통시켰다.</span><span class="knote">현종의 아들</span><span class="ktomb">明陵 명릉 · 경기 고양 서오릉</span></li>
+        <li><span class="st has-img"><span class="hj">景宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/%EC%84%9C%EC%9A%B8_%EC%9D%98%EB%A6%89_%EA%B2%BD%EC%A2%85_%EB%8A%A5%EC%B9%A8.jpg/330px-%EC%84%9C%EC%9A%B8_%EC%9D%98%EB%A6%89_%EA%B2%BD%EC%A2%85_%EB%8A%A5%EC%B9%A8.jpg" alt="의릉" title="경종 — 의릉(懿陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">20</span><span class="kname">경종</span><span class="khan">景宗 · 1720~1724</span><span class="kdesc">노론과 소론의 당쟁 속에서 4년의 짧은 치세를 보냈다.</span><span class="knote">숙종의 아들 (장희빈 소생)</span><span class="ktomb">懿陵 의릉 · 서울 성북 석관동</span></li>
+        <li><span class="st has-img"><span class="hj">英祖</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EC%9B%90%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg/500px-%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EC%9B%90%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg" alt="원릉" title="영조 — 원릉(元陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">21</span><span class="kname">영조</span><span class="khan">英祖 · 1724~1776 · 연잉군</span><span class="kdesc">탕평책을 펴고 균역법을 시행하여 민생 안정에 힘썼다.</span><span class="knote">숙종의 아들 — 아들: 효장세자(진종 추존) · 사도세자(장조 추존)</span><span class="ktomb">元陵 원릉 · 경기 구리 동구릉</span><span class="eojin"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Korea-Yeongjo-King_of_Joseon_Dynasty-1900.jpg/330px-Korea-Yeongjo-King_of_Joseon_Dynasty-1900.jpg" alt="영조 어진" loading="lazy" onerror="this.parentNode.remove()"><i>어진</i></span></li>
+        <li><span class="st has-img"><span class="hj">正祖</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/%ED%99%94%EC%84%B1_%EC%9C%B5%EB%A6%89%EA%B3%BC_%EA%B1%B4%EB%A6%89_%EA%B1%B4%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg/330px-%ED%99%94%EC%84%B1_%EC%9C%B5%EB%A6%89%EA%B3%BC_%EA%B1%B4%EB%A6%89_%EA%B1%B4%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg" alt="건릉" title="정조 — 건릉(健陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">22</span><span class="kname">정조</span><span class="khan">正祖 · 1776~1800</span><span class="kdesc">규장각을 설치하고 수원 화성을 축조하며 개혁 정치를 폈다.</span><span class="knote"><b>장조(사도세자)</b>의 아들 — 진종(효장세자)의 양자로 즉위</span><span class="ktomb">健陵 건릉 · 경기 화성 융건릉</span></li>
+        <li><span class="st has-img"><span class="hj">純祖</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Illeung_Royal_Tomb_%28%EC%9D%B8%EB%8A%A5%29.jpg/330px-Illeung_Royal_Tomb_%28%EC%9D%B8%EB%8A%A5%29.jpg" alt="인릉" title="순조 — 인릉(仁陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">23</span><span class="kname">순조</span><span class="khan">純祖 · 1800~1834</span><span class="kdesc">재위 중 신유박해가 일어나고 안동 김씨 세도정치가 시작되었다.</span><span class="knote">정조의 아들</span><span class="ktomb">仁陵 인릉 · 서울 서초 헌인릉</span></li>
+        <li><span class="st has-img"><span class="hj">憲宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EA%B2%BD%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg/330px-%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EA%B2%BD%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg" alt="경릉" title="헌종 — 경릉(景陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">24</span><span class="kname">헌종</span><span class="khan">憲宗 · 1834~1849</span><span class="kdesc">8세에 즉위하여 순원왕후의 수렴청정을 받았다.</span><span class="knote"><b>익종(효명세자 추존)</b>의 아들 — 순조의 손자</span><span class="ktomb">景陵 경릉 · 경기 구리 동구릉</span></li>
+        <li><span class="st has-img"><span class="hj">哲宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/%EA%B3%A0%EC%96%91_%EC%84%9C%EC%82%BC%EB%A6%89_%EC%98%88%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg/500px-%EA%B3%A0%EC%96%91_%EC%84%9C%EC%82%BC%EB%A6%89_%EC%98%88%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg" alt="예릉" title="철종 — 예릉(睿陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">25</span><span class="kname">철종</span><span class="khan">哲宗 · 1849~1863</span><span class="kdesc">강화도에서 왕위에 올라 삼정이정청을 설치해 민생 안정을 꾀했다.</span><span class="knote"><b>전계대원군</b>의 아들 — 사도세자→은언군→전계대원군 계</span><span class="ktomb">睿陵 예릉 · 경기 고양 서삼릉</span><span class="eojin"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/A_portrait_of_Cheoljong.jpg/330px-A_portrait_of_Cheoljong.jpg" alt="철종 어진" loading="lazy" onerror="this.parentNode.remove()"><i>어진</i></span></li>
+        <li><span class="st has-img"><span class="hj">高宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/%EB%82%A8%EC%96%91%EC%A3%BC_%ED%99%8D%EB%A6%89%EA%B3%BC_%EC%9C%A0%EB%A6%89_%ED%99%8D%EB%A6%89_%EB%8A%A5%EC%B9%A8_%EC%B8%A1%EB%A9%B4_%EB%AF%B8%EC%88%A0_2012%EB%85%84%28%EC%B6%9C%EC%B2%98_%EA%B5%AD%EB%A6%BD%EB%AC%B8%ED%99%94%EC%9E%AC%EC%97%B0%EA%B5%AC%EC%86%8C%29.jpg/500px-%EB%82%A8%EC%96%91%EC%A3%BC_%ED%99%8D%EB%A6%89%EA%B3%BC_%EC%9C%A0%EB%A6%89_%ED%99%8D%EB%A6%89_%EB%8A%A5%EC%B9%A8_%EC%B8%A1%EB%A9%B4_%EB%AF%B8%EC%88%A0_2012%EB%85%84%28%EC%B6%9C%EC%B2%98_%EA%B5%AD%EB%A6%BD%EB%AC%B8%ED%99%94%EC%9E%AC%EC%97%B0%EA%B5%AC%EC%86%8C%29.jpg" alt="홍릉" title="고종 — 홍릉(洪陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">26</span><span class="kname">고종</span><span class="khan">高宗 · 1863~1907</span><span class="kdesc">대한제국을 선포하고 광무개혁을 추진했다 (초대 황제).</span><span class="knote"><b>흥선대원군</b>의 아들 — 사도세자→은신군→남연군(양자)→흥선대원군 계</span><span class="ktomb">洪陵 홍릉 · 경기 남양주 홍유릉</span><span class="eojin"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Gojong_of_the_Korean_Empire.jpg/330px-Gojong_of_the_Korean_Empire.jpg" alt="고종 어사진" loading="lazy" onerror="this.parentNode.remove()"><i>어사진</i></span></li>
+        <li><span class="st has-img"><span class="hj">純宗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/%EB%82%A8%EC%96%91%EC%A3%BC_%ED%99%8D%EB%A6%89%EA%B3%BC_%EC%9C%A0%EB%A6%89_%EC%9C%A0%EB%A6%89_%EC%A0%84%EA%B2%BD%28%ED%95%AD%EA%B3%B5%29.jpg/500px-%EB%82%A8%EC%96%91%EC%A3%BC_%ED%99%8D%EB%A6%89%EA%B3%BC_%EC%9C%A0%EB%A6%89_%EC%9C%A0%EB%A6%89_%EC%A0%84%EA%B2%BD%28%ED%95%AD%EA%B3%B5%29.jpg" alt="유릉" title="순종 — 유릉(裕陵)" loading="lazy" onerror="this.remove()"></span><span class="stno">27</span><span class="kname">순종</span><span class="khan">純宗 · 1907~1910</span><span class="kdesc">대한제국의 마지막 황제로, 국권 피탈과 함께 왕조가 막을 내렸다.</span><span class="knote">고종의 아들</span><span class="ktomb">裕陵 유릉 · 경기 남양주 홍유릉</span><span class="eojin"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Sunjong_of_the_Korean_Empire.jpg/330px-Sunjong_of_the_Korean_Empire.jpg" alt="순종 어사진" loading="lazy" onerror="this.parentNode.remove()"><i>어사진</i></span></li>
+      </ol>
+      <div class="caption">번호 = 왕위 계승 순서 / <span style="color:var(--seal-red-soft)">붉은 글씨</span> = 앞 왕의 아들이 아닌 경우의 생부(生父) / <strong>왼쪽 큰 사진 = 능(陵)·묘(墓)</strong> — 마우스를 올리면 확대되고, 이름 아래 <strong>능호와 위치</strong>를 적었다 / <strong>오른쪽 작은 사진 = 어진·어사진</strong> — 현존하는 6위(태조·세조·영조·철종·고종·순종)에만 붙는다 / ★ 해안군 = 본파의 파조 / 사진 출처: 위키미디어 공용 — 저작자·라이선스는 「기록 출처」 참조</div>
     </div>
 
     <h4>추존 왕 정리</h4>
@@ -1231,13 +1823,247 @@
       </tbody>
     </table>
   </section>
+  <div class="sec-deco"><svg viewBox="0 0 600 40" aria-hidden="true"><use href="#cloudDiv"/></svg></div>
+
+  <!-- ═══════════ 왕통 가지도 ═══════════ -->
+  <section id="tree" class="print-unit">
+    <h2 class="h3-row">王統 系譜圖 · 왕통 가지도
+      <a class="viewswitch no-print" href="#dynasty">노선도로 보기 <span aria-hidden="true">⤳</span></a>
+    </h2>
+    <p class="lead">
+      수기 노트 「조선왕조 계보(系譜)」의 가지 그림을 옮긴 상세 도식.
+      「조선왕조 계보」 장의 <strong>27대 왕통 노선도</strong>와 내용은 같고, 갈래가 <strong>어디서 어떻게 나뉘는지</strong>를 보기 위한 화면이다.
+      목조에서 순종까지를 <strong>끊지 않고 한 그루로</strong> 그려, 왼쪽 태조에서 오른쪽으로 갈수록 뒷 세대가 된다.
+    </p>
+
+    <div class="dlegend">
+      <span><span class="n k sm"><span class="no">1</span><span class="tx"><span class="nm">왕</span></span></span> 재위한 왕 — 숫자는 대수</span>
+      <span><span class="n pr sm"><span class="tx"><span class="nm">추존·세자</span></span></span> 왕이 되지 못했으나 뒤에 추존된 이</span>
+      <span><span class="n dg sm"><span class="tx"><span class="nm">대원군</span></span></span> 왕의 생부</span>
+      <span><span class="n pf sm"><span class="no">★</span><span class="tx"><span class="nm">해안군</span></span></span> 본파의 파조</span>
+      <span><b style="color:var(--seal-red-soft)">붉은 선</b> 태조부터 해안군까지 — 본가로 이어지는 길</span>
+    </div>
+
+    <div class="dwrap">
+      <div class="dscroll-hint no-print">아래 그림은 전체 모양을 한눈에 보기 위한 <b>축소본</b>이다. <b>눌러서 크게 보기</b>를 누르면 전체 화면으로 열리고, 거기서 확대·이동하며 읽을 수 있다. 마디에 마우스를 올리면 <b>시조부터 그 인물까지의 길</b>이 금색으로 켜진다.</div>
+
+      <div class="dmini" id="dmini" role="button" tabindex="0" aria-label="왕통 가지도 크게 보기">
+        <div class="dsizer"><div class="dstage" id="dstage">
+        <div class="dpre">
+          <span class="bt">추존 4조 — 태조 즉위 전에 追尊된 4대</span>
+          <div class="dchain">
+            <span class="n pr sm"><span class="tx"><span class="nm">목조 <em>穆祖</em></span></span></span><span class="darrow">→</span>
+            <span class="n pr sm"><span class="tx"><span class="nm">익조 <em>翼祖</em></span></span></span><span class="darrow">→</span>
+            <span class="n pr sm"><span class="tx"><span class="nm">도조 <em>度祖</em></span></span></span><span class="darrow">→</span>
+            <span class="n pr sm"><span class="tx"><span class="nm">환조 <em>桓祖</em></span></span></span><span class="darrow">→</span>
+            <span class="n k sm"><span class="no">1</span><span class="tx"><span class="nm">태조</span></span></span>
+          </div>
+        </div>
+
+        <ul class="dtree">
+          <li class="ours">
+            <span class="n k"><span class="no">1</span><span class="tx"><span class="nm">태조 <em>太祖</em></span><span class="sub">이성계 · 1392~1398</span></span></span>
+            <ul>
+              <li>
+                <span class="n k"><span class="no">2</span><span class="tx"><span class="nm">정종 <em>定宗</em></span><span class="sub">1398~1400</span></span></span>
+              </li>
+              <li class="ours">
+                <span class="n k"><span class="no">3</span><span class="tx"><span class="nm">태종 <em>太宗</em></span><span class="sub">1400~1418</span></span></span>
+                <ul>
+                  <li class="ours">
+                    <span class="n k"><span class="no">4</span><span class="tx"><span class="nm">세종 <em>世宗</em></span><span class="sub">1418~1450</span></span></span>
+                    <ul>
+                      <li>
+                        <span class="n k"><span class="no">5</span><span class="tx"><span class="nm">문종 <em>文宗</em></span><span class="sub">1450~1452</span></span></span>
+                        <ul>
+                          <li><span class="n k"><span class="no">6</span><span class="tx"><span class="nm">단종 <em>端宗</em></span><span class="sub">1452~1455</span></span></span></li>
+                        </ul>
+                      </li>
+                      <li class="ours">
+                        <span class="n k"><span class="no">7</span><span class="tx"><span class="nm">세조 <em>世祖</em></span><span class="sub">수양대군 · 1455~1468</span></span></span>
+                        <ul>
+                          <li class="ours">
+                            <span class="n pr"><span class="tx"><span class="nm">의경세자</span><span class="sub">추존 덕종 德宗</span></span></span>
+                            <ul>
+                              <li><span class="n"><span class="tx"><span class="nm">월산대군</span></span></span></li>
+                              <li class="ours">
+                                <span class="n k"><span class="no">9</span><span class="tx"><span class="nm">성종 <em>成宗</em></span><span class="sub">자을산군 · 1469~1494</span></span></span>
+                                <ul>
+                                  <li><span class="n k"><span class="no">10</span><span class="tx"><span class="nm">연산군 <em>燕山君</em></span><span class="sub">1494~1506 · 폐위</span></span></span></li>
+                                  <li class="ours">
+                                    <span class="n k"><span class="no">11</span><span class="tx"><span class="nm">중종 <em>中宗</em></span><span class="sub">진성대군 · 1506~1544</span></span></span>
+                                    <ul>
+                                      <li><span class="n k"><span class="no">12</span><span class="tx"><span class="nm">인종 <em>仁宗</em></span><span class="sub">장경왕후 소생</span></span></span></li>
+                                      <li><span class="n k"><span class="no">13</span><span class="tx"><span class="nm">명종 <em>明宗</em></span><span class="sub">문정왕후 소생</span></span></span></li>
+                                      <li class="ours end">
+                                        <span class="n pf"><span class="no">★</span><span class="tx"><span class="nm">해안군 <em>海安君</em></span><span class="sub">서2남 · 숙의 홍씨 소생<br>1511~1573 · 본파의 파조</span></span></span>
+                                        <ul class="ours-tail">
+                                          <li><span class="n ours-note"><span class="tx"><span class="nm">정희공파 1세 → 16세</span><span class="sub">「정희공파 세보」 장으로 이어진다</span></span></span></li>
+                                        </ul>
+                                      </li>
+                                      <li>
+                                        <span class="n dg"><span class="tx"><span class="nm">덕흥대원군</span><span class="sub">9남 · 창빈안씨 소생</span></span></span>
+                                        <ul>
+                                          <li>
+                                            <span class="n k"><span class="no">14</span><span class="tx"><span class="nm">선조 <em>宣祖</em></span><span class="sub">하성군 · 1567~1608</span></span></span>
+                                            <ul>
+                                              <li><span class="n"><span class="tx"><span class="nm">임해군</span></span></span></li>
+                                              <li><span class="n k"><span class="no">15</span><span class="tx"><span class="nm">광해군 <em>光海君</em></span><span class="sub">1608~1623 · 폐위</span></span></span></li>
+                                              <li>
+                                                <span class="n dg"><span class="tx"><span class="nm">정원군</span><span class="sub">추존 원종 · 정원대원군</span></span></span>
+                                                <ul>
+                                                  <li>
+                                                    <span class="n k"><span class="no">16</span><span class="tx"><span class="nm">인조 <em>仁祖</em></span><span class="sub">능양군 · 1623~1649</span></span></span>
+                                                    <ul>
+                                                      <li><span class="n pr"><span class="tx"><span class="nm">소현세자</span></span></span></li>
+                                                      <li>
+                                                        <span class="n k"><span class="no">17</span><span class="tx"><span class="nm">효종 <em>孝宗</em></span><span class="sub">1649~1659</span></span></span>
+                                                        <ul>
+                                                          <li>
+                                                            <span class="n k"><span class="no">18</span><span class="tx"><span class="nm">현종 <em>顯宗</em></span><span class="sub">1659~1674</span></span></span>
+                                                            <ul>
+                                                              <li>
+                                                                <span class="n k"><span class="no">19</span><span class="tx"><span class="nm">숙종 <em>肅宗</em></span><span class="sub">1674~1720</span></span></span>
+                                                                <ul>
+                                                                  <li><span class="n k"><span class="no">20</span><span class="tx"><span class="nm">경종 <em>景宗</em></span><span class="sub">장희빈 소생</span></span></span></li>
+                                                                  <li>
+                                                                    <span class="n k"><span class="no">21</span><span class="tx"><span class="nm">영조 <em>英祖</em></span><span class="sub">연잉군 · 1724~1776</span></span></span>
+                                                                    <ul>
+                                                                      <li><span class="n pr"><span class="tx"><span class="nm">효장세자</span><span class="sub">추존 진종 眞宗</span></span></span></li>
+                                                                      <li>
+                                                                        <span class="n pr"><span class="tx"><span class="nm">사도세자</span><span class="sub">추존 장조 莊祖</span></span></span>
+                                                                        <ul>
+                                                                          <li>
+                                                                            <span class="n k"><span class="no">22</span><span class="tx"><span class="nm">정조 <em>正祖</em></span><span class="sub">진종의 양자로 즉위</span></span></span>
+                                                                            <ul>
+                                                                              <li>
+                                                                                <span class="n k"><span class="no">23</span><span class="tx"><span class="nm">순조 <em>純祖</em></span><span class="sub">1800~1834</span></span></span>
+                                                                                <ul>
+                                                                                  <li>
+                                                                                    <span class="n pr"><span class="tx"><span class="nm">효명세자</span><span class="sub">추존 익종 翼宗</span></span></span>
+                                                                                    <ul>
+                                                                                      <li><span class="n k"><span class="no">24</span><span class="tx"><span class="nm">헌종 <em>憲宗</em></span><span class="sub">1834~1849</span></span></span></li>
+                                                                                    </ul>
+                                                                                  </li>
+                                                                                </ul>
+                                                                              </li>
+                                                                            </ul>
+                                                                          </li>
+                                                                          <li>
+                                                                            <span class="n"><span class="tx"><span class="nm">은언군</span></span></span>
+                                                                            <ul>
+                                                                              <li>
+                                                                                <span class="n dg"><span class="tx"><span class="nm">전계대원군</span></span></span>
+                                                                                <ul>
+                                                                                  <li><span class="n k"><span class="no">25</span><span class="tx"><span class="nm">철종 <em>哲宗</em></span><span class="sub">강화도에서 즉위</span></span></span></li>
+                                                                                </ul>
+                                                                              </li>
+                                                                            </ul>
+                                                                          </li>
+                                                                          <li>
+                                                                            <span class="n"><span class="tx"><span class="nm">은신군</span></span></span>
+                                                                            <ul>
+                                                                              <li>
+                                                                                <span class="n"><span class="tx"><span class="nm">남연군</span><span class="sub">양자로 입적</span></span></span>
+                                                                                <ul>
+                                                                                  <li>
+                                                                                    <span class="n dg"><span class="tx"><span class="nm">흥선대원군</span></span></span>
+                                                                                    <ul>
+                                                                                      <li>
+                                                                                        <span class="n k"><span class="no">26</span><span class="tx"><span class="nm">고종 <em>高宗</em></span><span class="sub">1863~1907 · 초대 황제</span></span></span>
+                                                                                        <ul>
+                                                                                          <li><span class="n k"><span class="no">27</span><span class="tx"><span class="nm">순종 <em>純宗</em></span><span class="sub">1907~1910 · 마지막 황제</span></span></span></li>
+                                                                                        </ul>
+                                                                                      </li>
+                                                                                    </ul>
+                                                                                  </li>
+                                                                                </ul>
+                                                                              </li>
+                                                                            </ul>
+                                                                          </li>
+                                                                        </ul>
+                                                                      </li>
+                                                                    </ul>
+                                                                  </li>
+                                                                </ul>
+                                                              </li>
+                                                            </ul>
+                                                          </li>
+                                                        </ul>
+                                                      </li>
+                                                    </ul>
+                                                  </li>
+                                                  <li><span class="n"><span class="tx"><span class="nm">능창군</span></span></span></li>
+                                                </ul>
+                                              </li>
+                                            </ul>
+                                          </li>
+                                        </ul>
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            <span class="n k"><span class="no">8</span><span class="tx"><span class="nm">예종 <em>睿宗</em></span><span class="sub">해양대군 · 1468~1469</span></span></span>
+                            <ul>
+                              <li><span class="n"><span class="tx"><span class="nm">인성대군</span></span></span></li>
+                              <li><span class="n"><span class="tx"><span class="nm">제안대군</span></span></span></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        </div></div>
+        <span class="dmini-cta no-print">눌러서 크게 보기 <span aria-hidden="true">⤢</span></span>
+      </div>
+    </div>
+
+    <h3>◎ 추존왕 (追尊王) 5위</h3>
+    <table>
+      <thead><tr><th style="width:70px">번호</th><th style="width:26%">묘호</th><th>본래 신분</th></tr></thead>
+      <tbody>
+        <tr><td class="gen">1</td><td>덕종 <span class="hanja">德宗</span></td><td>의경세자 — 세조의 아들, 성종의 아버지</td></tr>
+        <tr><td class="gen">2</td><td>원종 <span class="hanja">元宗</span></td><td>정원군 — 선조의 아들, 인조의 아버지</td></tr>
+        <tr><td class="gen">3</td><td>진종 <span class="hanja">眞宗</span></td><td>효장세자 — 영조의 아들, 정조의 양부</td></tr>
+        <tr><td class="gen">4</td><td>장조 <span class="hanja">莊祖</span></td><td>사도세자 — 영조의 아들, 정조의 생부</td></tr>
+        <tr><td class="gen">5</td><td>익종 <span class="hanja">翼宗</span></td><td>효명세자 — 순조의 아들, 헌종의 아버지</td></tr>
+      </tbody>
+    </table>
+
+    <h3>◎ 대원군 (大院君) 4위 — 왕의 생부</h3>
+    <table>
+      <thead><tr><th style="width:70px">번호</th><th style="width:26%">대원군</th><th>아들(왕)</th></tr></thead>
+      <tbody>
+        <tr><td class="gen">1</td><td>덕흥대원군</td><td>제14대 선조</td></tr>
+        <tr><td class="gen">2</td><td>정원대원군</td><td>제16대 인조 <span style="color:var(--ink-faint)">(뒤에 원종으로 추존)</span></td></tr>
+        <tr><td class="gen">3</td><td>전계대원군</td><td>제25대 철종</td></tr>
+        <tr><td class="gen">4</td><td>흥선대원군</td><td>제26대 고종</td></tr>
+      </tbody>
+    </table>
+
+    <div class="quote">
+      <span class="label">읽는 법</span>
+      <strong>중종 → 해안군</strong>으로 갈라지는 지점이 본가의 출발점이며, 태조부터 그 자리까지 <span style="color:var(--seal-red-soft)">붉은 선</span>으로 이어 두었다.
+      해안군 아래로는 「정희공파 세보」 장의 1세~16세가 이어진다.
+      마디 ⑦의 <span class="hanja">※1</span>·<span class="hanja">※2</span>는 원본 노트의 별표 표기를 그대로 옮긴 것으로, 각각 마디 ⑨·⑩으로 이어진다.
+    </div>
+  </section>
 
   <div class="sec-deco"><svg viewBox="0 0 600 40" aria-hidden="true"><use href="#cloudDiv"/></svg></div>
 
   <!-- ═══════════ 해안군 정희공파 세보 ═══════════ -->
   <section id="haean">
     <h2>海安君 靖僖公派 世譜 · 정희공파 세보</h2>
-    <p class="lead">파조 해안군(1세)부터 16세까지의 세계(世系). 굵은 글씨 = 우리 직계(원본에 네모 표시).</p>
+    <p class="lead">파조 해안군(1세)부터 16세까지의 세계(世系). <b class="lin">붉은 글씨</b> = 우리 직계(수기 원본에 네모로 표시된 인물).</p>
 
     <div class="quote">
       <span class="label">本派 / 본파</span>
@@ -1250,7 +2076,7 @@
     <table>
       <tbody>
         <tr><th style="width:120px">생몰</th><td>1511년(중종 6년) ~ 1573년</td></tr>
-        <tr><th>본명</th><td>이기(李㟓) — 같은 한자를 '희'로도 읽어 '이희'로도 전한다</td></tr>
+        <tr><th>본명(휘 諱)</th><td><strong>이기(李㟓)</strong>가 본디 이름이며, 같은 글자를 달리 읽어 <strong>'이희'</strong>로도 불린다.</td></tr>
         <tr><th>자(字)</th><td>부붕(不崩)</td></tr>
         <tr><th>모</th><td>숙의 홍씨(남양 홍씨)</td></tr>
         <tr><th>시호</th><td>정희(靖僖) — 1788년(정조 12) 하사. 파명 '정희공파'의 유래</td></tr>
@@ -1263,35 +2089,36 @@
       <thead>
         <tr>
           <th style="width:70px">세대</th>
-          <th>인물 (굵게 = 직계)</th>
+          <th>인물 — <b class="lin">붉은 글씨</b> = 우리 직계</th>
           <th style="width:170px">묘소</th>
           <th>비고</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td class="gen">1세</td><td><strong>해안군</strong></td><td>고양시 덕양구 선유동 산46-1</td><td>파조 — 중종의 둘째 왕자</td></tr>
-        <tr><td class="gen">2세</td><td><strong>서릉군</strong>(이섭) · 서흥군 · 오천군 · 오산군 · 서천군 · 오강군</td><td>서릉군: <span class="uncertain">원본에서 지워짐</span></td><td>해안군의 6남</td></tr>
-        <tr><td class="gen">3세</td><td>연성군 · 연은군 · 연창군 · 연산군 · <strong>연계군</strong>(이종호)</td><td>연계군: 행주산성 부근</td><td></td></tr>
-        <tr><td class="gen">4세</td><td>화산감 · 화성감 · 화원감 · <strong>화평군</strong>(이시헌)</td><td>화평군: 행주산성 부근</td><td>'감(監)'은 종친부 작호</td></tr>
-        <tr><td class="gen">5세</td><td>수구 · 수린 · <strong>수봉</strong></td><td>하신리 상송</td><td></td></tr>
-        <tr><td class="gen">6세</td><td><strong>관신</strong></td><td>하신리 상송</td><td></td></tr>
-        <tr><td class="gen">7세</td><td><strong>두영</strong></td><td>하신리 상송</td><td></td></tr>
-        <tr><td class="gen">8세</td><td>기창 · 시창 · <strong>지창</strong></td><td>하신리 상송</td><td></td></tr>
-        <tr><td class="gen">9세</td><td>동수 · <strong>동원</strong></td><td>하신리 상송</td><td></td></tr>
-        <tr><td class="gen">10세</td><td><strong>좌택</strong></td><td>하신리 하송</td><td></td></tr>
-        <tr><td class="gen">11세</td><td>상주 · <strong>상억</strong> · 상구 · 상재</td><td>감곡면 통정리</td><td></td></tr>
-        <tr><td class="gen">12세</td><td><strong>병근</strong> · 병균 · 병화 · 병섭 · 병훈</td><td>—</td><td>직계 생몰은 아래 '직계' 참조</td></tr>
-        <tr><td class="gen">13세</td><td>기도 · <strong>기보</strong></td><td>—</td><td>기보 = 이윤삼 <span class="uncertain">족보명/호적명 병기 추정</span></td></tr>
-        <tr><td class="gen">14세</td><td><strong>철호(봉길)</strong> · 현호(봉현) · 석호(봉진)</td><td>—</td><td>괄호 = 호적명 추정</td></tr>
-        <tr><td class="gen">15세</td><td>한규 · <strong>한석</strong> · 한순(배우자 김동석)</td><td>—</td><td></td></tr>
-        <tr><td class="gen">16세</td><td>성영 · <strong>동영</strong> · 진영 · 옥자 · 정미</td><td>—</td><td>이한석의 자녀. 이한규·이한순의 자녀는 '친족 가계도' 참조</td></tr>
+        <tr><td class="gen">1세</td><td><b class="lin">해안군 <span class="hanja">海安君</span></b></td><td>고양시 덕양구 선유동 산46-1</td><td>파조 — 중종의 둘째 왕자</td></tr>
+        <tr><td class="gen">2세</td><td><b class="lin">서릉군 <span class="hanja">西陵君</span></b>(휘 섭) · 서흥군 · 오천군 · 오산군 · 서천군 · 오강군</td><td>서릉군: 고양시 <span class="uncertain">확인 필요</span></td><td>해안군의 6남 · 휘는 <strong>섭</strong>(한자는 미상)</td></tr>
+        <tr><td class="gen">3세</td><td>연성군 <span class="hanja">蓮城君</span>(휘 몽호 夢虎) · 연은군 · 연창군 · 연산군 · <b class="lin">연계군 <span class="hanja">蓮溪君</span>(휘 연호 然虎)</b></td><td>연계군: 고양 행주(高陽 幸州)</td><td>항렬자 <span class="hanja">虎</span> · 연계군 증(贈) 정의대부</td></tr>
+        <tr><td class="gen">4세</td><td>화산감 <span class="hanja">花山監</span> · 화성감 · 화원감 · <b class="lin">화평군 <span class="hanja">花坪君</span>(휘 시헌 時憲)</b></td><td>화평군: 고양 행주 부근</td><td>항렬자 <span class="hanja">花</span> · 화평군 1634~1708(75세), 처음 화릉감(花陵監)에서 증 정의대부 화평군</td></tr>
+        <tr><td class="gen">5세</td><td>수구 <span class="hanja">壽龜</span> · 수린 <span class="hanja">壽麟</span> · <b class="lin">수봉 <span class="hanja">壽鳳</span></b></td><td>하신리 상송</td><td>항렬자 <span class="hanja">壽</span> · 수구 1653~1717(65세), 수봉 1662~1734(73세)</td></tr>
+        <tr><td class="gen">6세</td><td><b class="lin">관신 <span class="hanja">觀信</span></b></td><td>하신리 상송</td><td>1654~1728 (75세)</td></tr>
+        <tr><td class="gen">7세</td><td><b class="lin">두영 <span class="hanja">斗永</span></b></td><td>하신리 상송</td><td>1672~1724 (53세)</td></tr>
+        <tr><td class="gen">8세</td><td>기창 <span class="hanja">起昌</span> · 시창 · <b class="lin">지창 <span class="hanja">枝昌</span></b></td><td>하신리 상송</td><td>항렬자 <span class="hanja">昌</span> · 기창 1684~1719(36세)</td></tr>
+        <tr><td class="gen">9세</td><td>동수 <span class="hanja">東秀</span> · <b class="lin">동원 <span class="hanja">東瑗</span></b></td><td>하신리 상송</td><td>항렬자 <span class="hanja">東</span> · 동원 1746~1798(53세), 증 통정대부 사복시정</td></tr>
+        <tr><td class="gen">10세</td><td>정택 <span class="hanja">禎宅</span> · <b class="lin">좌택 <span class="hanja">佐宅</span></b></td><td>하신리 하송</td><td>항렬자 <span class="hanja">宅</span> · 좌택 1790~1855(66세)</td></tr>
+        <tr><td class="gen">11세</td><td>상주 · <b class="lin">상억 <span class="hanja">尙億</span></b> · 상구 <span class="hanja">尙龜</span> · 상재 <span class="hanja">尙材</span></td><td>감곡면 통정리</td><td>항렬자 <span class="hanja">尙</span> · 상억 1822~1869</td></tr>
+        <tr><td class="gen">12세</td><td><b class="lin">병근 <span class="hanja">炳根</span></b> · 병균 · 병화 · 병섭 · 병훈</td><td>화성추모공원 135호</td><td>항렬자 <span class="hanja">炳</span> · 통훈대부 행 사헌부 — 생몰은 「직계」 참조</td></tr>
+        <tr><td class="gen">13세</td><td>기도 · <b class="lin">기보 <span class="hanja">基輔</span></b></td><td>화성추모공원 135호</td><td>항렬자 <span class="hanja">基</span> · <strong>초휘(初諱) 윤삼 允三</strong> — 족보명 기보 = 호적명 이윤삼</td></tr>
+        <tr><td class="gen">14세</td><td><b class="lin">철호 <span class="hanja">喆鎬</span></b>(초휘 봉길) · 현호(봉현) · 석호(봉진)</td><td>화성추모공원 135호</td><td>항렬자 <span class="hanja">鎬</span> · <strong>초휘 봉길 鳳吉</strong></td></tr>
+        <tr><td class="gen">15세</td><td>한규 <span class="hanja">漢奎</span> · <b class="lin">한석 <span class="hanja">漢錫</span></b> · 한순(배우자 김동석)</td><td>—</td><td>항렬자 <span class="hanja">漢</span> · 한규 1927.03.29 생, 배(配) 밀양박씨 옥례</td></tr>
+        <tr><td class="gen">16세</td><td>성영 <span class="hanja">成榮</span> · <b class="lin">동영 <span class="hanja">東榮</span></b> · 진영 <span class="hanja">振榮</span> · 옥자 <span class="hanja">玉子</span> · 정미 <span class="hanja">貞美</span></td><td>—</td><td>항렬자 <span class="hanja">榮</span> · 이한석의 자녀. 이한규의 자녀 준영(駿榮) · 호영(虎榮, 초명 현호 顯虎) 등은 「친족 가계도」 참조. 이어지는 항렬자는 17세 앞 글자 <span class="hanja">炯</span> · 18세 뒷 글자 <span class="hanja">浚</span></td></tr>
       </tbody>
     </table>
 
     <div class="quote">
       <span class="label">注 / 주</span>
-      인명은 원본에 한글로만 기록되어 있어 한자는 대부분 미상이며, 종친회(전주이씨대동종약원) 세보와의 대조를 권장한다.
-      5~9세 묘소는 원본에서 '하신리 상송'에 같음(〃) 기호로 반복 표기되어 있다.
+      한자 표기는 2026년 8월 30일 <strong>인쇄 족보 원본</strong>(『全州李氏 海安君 靖僖公派世譜』)을 촬영한 사진 16장을 확대 판독해 넣은 것이다.
+      세대마다 <strong>항렬자(行列字)</strong>가 뚜렷하게 이어지는 점(3세 虎 → 5세 壽 → 8세 昌 → 9세 東 → 10세 宅 → 11세 尙 → 12세 炳 → 13세 基 → 14세 鎬 → 15세 漢 → 16세 榮 → 17세 炯 → 18세 浚)이 판독의 교차 검증 근거가 되었다.
+      5~9세 묘소는 수기 원본에서 '하신리 상송'에 같음(〃) 기호로 반복 표기되어 있다.
     </div>
   </section>
 
@@ -1300,18 +2127,18 @@
   <!-- ═══════════ 직계 ═══════════ -->
   <section id="direct">
     <h2>直系 · 직계</h2>
-    <p class="lead">세보의 직계 라인(굵은 글씨) — 12세부터 17세까지의 생몰년월일 및 묘소.</p>
+    <p class="lead">세보의 직계 라인 — 12세부터 17세까지의 생몰년월일·묘소, 그리고 인쇄 족보에서 확인한 한자 이름.</p>
 
     <div class="gen-card">
       <span class="gen-no">12세 十二世</span>
       <div class="portrait"><span class="pseal">이병근</span></div>
-      <span class="name">이병근</span>
+      <span class="name">이병근</span><span class="name-han">炳根</span>
       <div class="dates">
         <div><span class="label">생(生)</span> 1846. 12. 20</div>
         <div><span class="label">졸(卒)</span> 1890. 09. 08</div>
       </div>
       <div class="spouse">
-        <strong>배(配)</strong> 밀양박씨 <span style="color:var(--ink-faint);font-size:13px">(원본에 성씨만 기록)</span>
+        <strong>배(配)</strong> 밀양박씨 <span class="hanja">密陽朴氏</span> <span style="color:var(--ink-faint);font-size:13px">(이름은 <span class="uncertain">미확인</span>)</span>
         <div style="margin-top:4px;color:var(--ink-faint);font-size:13px">
           생(生) 1858. 09. 09 / 졸(卒) 1911. 10. 11
         </div>
@@ -1321,7 +2148,7 @@
     <div class="gen-card">
       <span class="gen-no">13세 十三世</span>
       <div class="portrait"><span class="pseal">이윤삼</span></div>
-      <span class="name">이윤삼</span><span class="name-han">(세보명 기보)</span>
+      <span class="name">이윤삼</span><span class="name-han">基輔 · 初諱 允三</span>
       <div class="dates">
         <div><span class="label">생(生)</span> 1886. 09. 15</div>
         <div><span class="label">졸(卒)</span> 1967. 09. 23</div>
@@ -1332,19 +2159,19 @@
           생(生) 1888. 09. 27 / 졸(卒) 1958. 12. 15
         </div>
       </div>
-      <div class="note">세보에는 '기보'로 기록 — 족보명(기보) / 호적명(윤삼) 병기로 추정.</div>
+      <div class="note">인쇄 족보에 <span class="hanja">子 基輔</span> 아래 <span class="hanja">初諱 允三</span>이 명기되어 있다. 족보명 <strong>기보(基輔)</strong>와 호적명 <strong>윤삼(允三)</strong>은 동일인이다.</div>
     </div>
 
     <div class="gen-card">
       <span class="gen-no">14세 十四世</span>
       <div class="portrait"><span class="pseal">이봉길</span></div>
-      <span class="name">이봉길</span><span class="name-han">(세보명 철호)</span>
+      <span class="name">이봉길</span><span class="name-han">喆鎬 · 初諱 鳳吉</span>
       <div class="dates">
         <div><span class="label">생(生)</span> 1908. 11. 30</div>
         <div><span class="label">졸(卒)</span> 1935. 06. 26</div>
       </div>
       <div class="spouse">
-        <strong>배(配)</strong> 박양수
+        <strong>배(配)</strong> 박양수 <span class="hanja">密陽朴氏</span>
         <div style="margin-top:4px;color:var(--ink-faint);font-size:13px">
           생(生) 1906. 10. 20 / 졸(卒) 1984. 05. 12
         </div>
@@ -1357,26 +2184,26 @@
     <div class="gen-card">
       <span class="gen-no">15세 十五世</span>
       <div class="portrait"><span class="pseal">이한석</span><span class="ph-note">사진 준비 중</span></div>
-      <span class="name">이한석</span>
+      <span class="name">이한석</span><span class="name-han">漢錫</span>
       <div class="dates">
-        <div><span class="label">생(生)</span> 1930. 11. 27 <span style="color:var(--ink-faint);font-size:13px">(31. 12. 06 — <span class="uncertain">음력/호적 추정</span>)</span></div>
+        <div><span class="label">생(生)</span> 1930. 11. 27 <span style="color:var(--ink-faint);font-size:13px">(호적상 31.12.06)</span></div>
         <div><span class="label">졸(卒)</span> 2017. 08. 24</div>
       </div>
       <div class="spouse">
-        <strong>배(配)</strong> 최공녀
+        <strong>배(配)</strong> 최공녀 <span class="hanja">慶州崔氏</span>
         <div style="margin-top:4px;color:var(--ink-faint);font-size:13px">
-          생(生) 1933. 05. 22 (32. 06. 24 — <span class="uncertain">음력/호적 추정</span>) / 졸(卒) 2012. 02. 20
+          생(生) 1933. 05. 22 (호적상 32.06.24) / 졸(卒) 2012. 02. 20
         </div>
       </div>
       <div class="tomb-box">
-        <span class="icon">묘(墓)</span> 국립서울현충원 310078
+        <span class="icon">묘(墓)</span> 서울현충원 310078
       </div>
     </div>
 
     <div class="gen-card">
       <span class="gen-no">16세 十六世</span>
       <div class="portrait"><span class="pseal">이동영</span><span class="ph-note">사진 준비 중</span></div>
-      <span class="name">이동영</span>
+      <span class="name">이동영</span><span class="name-han">東榮</span>
       <div class="dates">
         <div><span class="label">생(生)</span> ─</div>
         <div><span class="label">졸(卒)</span> ─</div>
@@ -1389,69 +2216,13 @@
     <div class="gen-card">
       <span class="gen-no">17세 十七世</span>
       <div class="portrait"><span class="pseal">이재성</span><span class="ph-note">사진 준비 중</span></div>
-      <span class="name">이재성</span>
+      <span class="name">이재성</span><span class="name-han">李在盛 <span style="opacity:.75">호적명</span></span>
       <div class="spouse">
         <strong>배(配)</strong> 김주경
       </div>
-      <div class="note">자녀: 이차은 · 이차준 (18세)</div>
+      <div class="note">자녀: 이차은 · 이차준 (18세) — 17세 항렬자는 <span class="hanja">炯</span>(빛날 형)으로 이름의 <strong>앞 글자</strong>에 온다 — 이형현 <span class="hanja">炯賢</span> · 이형학 <span class="hanja">炯學</span>. 이재헌 <span class="hanja">李在憲</span> · 이재성 <span class="hanja">李在盛</span>은 <strong>호적명</strong>이다. 18세는 <strong>뒷 글자</strong> <span class="hanja">浚</span>(준).</div>
     </div>
 
-    <h3>직계 요약 표</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>세</th>
-          <th>인물</th>
-          <th>생몰</th>
-          <th>배우자</th>
-          <th>배우자 생몰</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="gen">12세</td>
-          <td><strong>이병근</strong></td>
-          <td>1846.12.20 ~ 1890.09.08</td>
-          <td>밀양박씨</td>
-          <td>1858.09.09 ~ 1911.10.11</td>
-        </tr>
-        <tr>
-          <td class="gen">13세</td>
-          <td><strong>이윤삼</strong> <span style="color:var(--ink-faint)">(세보명 기보)</span></td>
-          <td>1886.09.15 ~ 1967.09.23</td>
-          <td>김윤자</td>
-          <td>1888.09.27 ~ 1958.12.15</td>
-        </tr>
-        <tr>
-          <td class="gen">14세</td>
-          <td><strong>이봉길</strong> <span style="color:var(--ink-faint)">(세보명 철호)</span></td>
-          <td>1908.11.30 ~ 1935.06.26</td>
-          <td>박양수</td>
-          <td>1906.10.20 ~ 1984.05.12</td>
-        </tr>
-        <tr>
-          <td class="gen">15세</td>
-          <td><strong>이한석</strong></td>
-          <td>1930.11.27 ~ 2017.08.24</td>
-          <td>최공녀</td>
-          <td>1933.05.22 ~ 2012.02.20</td>
-        </tr>
-        <tr>
-          <td class="gen">16세</td>
-          <td><strong>이동영</strong></td>
-          <td>─</td>
-          <td>백현숙</td>
-          <td>─</td>
-        </tr>
-        <tr>
-          <td class="gen">17세</td>
-          <td><strong>이재성</strong></td>
-          <td>─</td>
-          <td>김주경</td>
-          <td>─</td>
-        </tr>
-      </tbody>
-    </table>
   </section>
 
   <div class="sec-deco"><svg viewBox="0 0 600 40" aria-hidden="true"><use href="#cloudDiv"/></svg></div>
@@ -1459,20 +2230,21 @@
   <!-- ═══════════ 친족 가계도 (사진 ③ 기반) ═══════════ -->
   <section id="family">
     <h2>親族 家系圖 · 친족 가계도</h2>
-    <p class="lead">이한석 · 최공녀의 자손 전체 도식.</p>
+    <p class="lead">이한석 · 최공녀의 자손 전체 도식. 회색 작은 글씨 = 인쇄 족보에서 확인한 한자.</p>
 
     <h3>4대 가계도 — 15세부터 18세까지</h3>
     <div class="mermaid-wrap">
-      <div class="tree-scroll">
+      <div class="dmini" id="fmini" role="button" tabindex="0" aria-label="4대 가계도 크게 보기" data-zt="親族 家系圖 · 4대 가계도" data-zs="이한석 · 최공녀 — 15세부터 18세까지">
+        <div class="dsizer"><div class="dstage">
         <ul class="otree">
           <li>
-            <span class="p gp">이한석 ⚭ 최공녀<small>15세</small></span>
+            <span class="p gp">이한석 ⚭ 최공녀<small>15세 · 漢錫 ⚭ 慶州崔氏</small></span>
             <ul>
               <li>
-                <span class="p">이성영 ⚭ 허경희</span>
+                <span class="p">이성영 ⚭ 허경희<small>成榮 ⚭ 金海許氏 京喜</small></span>
                 <ul>
                   <li>
-                    <span class="p">이형현 ⚭ 김잔디</span>
+                    <span class="p">이형현 ⚭ 김잔디<small>炯賢</small></span>
                     <ul>
                       <li><span class="p kid">이민준</span></li>
                       <li><span class="p kid">이강준</span></li>
@@ -1481,11 +2253,11 @@
                 </ul>
               </li>
               <li>
-                <span class="p">이동영 ⚭ 백현숙</span>
+                <span class="p">이동영 ⚭ 백현숙<small>東榮</small></span>
                 <ul>
-                  <li><span class="p">이재헌</span></li>
+                  <li><span class="p">이재헌<small>李在憲</small></span></li>
                   <li>
-                    <span class="p">이재성 ⚭ 김주경</span>
+                    <span class="p">이재성 ⚭ 김주경<small>李在盛</small></span>
                     <ul>
                       <li><span class="p kid">이차은</span></li>
                       <li><span class="p kid">이차준</span></li>
@@ -1494,22 +2266,23 @@
                 </ul>
               </li>
               <li>
-                <span class="p">이옥자 ⚭ 문왕곤</span>
+                <span class="p">이옥자 ⚭ 문왕곤<small>玉子</small></span>
                 <ul>
                   <li><span class="p">문석환</span></li>
                 </ul>
               </li>
               <li>
-                <span class="p">이진영 ⚭ 정진미</span>
+                <span class="p">이진영 ⚭ 정진미<small>振榮</small></span>
                 <ul>
                   <li>
                     <span class="p">이재일</span>
                     <ul>
                       <li><span class="p kid">이하은</span></li>
+                      <li><span class="p kid">이도준</span></li>
                     </ul>
                   </li>
                   <li>
-                    <span class="p">이형학</span>
+                    <span class="p">이형학<small>炯學</small></span>
                     <ul>
                       <li><span class="p kid">이지유</span></li>
                       <li><span class="p kid">이하준</span></li>
@@ -1518,17 +2291,19 @@
                 </ul>
               </li>
               <li>
-                <span class="p">이정미 ⚭ 김상동</span>
+                <span class="p">이정미 ⚭ 김상동<small>貞美</small></span>
                 <ul>
-                  <li><span class="p"><span class="uncertain">김소현</span></span></li>
+                  <li><span class="p">김소현</span></li>
                   <li><span class="p">김소예</span></li>
                 </ul>
               </li>
             </ul>
           </li>
         </ul>
+        </div></div>
+        <span class="dmini-cta no-print">눌러서 크게 보기 <span aria-hidden="true">⤢</span></span>
       </div>
-      <div class="caption">좁은 화면에서는 좌우로 스크롤</div>
+      <div class="caption">그림을 누르면 전체 화면으로 크게 볼 수 있다 — 확대·이동 가능</div>
     </div>
 
     <h3>이한석 · 최공녀의 5자녀 (16세)</h3>
@@ -1536,12 +2311,12 @@
       <div class="family-card">
         <span class="role">장남</span>
         <div class="couple">이성영 ⚭ 허경희</div>
-        <div class="children"><span class="label">자녀</span>이형현 (배우자: 김잔디)</div>
+        <div class="children"><span class="label">자녀</span>이형현 <span class="hanja">炯賢</span> (배우자: 김잔디)</div>
       </div>
       <div class="family-card self-line">
         <span class="role">차남 · 직계</span>
         <div class="couple">이동영 ⚭ 백현숙</div>
-        <div class="children"><span class="label">자녀</span>이재헌 · 이재성</div>
+        <div class="children"><span class="label">자녀</span>이재헌 <span class="hanja">李在憲</span> · 이재성 <span class="hanja">李在盛</span> <span style="color:var(--ink-faint);font-size:.85em">(호적명)</span></div>
       </div>
       <div class="family-card">
         <span class="role">장녀</span>
@@ -1551,12 +2326,12 @@
       <div class="family-card">
         <span class="role">삼남</span>
         <div class="couple">이진영 ⚭ 정진미</div>
-        <div class="children"><span class="label">자녀</span>이재일 · 이형학</div>
+        <div class="children"><span class="label">자녀</span>이재일 · 이형학 <span class="hanja">炯學</span></div>
       </div>
       <div class="family-card">
         <span class="role">차녀</span>
         <div class="couple">이정미 ⚭ 김상동</div>
-        <div class="children"><span class="label">자녀</span><span class="uncertain">김소현</span> · 김소예</div>
+        <div class="children"><span class="label">자녀</span>김소현 · 김소예</div>
       </div>
     </div>
 
@@ -1564,13 +2339,14 @@
     <div class="family-grid">
       <div class="family-card">
         <span class="role">이한석의 형</span>
-        <div class="couple">이한규 ⚭ 박○ <span style="font-weight:400;color:var(--ink-faint)">(성만 전해짐)</span></div>
-        <div class="children"><span class="label">자녀</span>이준영 · 이복자 · 이영숙 · 이옥님 · 이현호 · 이미자 · 이정화</div>
+        <div class="couple">이한규 ⚭ 박옥례 <span style="font-weight:400;color:var(--ink-faint)"><span class="hanja">漢奎 ⚭ 密陽朴氏</span> 옥례</span></div>
+        <div class="children"><span class="label">자녀</span>이준영 <span class="hanja">駿榮</span> · 이복자 · 이영숙 · 이옥님 · 이현호 <span class="hanja">虎榮 · 初名 顯虎</span> · 이미자 · 이정화 <span class="hanja">貞和</span></div>
+        <div class="children" style="margin-top:6px"><span class="label">비고</span>인쇄 족보에 이한규 1927.03.29 생, 배(配) 밀양박씨 옥례 1927.05.12 생으로 기재. 수기 노트의 '현호'는 <strong>호영(虎榮)의 초명 현호(顯虎)</strong>였다.</div>
       </div>
       <div class="family-card">
         <span class="role">이한석의 누이</span>
         <div class="couple">이한순 ⚭ 김동석</div>
-        <div class="children"><span class="label">자녀</span>김상수 · <span class="uncertain">김향수</span> · 김철수 · 김경수</div>
+        <div class="children"><span class="label">자녀</span>김상수 · 김향수 · 김철수 · 김경수</div>
       </div>
     </div>
 
@@ -1582,17 +2358,17 @@
       <tbody>
         <tr>
           <td>성영 계</td>
-          <td>이형현 ⚭ 김잔디</td>
+          <td>이형현 <span class="hanja">炯賢</span> ⚭ 김잔디</td>
           <td>이민준 · 이강준</td>
         </tr>
         <tr>
           <td>동영 계</td>
-          <td>이재헌</td>
+          <td>이재헌 <span class="hanja">李在憲</span> <span style="color:var(--ink-faint);font-size:.85em">호적명</span></td>
           <td>─</td>
         </tr>
         <tr>
           <td>동영 계</td>
-          <td>이재성 ⚭ 김주경</td>
+          <td>이재성 <span class="hanja">李在盛</span> ⚭ 김주경</td>
           <td>이차은 · 이차준</td>
         </tr>
         <tr>
@@ -1603,16 +2379,16 @@
         <tr>
           <td>진영 계</td>
           <td>이재일</td>
-          <td>이하은</td>
+          <td>이하은 · 이도준</td>
         </tr>
         <tr>
           <td>진영 계</td>
-          <td>이형학</td>
+          <td>이형학 <span class="hanja">炯學</span></td>
           <td>이지유 · 이하준</td>
         </tr>
         <tr>
           <td>정미 계</td>
-          <td><span class="uncertain">김소현</span> · 김소예</td>
+          <td>김소현 · 김소예</td>
           <td>─</td>
         </tr>
       </tbody>
@@ -1620,11 +2396,154 @@
 
     <div class="quote">
       <span class="label">注 / 주</span>
-      <span class="uncertain">밑줄점선</span> 항목(김소현 · 김향수)은 확인 중인 표기다.
+      이 장의 이름·관계는 2026년 8월 30일 가족 확인을 거쳐 모두 확정된 것이다.
     </div>
   </section>
 
   <div class="sec-deco"><svg viewBox="0 0 600 40" aria-hidden="true"><use href="#cloudDiv"/></svg></div>
+
+  <!-- ═══════════ 용어집 ═══════════ -->
+  <section id="glossary" class="print-unit">
+    <h2>用語集 · 용어집</h2>
+    <p class="lead">
+      족보와 왕조 계보에 나오는 말들을 모았다. 본문에서 <span class="gl-demo">점선 밑줄</span>이 그어진 낱말을 누르면 여기 있는 뜻이 그 자리에서 뜬다.
+      각 항목에는 <strong>이 족보에서 실제로 어디에 쓰였는지</strong>를 함께 적었다.
+    </p>
+
+    <h3>족보에서 쓰는 말</h3>
+    <dl class="gl-list">
+      <dt data-term="족보" data-alias="세보|대동보">족보 <em>族譜</em></dt>
+      <dd>한 성씨의 계보를 대(代)의 순서대로 적은 책. 한 파(派)만 따로 묶은 것을 <b>세보(世譜)</b>, 성씨 전체를 아우른 것을 <b>대동보(大同譜)</b>라 한다.
+        <span class="ex">우리 것은 『全州李氏 海安君 靖僖公派世譜』 — 해안군 정희공파만 묶은 세보다.</span></dd>
+
+      <dt data-term="파조" data-alias="파(派)|분파">파조 <em>派祖</em></dt>
+      <dd>한 갈래(派)를 처음 연 조상. 큰 집안이 여러 갈래로 나뉘는 것을 <b>분파</b>라 하고, 그 갈래의 첫 사람이 파조다.
+        <span class="ex">우리 파조는 <b>해안군</b>(중종의 둘째 왕자)이며, 그 아래 1세~18세가 이 족보의 본줄기다.</span></dd>
+
+      <dt data-term="세" data-alias="대(代)">세 <em>世</em> · 대 <em>代</em></dt>
+      <dd>파조를 1세로 두고 아들 대를 2세, 손자 대를 3세로 세는 것이 <b>세(世)</b>다. <b>대(代)</b>는 나를 기준으로 위로 몇 번 거슬러 올라가는지를 세므로, 같은 사람을 두고도 숫자가 다르다.
+        <span class="ex">이재성은 해안군으로부터 <b>17세</b>이고, 12세 이병근은 이재성 기준 <b>5대조</b>다.</span></dd>
+
+      <dt data-term="항렬" data-alias="항렬자">항렬자 <em>行列字</em></dt>
+      <dd>같은 세대의 형제·사촌이 이름에 공통으로 넣는 글자. 이름만 보고도 몇 세인지 알 수 있게 하는 장치이며, 족보를 판독할 때 가장 확실한 단서가 된다.
+        <span class="ex">우리 집안은 12세 <b>炳</b>(병근·병균·병화), 15세 <b>漢</b>(한규·한석·한순), 16세 <b>榮</b>(성영·동영·진영), 17세 앞 글자 <b>炯</b>(炯賢·炯學), 18세 뒷 글자 <b>浚</b>(차준·민준·강준·하준·도준)로 이어진다.</span></dd>
+
+      <dt data-term="휘">휘 <em>諱</em></dt>
+      <dd>돌아가신 어른의 본이름. 살아 계실 때 함부로 부르지 않는다는 뜻에서 '피할 휘'를 쓴다. 족보에는 봉작명(○○군) 옆에 작은 글씨로 적힌다.
+        <span class="ex">3세 연계군의 휘는 <b>然虎</b>, 4세 화평군의 휘는 <b>時憲</b>이다.</span></dd>
+
+      <dt data-term="초휘" data-alias="초명">초휘 <em>初諱</em></dt>
+      <dd>족보에 오르기 전에 쓰던 처음 이름. 호적명과 족보명이 다른 경우가 흔해, 같은 사람이 두 이름으로 전해지는 원인이 된다.
+        <span class="ex">13세 <b>기보(基輔)</b>의 초휘가 <b>윤삼(允三)</b> — 오래 미확정이던 '기보 = 이윤삼'이 이 표기로 풀렸다. 14세 <b>철호(喆鎬)</b>의 초휘는 <b>봉길(鳳吉)</b>.</span></dd>
+
+      <dt data-term="자(字)" data-alias="호(號)">자 <em>字</em> · 호 <em>號</em></dt>
+      <dd><b>자</b>는 성인이 되며 받는 또 하나의 이름으로, 웃어른이 아닌 사람이 본이름 대신 부를 때 쓴다. <b>호</b>는 본인이나 벗이 붙이는 별칭이다.
+        <span class="ex">해안군의 자는 <b>부붕(不崩)</b>, 3세 연성군의 자는 <b>연제(燕濟)</b>·호는 <b>일송(一松)</b>.</span></dd>
+
+      <dt data-term="시호">시호 <em>諡號</em></dt>
+      <dd>공이 있는 이가 죽은 뒤 나라에서 내리는 칭호. 후손 갈래의 이름이 여기서 나오기도 한다.
+        <span class="ex">해안군은 1788년(정조 12) 시호 <b>정희(靖僖)</b>를 받았고, 그래서 이 파를 <b>정희공파</b>라 부른다.</span></dd>
+
+      <dt data-term="배위" data-alias="배(配)|실(室)">배위 <em>配位</em></dt>
+      <dd>아내를 높여 이르는 말. 족보에는 <b>配</b> 또는 <b>室</b>로 적고, 이름 대신 <b>본관 + 성씨</b>만 적는 일이 많다.
+        <span class="ex">이한석의 배위는 <b>경주최씨</b>(최공녀), 이한규의 배위는 <b>밀양박씨 옥례</b> — 이름까지 전하는 드문 경우다.</span></dd>
+
+      <dt data-term="본관">본관 <em>本貫</em></dt>
+      <dd>그 성씨가 처음 자리 잡은 고장. 같은 김씨라도 본관이 다르면 다른 집안이다.
+        <span class="ex">우리는 <b>전주</b> 이씨, 이한석의 배위는 <b>경주</b> 최씨, 이봉길의 배위는 <b>밀양</b> 박씨.</span></dd>
+
+      <dt data-term="계자" data-alias="출계|양자">계자 <em>繼子</em> · 출계 <em>出系</em></dt>
+      <dd>대를 잇기 위해 다른 집에서 아들을 들이는 것이 <b>계자(양자)</b>, 반대로 자기 아들을 다른 집에 보내는 것이 <b>출계</b>다. 족보에서 아버지와 아들의 나이가 어긋나 보이면 대개 이 경우다.
+        <span class="ex">왕실에서는 사도세자의 손자 <b>남연군</b>이 은신군의 양자로 들어갔다. 우리 세보에서도 5세 수봉과 6세 관신의 생년이 어긋나 계자 여부를 확인 중이다.</span></dd>
+
+      <dt data-term="향년" data-alias="수(壽)|생졸">생 <em>生</em> · 졸 <em>卒</em> · 향년 <em>享年</em></dt>
+      <dd><b>생</b>은 태어난 날, <b>졸</b>은 세상을 떠난 날, <b>향년</b>(또는 壽)은 누린 나이다.
+        <span class="ex">4세 화평군은 1634년 생, 1708년 졸, 향년 75세.</span></dd>
+    </dl>
+
+    <h3>왕실과 조선사에서 쓰는 말</h3>
+    <dl class="gl-list">
+      <dt data-term="추존" data-alias="추존왕">추존 <em>追尊</em></dt>
+      <dd>왕이 되지 못하고 죽은 이에게 뒷날 왕의 칭호를 올리는 일. 아들이나 손자가 왕이 되면 그 아버지를 왕으로 높이는 경우가 많다.
+        <span class="ex">조선에는 <b>덕종·원종·진종·장조·익종</b> 다섯 추존왕이 있다. 사도세자가 <b>장조</b>로 추존된 것이 대표적이다.</span></dd>
+
+      <dt data-term="묘호">묘호 <em>廟號</em></dt>
+      <dd>왕이 죽은 뒤 종묘에 모시며 붙이는 이름. 우리가 아는 '태조·세종·영조'가 모두 묘호이고, 살아생전 부르던 이름이 아니다. 끝 글자가 <b>조(祖)</b>면 대체로 창업이나 큰 변란을 겪은 왕, <b>종(宗)</b>이면 그 뒤를 이어 다스린 왕이다.
+        <span class="ex">폐위된 임금은 묘호를 받지 못해 <b>연산군·광해군</b>처럼 '군'으로 남는다.</span></dd>
+
+      <dt data-term="대원군">대원군 <em>大院君</em></dt>
+      <dd>왕의 자리를 잇지 않은 사람의 아들이 왕이 되었을 때, 그 <b>왕의 생부</b>에게 주는 칭호.
+        <span class="ex">조선의 대원군은 넷 — <b>덕흥</b>(선조 부) · <b>정원</b>(인조 부) · <b>전계</b>(철종 부) · <b>흥선</b>(고종 부).</span></dd>
+
+      <dt data-term="대군" data-alias="군(君)">군 <em>君</em> · 대군 <em>大君</em></dt>
+      <dd>왕비가 낳은 아들은 <b>대군</b>, 후궁이 낳은 아들은 <b>군</b>이다. 왕자가 아니어도 공이 크면 '군'에 봉해지기도 한다.
+        <span class="ex">해안군은 중종과 <b>숙의 홍씨</b> 사이에서 난 둘째 아들이라 '대군'이 아니라 <b>군</b>이다. 초기 웹 족보가 '해안대군'으로 잘못 적었던 부분.</span></dd>
+
+      <dt data-term="서자" data-alias="적자|서2남">적자 <em>嫡子</em> · 서자 <em>庶子</em></dt>
+      <dd>정실이 낳은 아들이 <b>적자</b>, 첩이나 후궁이 낳은 아들이 <b>서자</b>다. '서2남'은 서자 가운데 둘째라는 뜻.
+        <span class="ex">해안군은 중종의 <b>서2남</b>이다.</span></dd>
+
+      <dt data-term="세자">세자 <em>世子</em></dt>
+      <dd>다음 왕이 될 아들. 왕이 되기 전에 죽으면 왕으로 세지 않으나, 뒤에 추존되기도 한다.
+        <span class="ex">의경세자·소현세자·효장세자·사도세자·효명세자가 모두 왕위에 오르지 못했고, 소현세자를 뺀 넷은 뒤에 추존되었다.</span></dd>
+
+      <dt data-term="수렴청정">수렴청정 <em>垂簾聽政</em></dt>
+      <dd>왕이 어릴 때 대비나 대왕대비가 발(簾)을 드리우고 뒤에서 정사를 듣고 처리하던 제도.
+        <span class="ex">명종 때 문정왕후, 헌종 때 순원왕후가 수렴청정했다.</span></dd>
+
+      <dt data-term="어진">어진 <em>御眞</em></dt>
+      <dd>임금의 초상화. 전쟁과 화재로 대부분 사라져, 조선 27대 가운데 지금 전하는 것은 여섯뿐이다.
+        <span class="ex">「조선왕조 계보」 장에서 <b>태조·세조·영조·철종·고종·순종</b> 여섯 자리에만 오른쪽에 작은 초상이 붙는다.</span></dd>
+
+      <dt data-term="능" data-alias="원(園)|능호">능 <em>陵</em> · 원 <em>園</em> · 묘 <em>墓</em></dt>
+      <dd>왕과 왕비의 무덤이 <b>능</b>, 세자·세자빈이나 왕의 사친(私親)의 무덤이 <b>원</b>, 그 밖은 <b>묘</b>다. 능에는 <b>능호</b>(건원릉·영릉 등)를 따로 붙인다.
+        <span class="ex">폐위된 연산군·광해군은 능이 아니라 <b>연산군묘·광해군묘</b>다.</span></dd>
+
+      <dt data-term="반정">반정 <em>反正</em></dt>
+      <dd>신하들이 임금을 몰아내고 새 임금을 세우는 일. '바른 데로 돌린다'는 뜻으로 붙인 이름이다.
+        <span class="ex">중종반정(연산군 폐위) · 인조반정(광해군 폐위) 두 차례가 있었다.</span></dd>
+    </dl>
+
+    <h3>벼슬과 묘소 표기</h3>
+    <dl class="gl-list">
+      <dt data-term="증직" data-alias="증(贈)">증직 <em>贈職</em></dt>
+      <dd>죽은 뒤에 벼슬을 올려 주는 일. 족보에서 이름 앞의 <b>贈</b> 자가 그 표시이며, 살아서 그 자리에 있었다는 뜻이 아니다.
+        <span class="ex">9세 동원은 <b>贈 통정대부 사복시정</b>, 3세 연계군은 <b>贈 정의대부</b>로 적혀 있다.</span></dd>
+
+      <dt data-term="품계" data-alias="통정대부|통훈대부">품계 <em>品階</em></dt>
+      <dd>벼슬의 등급. 정1품부터 종9품까지 열여덟 단계이며, <b>통정대부</b>는 정3품 당상관, <b>통훈대부</b>는 정3품 당하관이다.
+        <span class="ex">12세 병근은 <b>통훈대부 행 사헌부</b>로 기록되어 있다.</span></dd>
+
+      <dt data-term="감(監)" data-alias="도정|정(正)">감 <em>監</em> · 정 <em>正</em> · 도정 <em>都正</em></dt>
+      <dd>왕실 친척을 관리하던 <b>종친부</b>의 벼슬 이름. 사람 이름이 아니라 봉작명이다.
+        <span class="ex">4세의 <b>화산감·화성감·화원감</b>은 모두 봉작이며, 화평군도 처음에는 <b>화릉감</b>이었다가 뒤에 군으로 올랐다.</span></dd>
+
+      <dt data-term="좌향" data-alias="자좌|건좌">좌향 <em>坐向</em></dt>
+      <dd>무덤이 앉은 방향. 등을 댄 쪽을 '좌(坐)', 바라보는 쪽을 '향(向)'이라 하며, <b>자좌</b>는 북쪽을 등진 자리, <b>건좌</b>는 북서쪽을 등진 자리다.
+        <span class="ex">7세 두영의 묘는 <b>子坐</b>, 8세 기창의 묘는 <b>乾坐</b>로 적혀 있다.</span></dd>
+    </dl>
+
+    <h3>날짜 읽는 법</h3>
+    <dl class="gl-list">
+      <dt data-term="간지" data-alias="60갑자">간지 <em>干支</em></dt>
+      <dd>갑·을·병… 열 개의 천간과 자·축·인… 열두 개의 지지를 짝지어 만든 60가지 이름으로 해를 세는 방식. 60년마다 되풀이되므로, 왕의 재위 연도와 함께 봐야 어느 해인지 정해진다.
+        <span class="ex">'憲宗 丙午'는 헌종 때의 병오년, 곧 <b>1846년</b> — 12세 병근이 태어난 해다.</span></dd>
+
+      <dt data-term="음력" data-alias="양력">음력 <em>陰曆</em></dt>
+      <dd>달의 차고 기움으로 날짜를 세는 달력. 옛 기록의 날짜는 대개 음력이라 지금 달력(양력)과 한 달 가까이 어긋난다.
+        <span class="ex">옛 기록의 날짜는 대개 음력이다. 이한석·최공녀 생일에 괄호로 붙은 날짜는 음력이 아니라 <b>호적상 생년월일</b>이다.</span></dd>
+
+      <dt data-term="제적등본">제적등본 <em>除籍謄本</em></dt>
+      <dd>2008년 호주제가 없어지기 전의 옛 호적을 떼어 놓은 서류. 그 시절의 출생·혼인·사망 날짜가 남아 있어, 족보와 어긋나는 날짜를 맞춰 볼 때 쓴다.
+        <span class="ex">이한석·최공녀의 괄호 날짜 (31.12.06)·(32.06.24)가 <b>호적상 생년월일</b>임을 제적등본으로 확인했다.</span></dd>
+    </dl>
+
+    <div class="quote">
+      <span class="label">注 / 주</span>
+      뜻풀이는 이 족보를 읽는 데 필요한 만큼만 간추린 것이다. 더 자세한 내용은 국사편찬위원회 「조선왕조실록」이나 한국민족문화대백과사전에서 항목별로 찾아볼 수 있다.
+    </div>
+  </section>
+
 
   <!-- ═══════════ 기록 출처 ═══════════ -->
   <section id="notes">
@@ -1642,21 +2561,19 @@
       <a href="https://github.com/NameJaesung/family-genealogy/blob/main/%EC%9B%90%EB%B3%B8%EB%8C%80%EC%A1%B0.md">원본대조.md</a>
     </p>
 
-    <h3>남은 미확정 항목</h3>
-    <table>
-      <thead>
-        <tr><th>항목</th><th>현재 표기</th><th>확인 방법</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>김동석·이한순의 둘째 자녀</td><td>김향수 (판독 우세)</td><td>친척 확인</td></tr>
-        <tr><td>이정미·김상동의 첫째 자녀</td><td>김소현 (판독 우세)</td><td>친척 확인</td></tr>
-        <tr><td>이한규의 배우자</td><td>박○ (성만 기록)</td><td>친척 확인</td></tr>
-        <tr><td>서릉군(2세) 묘소</td><td>원본에서 지워짐</td><td>종친회 세보</td></tr>
-        <tr><td>13세 '기보'와 '이윤삼'의 관계</td><td>족보명/호적명 병기로 추정</td><td>족보·제적등본</td></tr>
-        <tr><td>이한석 (31.12.06) · 최공녀 (32.06.24)</td><td>음력 또는 호적상 날짜로 추정</td><td>제적등본</td></tr>
-        <tr><td>2~11세 군호·인명의 한자</td><td>원본은 한글로만 기록</td><td>전주이씨대동종약원 해안군파 세보 대조</td></tr>
-      </tbody>
-    </table>
+    <h3>인쇄 족보 원본 (한자 판독의 근거)</h3>
+    <p>
+      2026년 8월 30일, 집안에 전해오는 <strong>인쇄 족보</strong>
+      『<span class="hanja">全州李氏 海安君 靖僖公派世譜</span>』(天卷)를 촬영한 사진 16장으로
+      1세부터 16세까지의 <strong>한자 이름·생몰·묘소·배위</strong>를 판독했다.
+      책은 가로쓰기이며 세대 블록이 왼쪽부터 1세 → 2세 순으로 배열된다.
+    </p>
+    <ul>
+      <li>판독 방법: 4000×3000 원본을 세대별 이름 영역만 1.3~1.8배로 확대해 글자 단위로 대조</li>
+      <li>교차 검증: 세대마다 이어지는 <strong>항렬자</strong>(3세 虎 · 5세 壽 · 8세 昌 · 9세 東 · 10세 宅 · 11세 尙 · 12세 炳 · 13세 基 · 14세 鎬 · 15세 漢 · 16세 榮 · 17세 炯 · 18세 浚)와, 수기 노트의 한글 이름·생몰일이 서로 맞물리는지 확인</li>
+      <li>사진 원본은 <code>reference/jokbo_01_gen01-04.jpg</code> ~ <code>jokbo_16_gen16-17.jpg</code> 16장으로 보관한다. 파일명의 <code>genNN-NN</code>은 그 면에 실린 세대 범위다.</li>
+      <li><strong>공개 범위 주의</strong> — 이 사진들에는 생존 가족의 실명·생년월일이 담겨 있다. GitHub Pages는 공개 저장소에서만 동작하므로, 올리면 주소를 아는 누구나 볼 수 있다.</li>
+    </ul>
 
     <h3>외부 참고 자료</h3>
     <ul>
@@ -1672,7 +2589,8 @@
     <ul style="font-size:12px;color:var(--ink-faint);line-height:1.9">
       <li><a href="https://commons.wikimedia.org/wiki/File:Heolleung_Royal_Tomb_(%ED%97%8C%EB%8A%A5).jpg">태종 헌릉</a> ⓒ Noh Mun Duek, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Tomb_of_the_King_Sejong_the_Great_2.jpg">세종 영릉</a> ⓒ Chaewon LEE, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Jangreung_(Danjong),_Yeongwol,_March_2018.jpg">단종 장릉</a> ⓒ Jjw, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Korea-Seoul-Royal_Tombs_0411-07_King_Seongjong.JPG">성종 선릉</a> ⓒ Steve46814, CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Yeonsangunmyo,2018-04.jpg">연산군묘</a> ⓒ Tombus20032000, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:The_Tomb_of_King_Hyeonjong.JPG">현종 숭릉</a> ⓒ kim byung rae, CC BY-SA 2.5 · <a href="https://commons.wikimedia.org/wiki/File:Seo-oreung_Myeongneung.JPG">숙종 명릉</a> ⓒ Naturehead, CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Illeung_Royal_Tomb_(%EC%9D%B8%EB%8A%A5).jpg">순조 인릉</a> ⓒ Noh Mun Duek, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:%EA%B4%91%ED%95%B4%EA%B5%B0%EB%AC%98.jpeg">광해군묘</a> ⓒ Shrhd25, 퍼블릭 도메인</li>
       <li>문종 현릉 · 예종 창릉 · 중종 정릉 · 인종 효릉 · 명종 강릉 · 선조 목릉 · 인조 장릉 · 경종 의릉 · 정조 건릉 · 헌종 경릉: ⓒ 문화재청, 공공누리 제1유형(KOGL Type 1) · 효종 영릉: ⓒ 경기도, 공공누리 제1유형</li>
-      <li>정종의 후릉(厚陵)은 개성(북한) 소재로 이용 가능한 사진이 없어 묘호로 표기.</li>
+      <li>2026-08-30 추가분 — <a href="https://commons.wikimedia.org/wiki/File:%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EA%B1%B4%EC%9B%90%EB%A6%89_%EC%A0%84%EA%B2%BD(%ED%95%AD%EA%B3%B5).jpg">태조 건원릉</a> · <a href="https://commons.wikimedia.org/wiki/File:%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EC%9B%90%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg">영조 원릉</a> · <a href="https://commons.wikimedia.org/wiki/File:%EA%B3%A0%EC%96%91_%EC%84%9C%EC%82%BC%EB%A6%89_%EC%98%88%EB%A6%89_%EB%8A%A5%EC%B9%A8.jpg">철종 예릉</a> · <a href="https://commons.wikimedia.org/wiki/File:%EB%82%A8%EC%96%91%EC%A3%BC_%ED%99%8D%EB%A6%89%EA%B3%BC_%EC%9C%A0%EB%A6%89_%ED%99%8D%EB%A6%89_%EB%8A%A5%EC%B9%A8_%EC%B8%A1%EB%A9%B4_%EB%AF%B8%EC%88%A0_2012%EB%85%84(%EC%B6%9C%EC%B2%98_%EA%B5%AD%EB%A6%BD%EB%AC%B8%ED%99%94%EC%9E%AC%EC%97%B0%EA%B5%AC%EC%86%8C).jpg">고종 홍릉</a> · <a href="https://commons.wikimedia.org/wiki/File:%EB%82%A8%EC%96%91%EC%A3%BC_%ED%99%8D%EB%A6%89%EA%B3%BC_%EC%9C%A0%EB%A6%89_%EC%9C%A0%EB%A6%89_%EC%A0%84%EA%B2%BD(%ED%95%AD%EA%B3%B5).jpg">순종 유릉</a>: ⓒ 문화재청(국가유산청), 공공누리 제1유형 · <a href="https://commons.wikimedia.org/wiki/File:%EA%B4%91%EB%A6%89.JPG">세조 광릉</a> ⓒ Shrhd25, 퍼블릭 도메인</li>
+      <li>정종의 후릉(厚陵)은 개성(북한) 소재로 이용 가능한 사진이 없어 묘호(定宗)로만 표기한다. 27위 가운데 유일하게 능 사진이 없는 자리다.</li>
     </ul>
 
   </section>
@@ -1690,6 +2608,24 @@
     가보(家譜)는 자손이 조상을 잊지 않게 하는 글이다.<br>
     <span style="font-size:13px">전주이씨 해안군 정희공파 · 全州李氏 海安君 靖僖公派 · 2026</span>
   </footer>
+</div>
+
+<!-- ═══════════ 왕통 가지도 전체 화면 ═══════════ -->
+<div class="dmodal no-print" id="dmodal" hidden role="dialog" aria-modal="true" aria-label="왕통 가지도 전체 화면">
+  <div class="dmodal-bar">
+    <span class="t">王統 系譜圖 · 왕통 가지도<small>드래그로 이동 · Ctrl+휠로 확대 · Esc로 닫기</small></span>
+    <div class="ctl">
+      <button type="button" data-z="out" title="축소">−</button>
+      <span class="zv" id="dzoomVal">100%</span>
+      <button type="button" data-z="in" title="확대">＋</button>
+      <button type="button" data-z="fit">한 눈에</button>
+      <button type="button" data-z="full">원래 크기</button>
+      <button type="button" data-z="close" class="close">닫기 ✕</button>
+    </div>
+  </div>
+  <div class="dmodal-body" id="dmodalBody">
+    <div class="dsizer" id="dmodalSizer"></div>
+  </div>
 </div>
 
 <script>
@@ -1768,6 +2704,459 @@
     });
   }, { rootMargin: '-25% 0px -65% 0px' });
   document.querySelectorAll('header[id], section[id]').forEach(function (s) { obs.observe(s); });
+})();
+
+/* ════════ PC 페이지 모드 · 인쇄 ════════ */
+var Pager = (function () {
+  var MQ = window.matchMedia('(min-width: 1100px)');
+  var PAGES = [
+    { id: 'top',     label: '표지' },
+    { id: 'intro',   label: '서문' },
+    { id: 'dynasty', label: '조선왕조 계보' },
+    { id: 'tree',    label: '왕통 가지도' },
+    { id: 'haean',   label: '정희공파 세보' },
+    { id: 'direct',  label: '직계' },
+    { id: 'family',  label: '친족 가계도' },
+    { id: 'glossary', label: '용어집' },
+    { id: 'notes',   label: '기록 출처' }
+  ].filter(function (p) { return document.getElementById(p.id); });
+
+  var wrap = document.querySelector('.wrap');
+  var links = {}, bar, prevBtn, nextBtn, num, cur = 0, on = false;
+
+  document.querySelectorAll('nav.toc a[href^="#"]').forEach(function (a) {
+    links[a.getAttribute('href').slice(1)] = a;
+  });
+
+  function buildBar() {
+    if (bar) return;
+    bar = document.createElement('div');
+    bar.className = 'pagebar no-print';
+    bar.innerHTML =
+      '<button type="button" data-d="-1">← 이전</button>' +
+      '<span class="pgnum"></span>' +
+      '<button type="button" data-d="1">다음 →</button>';
+    prevBtn = bar.querySelector('[data-d="-1"]');
+    nextBtn = bar.querySelector('[data-d="1"]');
+    num = bar.querySelector('.pgnum');
+    bar.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-d]');
+      if (b) go(cur + Number(b.dataset.d), true);
+    });
+    wrap.appendChild(bar);
+  }
+
+  function go(i, scrollTop) {
+    if (!on) return;
+    i = Math.max(0, Math.min(PAGES.length - 1, i));
+    cur = i;
+    PAGES.forEach(function (p, n) {
+      var el = document.getElementById(p.id);
+      el.classList.toggle('is-page', n === i);
+      if (links[p.id]) links[p.id].classList.toggle('active', n === i);
+    });
+    var el = document.getElementById(PAGES[i].id);
+    if (scrollTop && el) el.scrollTop = 0;
+    num.innerHTML = '<b>' + (i + 1) + '</b> / ' + PAGES.length + ' &nbsp;·&nbsp; ' + PAGES[i].label;
+    prevBtn.disabled = i === 0;
+    nextBtn.disabled = i === PAGES.length - 1;
+    if (history.replaceState) history.replaceState(null, '', '#' + PAGES[i].id);
+  }
+
+  function indexOf(id) {
+    for (var i = 0; i < PAGES.length; i++) if (PAGES[i].id === id) return i;
+    return -1;
+  }
+
+  function enable() {
+    if (on) return;
+    on = true;
+    document.body.classList.add('paged');
+    buildBar();
+    var i = indexOf((location.hash || '').slice(1));
+    go(i < 0 ? 0 : i, true);
+    sync();
+  }
+
+  function disable() {
+    if (!on) return;
+    on = false;
+    document.body.classList.remove('paged');
+    PAGES.forEach(function (p) { document.getElementById(p.id).classList.remove('is-page'); });
+    sync();
+  }
+
+  function sync() {
+    var b = document.getElementById('modeToggle');
+    if (b) b.textContent = '한 화면씩 보기 · ' + (on ? '켜짐' : '꺼짐');
+  }
+
+  function auto() { if (MQ.matches) enable(); else disable(); }
+
+  /* 사이드바 링크 + 본문의 「~로 보기」 전환 링크 */
+  document.querySelectorAll('nav.toc a[href^="#"], a.viewswitch[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (!on) return;
+      var i = indexOf(a.getAttribute('href').slice(1));
+      if (i < 0) return;
+      e.preventDefault();
+      go(i, true);
+    });
+  });
+
+  /* ← → 키로 페이지 넘기기 (입력 중이 아닐 때만) */
+  document.addEventListener('keydown', function (e) {
+    if (!on || e.metaKey || e.ctrlKey || e.altKey) return;
+    var t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(t.tagName))) return;
+    if (e.key === 'ArrowRight') { go(cur + 1, true); e.preventDefault(); }
+    else if (e.key === 'ArrowLeft') { go(cur - 1, true); e.preventDefault(); }
+  });
+
+  MQ.addEventListener ? MQ.addEventListener('change', auto) : MQ.addListener(auto);
+  auto();
+
+  return {
+    toggle: function () { on ? disable() : enable(); },
+    isOn: function () { return on; },
+    restore: function () { if (MQ.matches && !on) { enable(); } }
+  };
+})();
+
+function togglePaged() { Pager.toggle(); }
+
+/* 왕통 노선도 — 해안군 이후 구간 펼치기/접기 */
+function toggleRoyalTail() {
+  var tail = document.getElementById('rlTail');
+  var btn = document.getElementById('rlMoreBtn');
+  if (!tail || !btn) return;
+  var open = tail.hasAttribute('hidden');
+  if (open) { tail.removeAttribute('hidden'); } else { tail.setAttribute('hidden', ''); }
+  btn.setAttribute('aria-expanded', String(open));
+  btn.querySelector('.lbl').textContent = open
+    ? '인종(12대) ~ 순종(27대) 접기'
+    : '인종(12대) ~ 순종(27대) 펼쳐 보기';
+  if (!open) btn.scrollIntoView({ block: 'nearest' });
+}
+
+/* 인쇄할 때는 접힌 구간도 모두 펼친다 */
+window.addEventListener('beforeprint', function () {
+  var tail = document.getElementById('rlTail');
+  if (tail && tail.hasAttribute('hidden')) {
+    tail.setAttribute('data-was-hidden', '1');
+    tail.removeAttribute('hidden');
+  }
+});
+window.addEventListener('afterprint', function () {
+  var tail = document.getElementById('rlTail');
+  if (tail && tail.getAttribute('data-was-hidden') === '1') {
+    tail.removeAttribute('data-was-hidden');
+    tail.setAttribute('hidden', '');
+  }
+});
+
+function printAll() {
+  document.body.classList.remove('print-one');
+  document.querySelectorAll('.print-target').forEach(function (e) { e.classList.remove('print-target'); });
+  window.print();
+}
+
+function printOnly(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  document.querySelectorAll('.print-target').forEach(function (e) { e.classList.remove('print-target'); });
+  el.classList.add('print-target');
+  document.body.classList.add('print-one');
+  window.print();
+}
+
+window.addEventListener('afterprint', function () {
+  document.body.classList.remove('print-one');
+  document.querySelectorAll('.print-target').forEach(function (e) { e.classList.remove('print-target'); });
+});
+
+/* ════════ 도식(가지도·가계도) — 축소 미리보기 + 전체 화면 팝업 ════════ */
+(function () {
+  var minis = [].slice.call(document.querySelectorAll('.dmini'));
+  var modal = document.getElementById('dmodal');
+  if (!minis.length || !modal) return;
+
+  var body = document.getElementById('dmodalBody');
+  var sizer = document.getElementById('dmodalSizer');
+  var zval = document.getElementById('dzoomVal');
+  var titleEl = modal.querySelector('.dmodal-bar .t');
+  var scale = 1, natW = 0, natH = 0, cur = null;
+
+  function measure(stage, sz) {
+    var pt = stage.style.transform, pw = sz && sz.style.width, ph = sz && sz.style.height;
+    stage.style.transform = 'none';
+    if (sz) { sz.style.width = 'auto'; sz.style.height = 'auto'; }
+    var r = stage.getBoundingClientRect();
+    var w = Math.ceil(Math.max(r.width, stage.scrollWidth));
+    var h = Math.ceil(Math.max(r.height, stage.scrollHeight));
+    stage.style.transform = pt;
+    if (sz) { sz.style.width = pw; sz.style.height = ph; }
+    return [w, h];
+  }
+
+  /* 미리보기: 폭에 맞춰 통째로 줄여 한눈에 보이게 한다 */
+  function layoutMini(mini) {
+    var stage = mini.querySelector('.dstage');
+    var sz = mini.querySelector('.dsizer');
+    if (!stage || !sz) return;
+    var cs = getComputedStyle(mini);
+    var avail = mini.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0);
+    if (avail <= 40) return;                 /* 아직 화면에 없음 — 나중에 다시 */
+    var d = measure(stage, sz);
+    if (!d[0]) return;
+    mini._nat = d;
+    mini._lastW = mini.clientWidth;
+    var s = Math.min(1, avail / d[0]);
+    stage.style.transform = 'scale(' + s + ')';
+    sz.style.width = Math.round(d[0] * s) + 'px';
+    sz.style.height = Math.round(d[1] * s) + 'px';
+  }
+
+  function setScale(s) {
+    scale = Math.min(2.5, Math.max(0.06, s));
+    var big = sizer.firstElementChild;
+    if (!big) return;
+    big.style.transform = 'scale(' + scale + ')';
+    sizer.style.width = Math.round(natW * scale) + 'px';
+    sizer.style.height = Math.round(natH * scale) + 'px';
+    zval.textContent = Math.round(scale * 100) + '%';
+  }
+
+  function fit() {
+    var w = body.clientWidth - 44, h = body.clientHeight - 44;
+    setScale(Math.min(w / natW, h / natH));
+    body.scrollLeft = 0; body.scrollTop = 0;
+  }
+
+  function open(mini) {
+    var stage = mini.querySelector('.dstage');
+    if (!stage) return;
+    var d = mini._nat || measure(stage);
+    natW = d[0]; natH = d[1];
+    cur = mini;
+    sizer.innerHTML = '';
+    var big = stage.cloneNode(true);
+    big.style.transform = 'none';
+    sizer.appendChild(big);
+    titleEl.innerHTML = (mini.dataset.zt || '도식') +
+      '<small>' + (mini.dataset.zs ? mini.dataset.zs + ' · ' : '') +
+      '드래그로 이동 · Ctrl+휠로 확대 · Esc로 닫기</small>';
+    modal.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    fit();
+  }
+
+  function close() {
+    modal.hidden = true;
+    document.documentElement.style.overflow = '';
+    if (cur) cur.focus({ preventScroll: true });
+  }
+
+  window.openTreeModal = function (id) { open(id ? document.getElementById(id) : minis[0]); };
+  window.closeTreeModal = close;
+
+  minis.forEach(function (mini) {
+    mini.addEventListener('click', function () { open(mini); });
+    mini.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(mini); }
+    });
+  });
+
+  modal.querySelector('.ctl').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-z]');
+    if (!b) return;
+    var a = b.dataset.z;
+    if (a === 'close') close();
+    else if (a === 'fit') fit();
+    else if (a === 'full') setScale(1);
+    else if (a === 'in') setScale(scale * 1.25);
+    else if (a === 'out') setScale(scale / 1.25);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (modal.hidden) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === '+' || e.key === '=') { setScale(scale * 1.25); e.preventDefault(); }
+    else if (e.key === '-') { setScale(scale / 1.25); e.preventDefault(); }
+    else if (e.key === '0') { fit(); e.preventDefault(); }
+  });
+
+  /* 드래그로 이동 */
+  var dragging = false, sx = 0, sy = 0, sl = 0, st = 0;
+  body.addEventListener('pointerdown', function (e) {
+    dragging = true; sx = e.clientX; sy = e.clientY;
+    sl = body.scrollLeft; st = body.scrollTop;
+    body.classList.add('grabbing');
+    try { body.setPointerCapture(e.pointerId); } catch (err) {}
+  });
+  body.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    body.scrollLeft = sl - (e.clientX - sx);
+    body.scrollTop = st - (e.clientY - sy);
+  });
+  ['pointerup', 'pointercancel'].forEach(function (ev) {
+    body.addEventListener(ev, function () { dragging = false; body.classList.remove('grabbing'); });
+  });
+
+  /* Ctrl+휠로 확대·축소 */
+  body.addEventListener('wheel', function (e) {
+    if (!e.ctrlKey) return;
+    e.preventDefault();
+    setScale(scale * (e.deltaY < 0 ? 1.12 : 1 / 1.12));
+  }, { passive: false });
+
+  function layoutAll() { minis.forEach(function (m) { m._nat = null; layoutMini(m); }); }
+
+  /* 페이지 모드에서 숨어 있던 장이 열리면 폭이 0 → 실제 폭으로 바뀐다.
+     그 순간 다시 맞춰 그려야 축소본이 제 크기로 나온다. */
+  if (window.ResizeObserver) {
+    var ro = new ResizeObserver(function (entries) {
+      entries.forEach(function (en) {
+        var m = en.target, w = m.clientWidth;
+        if (!w || m._lastW === w) return;
+        m._lastW = w; m._nat = null;
+        layoutMini(m);
+      });
+    });
+    minis.forEach(function (m) { ro.observe(m); });
+  }
+
+  var t;
+  addEventListener('resize', function () {
+    clearTimeout(t);
+    t = setTimeout(function () { layoutAll(); if (!modal.hidden) fit(); }, 150);
+  });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutAll);
+  layoutAll();
+  setTimeout(layoutAll, 400);
+})();
+
+/* ════════ 용어집 — 본문 자동 밑줄 + 말풍선 ════════ */
+(function () {
+  var list = document.querySelectorAll('#glossary .gl-list dt[data-term]');
+  if (!list.length) return;
+
+  /* 용어집 자체가 사전이다 — 뜻풀이는 한 군데에만 둔다 */
+  var terms = [];
+  list.forEach(function (dt) {
+    var dd = dt.nextElementSibling;
+    if (!dd || dd.tagName !== 'DD') return;
+    var entry = {
+      title: dt.childNodes[0].textContent.trim(),
+      han: (dt.querySelector('em') || {}).textContent || '',
+      def: dd.cloneNode(true),
+      id: dt.dataset.term
+    };
+    var words = [dt.dataset.term];
+    if (dt.dataset.alias) words = words.concat(dt.dataset.alias.split('|'));
+    words.forEach(function (w) {
+      w = w.replace(/\s*\(.*?\)\s*/g, '').trim();
+      if (w.length >= 2) terms.push({ w: w, e: entry });
+    });
+  });
+  /* 긴 낱말부터 찾아야 '추존왕'이 '추존'에 먹히지 않는다 */
+  terms.sort(function (a, b) { return b.w.length - a.w.length; });
+
+  var SKIP = 'SCRIPT,STYLE,H1,H2,H3,H4,BUTTON,A,CODE,DT,DD,TITLE,SVG'.split(',');
+  var SKIPSEL = '#glossary, nav.toc, .dtree, .otree, .royal-line, .pagebar, .dmodal, .toc-tools, .dmini';
+  var used = {};      /* 용어마다 처음 한 번만 표시 */
+  var LIMIT = 1;
+
+  function walk(node) {
+    if (node.nodeType === 1) {
+      if (SKIP.indexOf(node.tagName) >= 0) return;
+      if (node.classList && node.classList.contains('gl')) return;
+      if (node.closest && node.closest(SKIPSEL)) return;
+      var kids = [].slice.call(node.childNodes);
+      kids.forEach(walk);
+      return;
+    }
+    if (node.nodeType !== 3) return;
+    var text = node.nodeValue;
+    if (!text || text.length < 2) return;
+    for (var i = 0; i < terms.length; i++) {
+      var t = terms[i];
+      if ((used[t.e.id] || 0) >= LIMIT) continue;
+      var at = text.indexOf(t.w);
+      if (at < 0) continue;
+      used[t.e.id] = (used[t.e.id] || 0) + 1;
+      var after = node.splitText(at);
+      after.splitText(t.w.length);
+      var mark = document.createElement('span');
+      mark.className = 'gl';
+      mark.tabIndex = 0;
+      mark.setAttribute('role', 'button');
+      mark.setAttribute('aria-label', t.w + ' 뜻 보기');
+      mark._e = t.e;
+      after.parentNode.replaceChild(mark, after);
+      mark.appendChild(document.createTextNode(t.w));
+      if (mark.nextSibling) walk(mark.nextSibling);
+      return;
+    }
+  }
+
+  document.querySelectorAll('.wrap > section').forEach(function (s) {
+    if (s.id === 'glossary') return;
+    walk(s);
+  });
+
+  /* 말풍선 */
+  var tip = document.createElement('div');
+  tip.id = 'gltip';
+  tip.className = 'no-print';
+  document.body.appendChild(tip);
+  var open = null;
+
+  function show(el) {
+    var e = el._e;
+    tip.innerHTML = '';
+    var h = document.createElement('span');
+    h.className = 'h';
+    h.textContent = e.title;
+    if (e.han) { var em = document.createElement('em'); em.textContent = e.han; h.appendChild(em); }
+    tip.appendChild(h);
+    [].slice.call(e.def.childNodes).forEach(function (n) { tip.appendChild(n.cloneNode(true)); });
+    var more = document.createElement('span');
+    more.className = 'more';
+    more.textContent = '「용어집」 장에 전체 목록이 있다';
+    tip.appendChild(more);
+
+    tip.classList.add('on');
+    var r = el.getBoundingClientRect(), t = tip.getBoundingClientRect();
+    var x = Math.min(Math.max(8, r.left), innerWidth - t.width - 8);
+    var y = r.bottom + 10;
+    if (y + t.height > innerHeight - 8) y = Math.max(8, r.top - t.height - 10);
+    tip.style.left = Math.round(x) + 'px';
+    tip.style.top = Math.round(y) + 'px';
+    open = el;
+  }
+  function hide() { tip.classList.remove('on'); open = null; }
+
+  document.addEventListener('click', function (ev) {
+    var g = ev.target.closest ? ev.target.closest('.gl') : null;
+    if (g) { ev.preventDefault(); (open === g) ? hide() : show(g); return; }
+    if (!ev.target.closest || !ev.target.closest('#gltip')) hide();
+  });
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape') hide();
+    if ((ev.key === 'Enter' || ev.key === ' ') && ev.target.classList && ev.target.classList.contains('gl')) {
+      ev.preventDefault(); (open === ev.target) ? hide() : show(ev.target);
+    }
+  });
+  document.addEventListener('mouseover', function (ev) {
+    var g = ev.target.closest ? ev.target.closest('.gl') : null;
+    if (g && g !== open) show(g);
+  });
+  document.addEventListener('mouseout', function (ev) {
+    var g = ev.target.closest ? ev.target.closest('.gl') : null;
+    if (g && g === open && !ev.relatedTarget?.closest?.('#gltip')) hide();
+  });
+  addEventListener('scroll', hide, true);
 })();
 </script>
 </body>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>전주이씨 해안군 정희공파 — 인쇄본</title>
+<style>
+  /* ═══════════ 인쇄 전용 판(版) ═══════════
+     화면에서도 종이처럼 보이게 하고, 그대로 인쇄하면 A4에 맞는다. */
+  @page { size: A4 portrait; margin: 16mm 14mm 18mm; }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #6b6b6b;
+    font-family: 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    color: #14100a; font-size: 11pt; line-height: 1.7;
+    word-break: keep-all; overflow-wrap: break-word;
+  }
+
+  .sheet {
+    width: 210mm; min-height: 297mm; margin: 12mm auto; padding: 16mm 14mm 18mm;
+    background: #fff; box-shadow: 0 4px 22px rgba(0,0,0,.35);
+    page-break-after: always; break-after: page; position: relative;
+  }
+  .sheet:last-of-type { page-break-after: auto; break-after: auto; }
+
+  /* 머리글 / 꼬리글 */
+  .rh {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1.2pt solid #14100a; padding-bottom: 2mm; margin-bottom: 6mm;
+    font-size: 9pt; letter-spacing: .04em; color: #4a4238;
+  }
+  .rh b { font-size: 10pt; color: #14100a; letter-spacing: .08em; }
+  .rf {
+    position: absolute; left: 14mm; right: 14mm; bottom: 8mm;
+    display: flex; justify-content: space-between;
+    font-size: 8.5pt; color: #6b6152; border-top: .5pt solid #b9a785; padding-top: 2mm;
+  }
+
+  h1 { font-size: 24pt; letter-spacing: .1em; margin: 0 0 3mm; font-weight: 800; }
+  h2 {
+    font-size: 15pt; letter-spacing: .06em; margin: 0 0 4mm;
+    padding-bottom: 2mm; border-bottom: 1pt solid #14100a; break-after: avoid;
+  }
+  h3 {
+    font-size: 12pt; margin: 6mm 0 2.5mm; padding-left: 3mm;
+    border-left: 3pt solid #8c2d1f; break-after: avoid;
+  }
+  h3:first-of-type { margin-top: 0; }
+  p { margin: 0 0 3mm; }
+  ul, ol { margin: 0 0 3mm; padding-left: 6mm; }
+  li { margin-bottom: 1mm; }
+  .lead { color: #4a4238; font-size: 10pt; margin-bottom: 4mm; }
+  .hj { color: #4a3a10; font-size: .92em; }
+  .lin { color: #8c2d1f; font-weight: 700; }
+  .dim { color: #6b6152; }
+  small { font-size: .86em; }
+
+  table { width: 100%; border-collapse: collapse; margin: 0 0 4mm; font-size: 9.5pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { border: .6pt solid #9c8f79; padding: 1.6mm 2mm; vertical-align: top; text-align: left; }
+  th { background: #efe7d7; font-weight: 700; }
+  td.c { text-align: center; white-space: nowrap; }
+  tbody tr.ours { background: #fbf1ee; }
+  tbody tr.ours td { border-color: #c99a8e; }
+
+  .note {
+    background: #f6f1e4; border-left: 2.4pt solid #7a6647;
+    padding: 3mm 4mm; margin: 0 0 4mm; font-size: 9.5pt; color: #3d3528;
+  }
+  .note b { color: #14100a; }
+
+  .chk { width: 26mm; }
+  .sign {
+    display: flex; gap: 6mm; margin: 4mm 0 0; font-size: 10pt;
+    border: .8pt solid #14100a; padding: 3mm 4mm;
+  }
+  .sign span { flex: 1; }
+
+  /* 표지 */
+  .cover-sheet { display: flex; flex-direction: column; justify-content: center; text-align: center; }
+  .cover-sheet .seal {
+    width: 26mm; height: 26mm; margin: 0 auto 8mm; border: 1.6pt solid #8c2d1f;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: #8c2d1f; font-size: 15pt; font-weight: 800; letter-spacing: .1em;
+  }
+  .cover-sheet .seal small { font-size: 7.5pt; letter-spacing: .3em; margin-top: 1mm; }
+  .cover-sheet h1 { font-size: 30pt; margin-bottom: 4mm; }
+  .cover-sheet .sub { font-size: 13pt; color: #4a4238; letter-spacing: .08em; margin-bottom: 12mm; }
+  .cover-sheet .rule { width: 46mm; height: 1pt; background: #8c2d1f; margin: 0 auto 12mm; }
+  .cover-sheet .meta { font-size: 10.5pt; color: #4a4238; line-height: 2; }
+  .cover-sheet .toc {
+    margin: 14mm auto 0; text-align: left; width: 118mm;
+    border-top: .8pt solid #b9a785; padding-top: 5mm; font-size: 10.5pt;
+  }
+  .cover-sheet .toc div { display: flex; justify-content: space-between; padding: 1.4mm 0; }
+  .cover-sheet .toc .t { border-bottom: .4pt dotted #b9a785; flex: 1; margin-right: 3mm; }
+
+  /* 한 줄 계보 */
+  .line-chain { font-size: 10.5pt; line-height: 2.1; }
+  .line-chain b { color: #8c2d1f; }
+  .line-chain .arw { color: #9c8f79; margin: 0 1mm; }
+
+  /* 가계도 (들여쓰기 목록) */
+  .ftree { font-size: 10pt; line-height: 1.9; font-family: 'D2Coding', 'Consolas', 'Malgun Gothic', monospace; white-space: pre; }
+
+  /* 내용이 많은 면은 조금 촘촘하게 */
+  .sheet.tight table { font-size: 8.7pt; }
+  .sheet.tight th, .sheet.tight td { padding: 1.1mm 1.5mm; }
+  .sheet.tight .ftree { font-size: 9pt; line-height: 1.72; }
+  .sheet.tight .note { font-size: 9pt; padding: 2.5mm 3.5mm; }
+  .sheet.tight h3 { margin: 4mm 0 2mm; }
+
+  /* 화면에서만 보이는 인쇄 버튼 */
+  .toolbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 10px; background: rgba(20,16,10,.92); color: #f2e6c8; font-size: 14px;
+  }
+  .toolbar button, .toolbar a {
+    font: inherit; font-size: 14px; cursor: pointer; text-decoration: none;
+    color: #17130a; background: linear-gradient(180deg, #e0bd76, #c39a4a);
+    border: none; border-radius: 6px; padding: 8px 18px; font-weight: 700;
+  }
+  .toolbar a.ghost { background: transparent; color: #e0bd76; border: 1px solid #7a6647; }
+  body { padding-top: 52px; }
+
+  @media print {
+    body { background: #fff; padding-top: 0; font-size: 10.5pt; }
+    .toolbar { display: none !important; }
+    .sheet { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; }
+    .rf { position: fixed; bottom: 6mm; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button type="button" onclick="window.print()">인쇄하기</button>
+  <a class="ghost" href="index.html">웹 족보로 돌아가기</a>
+  <span class="cap" style="opacity:.75;font-size:12.5px">A4 세로</span><span style="opacity:.6;font-size:12.5px">· 배경 그래픽 설정 없이도 그대로 나옵니다</span>
+</div>
+
+<!-- ═════ 1. 표지 ═════ -->
+<section class="sheet cover-sheet">
+  <div class="seal">家譜<small>가보</small></div>
+  <h1>전주이씨 해안군 정희공파</h1>
+  <div class="sub">全州李氏 海安君 靖僖公派 · 가족 족보</div>
+  <div class="rule"></div>
+  <div class="meta">
+    엮음 · 가전(家傳) 수기 노트 및 인쇄 족보 판독<br>
+    갱신 · 2026년 8월 30일<br>
+    본인 · 十七世 이재성
+  </div>
+  <div class="toc">
+    <div><span class="t">1. 표지</span><span>1</span></div>
+    <div><span class="t">2. 우리 집안 한눈에 보기</span><span>2</span></div>
+    <div><span class="t">3. 조선왕조 27대와 우리 집안이 갈린 자리</span><span>3</span></div>
+    <div><span class="t">4. 정희공파 세보 — 1세 ~ 16세</span><span>4</span></div>
+    <div><span class="t">5. 직계 상세 — 12세 ~ 17세</span><span>5</span></div>
+    <div><span class="t">6. 친족 가계도</span><span>6</span></div>
+    <div><span class="t">7. 미결 항목 확인표 ✎</span><span>7</span></div>
+    <div><span class="t">8. 용어집</span><span>8</span></div>
+    <div><span class="t">9. 기록 출처</span><span>9</span></div>
+  </div>
+  <div class="rf"></div>
+</section>
+
+<!-- ═════ 2. 한눈에 ═════ -->
+<section class="sheet">
+  <div class="rh"><b>우리 집안 한눈에 보기</b><span>전주이씨 해안군 정희공파</span></div>
+
+  <h3>태조에서 오늘까지</h3>
+  <p class="lead">조선을 연 태조로부터 여덟 번째가 파조 해안군이고, 해안군을 1세로 하여 오늘의 18세까지 이어진다.</p>
+  <div class="line-chain">
+    <span class="dim">왕통</span> 태조 <span class="arw">→</span> 태종 <span class="arw">→</span> 세종 <span class="arw">→</span> 세조 <span class="arw">→</span>
+    의경세자(덕종) <span class="arw">→</span> 성종 <span class="arw">→</span> 중종 <span class="arw">→</span> <b>해안군</b><br>
+    <span class="dim">1~9세</span> <b>1 해안군</b> <span class="arw">→</span> 2 서릉군 <span class="arw">→</span> 3 연계군 <span class="arw">→</span> 4 화평군 <span class="arw">→</span>
+    5 수봉 <span class="arw">→</span> 6 관신 <span class="arw">→</span> 7 두영 <span class="arw">→</span> 8 지창 <span class="arw">→</span> 9 동원<br>
+    <span class="dim">10~18세</span> 10 좌택 <span class="arw">→</span> 11 상억 <span class="arw">→</span> 12 병근 <span class="arw">→</span> 13 윤삼 <span class="arw">→</span>
+    14 철호(봉길) <span class="arw">→</span> <b>15 한석</b> <span class="arw">→</span> 16 동영 <span class="arw">→</span> 17 재성 <span class="arw">→</span> 18 차은 · 차준
+  </div>
+
+  <h3>이름에 붙는 항렬자</h3>
+  <p class="lead">같은 세대는 이름에 같은 글자를 쓴다. 이름만 보아도 몇 세인지 알 수 있고, 인쇄 족보를 판독할 때 가장 확실한 단서가 되었다.</p>
+  <table>
+    <thead>
+      <tr><th class="c">3세</th><th class="c">4세</th><th class="c">5세</th><th class="c">8세</th><th class="c">9세</th><th class="c">10세</th><th class="c">11세</th>
+          <th class="c">12세</th><th class="c">13세</th><th class="c">14세</th><th class="c">15세</th><th class="c">16세</th><th class="c">17세</th><th class="c">18세</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="c">虎</td><td class="c">花</td><td class="c">壽</td><td class="c">昌</td><td class="c">東</td><td class="c">宅</td><td class="c">尙</td>
+          <td class="c">炳</td><td class="c">基</td><td class="c">鎬</td><td class="c">漢</td><td class="c">榮</td><td class="c">炯○</td><td class="c">○浚</td></tr>
+      <tr><td class="c dim">호</td><td class="c dim">화</td><td class="c dim">수</td><td class="c dim">창</td><td class="c dim">동</td><td class="c dim">택</td><td class="c dim">상</td>
+          <td class="c dim">병</td><td class="c dim">기</td><td class="c dim">호</td><td class="c dim">한</td><td class="c dim">영</td><td class="c dim">형 · 앞</td><td class="c dim">준 · 뒤</td></tr>
+    </tbody>
+  </table>
+
+  <h3>파조 해안군 (海安君)</h3>
+  <table>
+    <tbody>
+      <tr><th style="width:26mm">생몰</th><td>1511년(중종 6년) ~ 1573년</td></tr>
+      <tr><th>본이름(휘)</th><td><b>이기(李㟓)</b>가 본디 이름이며, 같은 글자를 달리 읽어 <b>'이희'</b>로도 불린다</td></tr>
+      <tr><th>자(字)</th><td>부붕(不崩)</td></tr>
+      <tr><th>어머니</th><td>숙의 홍씨(남양 홍씨) — 중종의 <b>서(庶)2남</b>이라 '대군'이 아니라 '군'이다</td></tr>
+      <tr><th>시호</th><td>정희(靖僖) — 1788년(정조 12) 하사. 이 파를 <b>정희공파</b>라 부르는 유래</td></tr>
+      <tr><th>묘소</th><td>고양시 덕양구 선유동 산46-1</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <b>이 인쇄본이 만들어진 과정</b> — ① 집안에 전해오던 수기 노트를 옮겨 적고(2026-05) ② 노트를 다시 촬영해 전면 재판독한 뒤(2026-08-29)
+    ③ 인쇄 족보 사진 16장을 확대 판독해 <b>1세부터 16세까지의 한자 이름</b>을 채웠다(2026-08-30).
+  </div>
+  <div class="rf"></div>
+</section>
+
+<!-- ═════ 3. 조선왕조 ═════ -->
+<section class="sheet tight">
+  <div class="rh"><b>조선왕조 27대와 우리 집안이 갈린 자리</b><span>전주이씨 해안군 정희공파</span></div>
+  <p class="lead">숫자는 왕위에 오른 순서. <span class="lin">붉은 줄</span>이 우리 집안으로 이어지는 자리다.</p>
+  <table>
+    <thead><tr><th class="c" style="width:11mm">대</th><th style="width:22mm">묘호</th><th style="width:22mm">재위</th><th>앞 왕과의 관계</th><th style="width:44mm">능(陵) · 위치</th></tr></thead>
+    <tbody>
+      <tr class="ours"><td class="c">1</td><td>태조 <span class="hj">太祖</span></td><td class="c">1392~1398</td><td>이성계 — 조선을 열다</td><td>건원릉 · 구리 동구릉</td></tr>
+      <tr><td class="c">2</td><td>정종 <span class="hj">定宗</span></td><td class="c">1398~1400</td><td>태조의 아들</td><td>후릉 · 개성(북한)</td></tr>
+      <tr class="ours"><td class="c">3</td><td>태종 <span class="hj">太宗</span></td><td class="c">1400~1418</td><td>태조의 아들</td><td>헌릉 · 서울 서초</td></tr>
+      <tr class="ours"><td class="c">4</td><td>세종 <span class="hj">世宗</span></td><td class="c">1418~1450</td><td>태종의 아들</td><td>영릉(英陵) · 여주</td></tr>
+      <tr><td class="c">5</td><td>문종 <span class="hj">文宗</span></td><td class="c">1450~1452</td><td>세종의 아들</td><td>현릉 · 구리 동구릉</td></tr>
+      <tr><td class="c">6</td><td>단종 <span class="hj">端宗</span></td><td class="c">1452~1455</td><td>문종의 아들</td><td>장릉(莊陵) · 영월</td></tr>
+      <tr class="ours"><td class="c">7</td><td>세조 <span class="hj">世祖</span></td><td class="c">1455~1468</td><td>세종의 아들 · 수양대군</td><td>광릉 · 남양주</td></tr>
+      <tr><td class="c">8</td><td>예종 <span class="hj">睿宗</span></td><td class="c">1468~1469</td><td>세조의 아들 · 해양대군</td><td>창릉 · 고양 서오릉</td></tr>
+      <tr class="ours"><td class="c">9</td><td>성종 <span class="hj">成宗</span></td><td class="c">1469~1494</td><td><b>덕종(의경세자)</b>의 아들 · 자을산군</td><td>선릉 · 서울 강남</td></tr>
+      <tr><td class="c">10</td><td>연산군 <span class="hj">燕山君</span></td><td class="c">1494~1506</td><td>성종의 아들 · 폐위</td><td>연산군묘 · 서울 도봉</td></tr>
+      <tr class="ours"><td class="c">11</td><td>중종 <span class="hj">中宗</span></td><td class="c">1506~1544</td><td>성종의 아들 · 진성대군</td><td>정릉(靖陵) · 서울 강남</td></tr>
+      <tr class="ours"><td class="c">★</td><td colspan="4"><b class="lin">해안군 海安君 (1511~1573)</b> — 중종의 서2남, 숙의 홍씨 소생. <b>본파의 파조</b>. 묘 고양시 덕양구 선유동 산46-1</td></tr>
+      <tr><td class="c">12</td><td>인종 <span class="hj">仁宗</span></td><td class="c">1544~1545</td><td>중종의 아들 (장경왕후 소생)</td><td>효릉 · 고양 서삼릉</td></tr>
+      <tr><td class="c">13</td><td>명종 <span class="hj">明宗</span></td><td class="c">1545~1567</td><td>중종의 아들 (문정왕후 소생)</td><td>강릉(康陵) · 서울 노원</td></tr>
+      <tr><td class="c">14</td><td>선조 <span class="hj">宣祖</span></td><td class="c">1567~1608</td><td><b>덕흥대원군</b>의 아들 · 하성군</td><td>목릉 · 구리 동구릉</td></tr>
+      <tr><td class="c">15</td><td>광해군 <span class="hj">光海君</span></td><td class="c">1608~1623</td><td>선조의 아들 · 폐위</td><td>광해군묘 · 남양주</td></tr>
+      <tr><td class="c">16</td><td>인조 <span class="hj">仁祖</span></td><td class="c">1623~1649</td><td><b>원종(정원군)</b>의 아들 · 능양군</td><td>장릉(長陵) · 파주</td></tr>
+      <tr><td class="c">17</td><td>효종 <span class="hj">孝宗</span></td><td class="c">1649~1659</td><td>인조의 아들</td><td>영릉(寧陵) · 여주</td></tr>
+      <tr><td class="c">18</td><td>현종 <span class="hj">顯宗</span></td><td class="c">1659~1674</td><td>효종의 아들</td><td>숭릉 · 구리 동구릉</td></tr>
+      <tr><td class="c">19</td><td>숙종 <span class="hj">肅宗</span></td><td class="c">1674~1720</td><td>현종의 아들</td><td>명릉 · 고양 서오릉</td></tr>
+      <tr><td class="c">20</td><td>경종 <span class="hj">景宗</span></td><td class="c">1720~1724</td><td>숙종의 아들 (장희빈 소생)</td><td>의릉 · 서울 석관동</td></tr>
+      <tr><td class="c">21</td><td>영조 <span class="hj">英祖</span></td><td class="c">1724~1776</td><td>숙종의 아들 · 연잉군</td><td>원릉 · 구리 동구릉</td></tr>
+      <tr><td class="c">22</td><td>정조 <span class="hj">正祖</span></td><td class="c">1776~1800</td><td><b>장조(사도세자)</b>의 아들</td><td>건릉 · 화성 융건릉</td></tr>
+      <tr><td class="c">23</td><td>순조 <span class="hj">純祖</span></td><td class="c">1800~1834</td><td>정조의 아들</td><td>인릉 · 서울 헌인릉</td></tr>
+      <tr><td class="c">24</td><td>헌종 <span class="hj">憲宗</span></td><td class="c">1834~1849</td><td><b>익종(효명세자)</b>의 아들</td><td>경릉 · 구리 동구릉</td></tr>
+      <tr><td class="c">25</td><td>철종 <span class="hj">哲宗</span></td><td class="c">1849~1863</td><td><b>전계대원군</b>의 아들</td><td>예릉 · 고양 서삼릉</td></tr>
+      <tr><td class="c">26</td><td>고종 <span class="hj">高宗</span></td><td class="c">1863~1907</td><td><b>흥선대원군</b>의 아들 · 초대 황제</td><td>홍릉 · 남양주 홍유릉</td></tr>
+      <tr><td class="c">27</td><td>순종 <span class="hj">純宗</span></td><td class="c">1907~1910</td><td>고종의 아들 · 마지막 황제</td><td>유릉 · 남양주 홍유릉</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rf"></div>
+</section>
+
+<section class="sheet">
+  <div class="rh"><b>추존왕과 대원군</b><span>전주이씨 해안군 정희공파</span></div>
+  <h3>추존왕 5위 · 대원군 4위</h3>
+  <table>
+    <thead><tr><th style="width:32mm">추존왕</th><th>본래 신분</th><th style="width:32mm">대원군</th><th>아들(왕)</th></tr></thead>
+    <tbody>
+      <tr><td>덕종 德宗</td><td>의경세자 — 세조의 아들</td><td>덕흥대원군</td><td>제14대 선조</td></tr>
+      <tr><td>원종 元宗</td><td>정원군 — 선조의 아들</td><td>정원대원군</td><td>제16대 인조</td></tr>
+      <tr><td>진종 眞宗</td><td>효장세자 — 영조의 아들</td><td>전계대원군</td><td>제25대 철종</td></tr>
+      <tr><td>장조 莊祖</td><td>사도세자 — 영조의 아들</td><td>흥선대원군</td><td>제26대 고종</td></tr>
+      <tr><td>익종 翼宗</td><td>효명세자 — 순조의 아들</td><td colspan="2" class="dim">추존왕 = 왕이 되지 못하고 죽은 뒤 왕으로 높인 이<br>대원군 = 왕이 된 아들을 둔 생부</td></tr>
+    </tbody>
+  </table>
+  <div class="rf"></div>
+</section>
+
+<!-- ═════ 세보 · 직계 (통합) ═════ -->
+<section class="sheet tight">
+  <div class="rh"><b>세보 · 직계 — 1세 ~ 11세</b><span>전주이씨 해안군 정희공파</span></div>
+  <p class="lead">파조 해안군(1세)부터 오늘의 18세까지를 한 양식으로 이었다(이 면은 1~11세, 다음 면이 12~18세). <b>굵은 글씨</b>가 우리 직계이고, 괄호 안은 같은 세대의 형제다. 「관계」는 十七世 이재성을 기준으로 한 촌수다.</p>
+  <table>
+    <thead>
+      <tr>
+        <th class="c" style="width:11mm">세</th>
+        <th style="width:19mm">관계</th>
+        <th style="width:52mm">인물 — <b>굵게</b> = 직계</th>
+        <th style="width:29mm">생 · 졸</th>
+        <th>배위(配)</th>
+        <th style="width:33mm">묘소</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="ours"><td class="c">1</td><td>16대조<br><small class="dim">파조</small></td>
+        <td><b>해안군 <span class="hj">海安君</span></b><br><small class="dim">본이름 이기(李㟓) · '이희'로도 불린다</small></td>
+        <td>1511 ~ 1573</td><td class="dim">숙의 홍씨 소생 · 중종의 서2남</td><td>고양 덕양구 선유동 산46-1</td></tr>
+
+      <tr class="ours"><td class="c">2</td><td>15대조</td>
+        <td><b>서릉군 <span class="hj">西陵君</span></b> <small>휘 섭</small><br><small class="dim">(서흥군 · 오천군 · 오산군 · 서천군 · 오강군)</small></td>
+        <td class="dim">—</td><td class="dim">—</td><td>고양시 <small class="dim">확인 필요</small></td></tr>
+
+      <tr class="ours"><td class="c">3</td><td>14대조</td>
+        <td><b>연계군 <span class="hj">蓮溪君</span></b> <small>휘 연호 <span class="hj">然虎</span></small><br><small class="dim">(연성군 蓮城君·휘 몽호 夢虎 · 연은군 · 연창군 · 연산군)</small></td>
+        <td class="dim">—</td><td class="dim">증 정의대부</td><td>고양 행주</td></tr>
+
+      <tr class="ours"><td class="c">4</td><td>13대조</td>
+        <td><b>화평군 <span class="hj">花坪君</span></b> <small>휘 시헌 <span class="hj">時憲</span></small><br><small class="dim">(화산감 花山監 · 화성감 · 화원감)</small></td>
+        <td>1634 ~ 1708<br><small class="dim">75세</small></td><td class="dim">처음 화릉감 → 증 정의대부 화평군</td><td>고양 행주 부근</td></tr>
+
+      <tr class="ours"><td class="c">5</td><td>12대조</td>
+        <td><b>수봉 <span class="hj">壽鳳</span></b><br><small class="dim">(수구 壽龜 1653~1717 · 수린 壽麟)</small></td>
+        <td>1662 ~ 1734<br><small class="dim">73세</small></td><td class="dim">—</td><td>하신리 상송</td></tr>
+
+      <tr class="ours"><td class="c">6</td><td>11대조</td><td><b>관신 <span class="hj">觀信</span></b></td>
+        <td>1654 ~ 1728<br><small class="dim">75세</small></td><td class="dim">—</td><td>하신리 상송</td></tr>
+
+      <tr class="ours"><td class="c">7</td><td>10대조</td><td><b>두영 <span class="hj">斗永</span></b></td>
+        <td>1672 ~ 1724<br><small class="dim">53세</small></td><td class="dim">—</td><td>하신리 상송</td></tr>
+
+      <tr class="ours"><td class="c">8</td><td>9대조</td>
+        <td><b>지창 <span class="hj">枝昌</span></b><br><small class="dim">(기창 起昌 1684~1719 · 시창)</small></td>
+        <td class="dim">—</td><td class="dim">—</td><td>하신리 상송</td></tr>
+
+      <tr class="ours"><td class="c">9</td><td>8대조</td>
+        <td><b>동원 <span class="hj">東瑗</span></b><br><small class="dim">(동수 東秀)</small></td>
+        <td>1746 ~ 1798<br><small class="dim">53세</small></td><td class="dim">증 통정대부 사복시정</td><td>하신리 상송</td></tr>
+
+      <tr class="ours"><td class="c">10</td><td>7대조</td>
+        <td><b>좌택 <span class="hj">佐宅</span></b><br><small class="dim">(정택 禎宅)</small></td>
+        <td>1790 ~ 1855<br><small class="dim">66세</small></td><td class="dim">—</td><td>하신리 하송</td></tr>
+
+      <tr class="ours"><td class="c">11</td><td>6대조</td>
+        <td><b>상억 <span class="hj">尙億</span></b><br><small class="dim">(상주 · 상구 尙龜 · 상재 尙材)</small></td>
+        <td>1822 ~ 1869</td><td class="dim">—</td><td>감곡면 통정리</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <b>5~9세 묘소</b>는 수기 원본에 '하신리 상송'으로 적고 아래는 같음(〃) 표시로 되어 있다.
+    <b>2세 서릉군의 휘</b>는 <b>섭</b>이다(가족 확인). 해당 한자는 원본 사진에서 읽어내지 못해 한글로만 적는다.
+  </div>
+  <div class="rf"></div>
+</section>
+
+<section class="sheet tight">
+  <div class="rh"><b>세보 · 직계 — 12세 ~ 18세</b><span>전주이씨 해안군 정희공파</span></div>
+  <p class="lead">앞 면에서 이어진다. 생몰일과 배위가 남아 있는 근대 6대(代)다.</p>
+  <table>
+    <thead>
+      <tr>
+        <th class="c" style="width:11mm">세</th>
+        <th style="width:19mm">관계</th>
+        <th style="width:52mm">인물 — <b>굵게</b> = 직계</th>
+        <th style="width:29mm">생 · 졸</th>
+        <th>배위(配)</th>
+        <th style="width:33mm">묘소</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="ours"><td class="c">12</td><td>5대조</td>
+        <td><b>병근 <span class="hj">炳根</span></b><br><small class="dim">(병균 · 병화 · 병섭 · 병훈)</small></td>
+        <td>1846.12.20<br>1890.09.08</td>
+        <td>밀양박씨 <span class="hj">密陽朴氏</span><br><small class="dim">1858.09.09 ~ 1911.10.11 · 이름 미확인</small></td>
+        <td>화성추모공원 135호</td></tr>
+
+      <tr class="ours"><td class="c">13</td><td>고조부</td>
+        <td><b>기보 <span class="hj">基輔</span></b><br><small class="dim">초휘 윤삼 允三 · (기도)</small></td>
+        <td>1886.09.15<br>1967.09.23</td>
+        <td>김윤자<br><small class="dim">1888.09.27 ~ 1958.12.15</small></td>
+        <td>화성추모공원 135호</td></tr>
+
+      <tr class="ours"><td class="c">14</td><td>증조부</td>
+        <td><b>철호 <span class="hj">喆鎬</span></b><br><small class="dim">초휘 봉길 鳳吉 · (현호(봉현) · 석호(봉진))</small></td>
+        <td>1908.11.30<br>1935.06.26</td>
+        <td>박양수 <span class="hj">密陽朴氏</span><br><small class="dim">1906.10.20 ~ 1984.05.12</small></td>
+        <td>화성추모공원 135호</td></tr>
+
+      <tr class="ours"><td class="c">15</td><td>조부</td>
+        <td><b>한석 <span class="hj">漢錫</span></b><br><small class="dim">(한규 漢奎 ⚭ 밀양박씨 옥례 · 한순 ⚭ 김동석)</small></td>
+        <td>1930.11.27<br><small class="dim">(31.12.06)</small><br>2017.08.24</td>
+        <td>최공녀 <span class="hj">慶州崔氏</span><br><small class="dim">1933.05.22 (32.06.24) ~ 2012.02.20</small></td>
+        <td>서울현충원 310078</td></tr>
+
+      <tr class="ours"><td class="c">16</td><td>부</td>
+        <td><b>동영 <span class="hj">東榮</span></b><br><small class="dim">(성영 成榮 · 진영 振榮 · 옥자 玉子 · 정미 貞美)</small></td>
+        <td class="dim">1957년 생</td><td>백현숙</td><td class="dim">—</td></tr>
+
+      <tr class="ours"><td class="c">17</td><td>본인</td>
+        <td><b>재성</b> <small class="dim">호적명 李在盛</small><br><small class="dim">(재헌 · 호적명 李在憲) · 항렬 炯</small></td>
+        <td class="dim">—</td><td>김주경</td><td class="dim">—</td></tr>
+
+      <tr><td class="c">18</td><td>자녀</td>
+        <td>차은 · 차준 <small class="dim">항렬 浚</small></td>
+        <td class="dim">—</td><td class="dim">—</td><td class="dim">—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <b>두 이름을 쓴 대(代)</b> — 족보에 오르는 이름과 호적에 올린 이름이 달랐다.
+    인쇄 족보에 <b>子 基輔 / 初諱 允三</b>, <b>子 喆鎬 / 初諱 鳳吉</b>이 나란히 찍혀 있어 같은 사람임이 확인되었다. 14세 형제 현호·석호의 괄호 이름(봉현·봉진)도 같은 경우다.<br>
+    <b>17·18세 항렬자</b> — 17세는 <b>炯</b>(빛날 형)이 이름의 <b>앞</b>에 온다(이형현 炯賢 · 이형학 炯學). 이재헌 李在憲 · 이재성 李在盛은 <b>호적명</b>이다. 18세는 <b>뒷 글자</b> <b>浚</b>(준)이다.
+  </div>
+  <div class="rf"></div>
+</section>
+
+<!-- ═════ 6. 가계도 ═════ -->
+<section class="sheet tight">
+  <div class="rh"><b>친족 가계도</b><span>전주이씨 해안군 정희공파</span></div>
+  <p class="lead">이한석 · 최공녀(15세)의 자손 전체. ⚭ 는 부부를 뜻한다.</p>
+<div class="ftree">이한석 ⚭ 최공녀  <span class="dim">15세 · 漢錫 ⚭ 慶州崔氏</span>
+│
+├─ 이성영 ⚭ 허경희  <span class="dim">成榮 ⚭ 金海許氏 京喜</span>
+│   └─ 이형현 ⚭ 김잔디  <span class="dim">炯賢</span>
+│       ├─ 이민준
+│       └─ 이강준
+│
+├─ <b class="lin">이동영 ⚭ 백현숙  東榮</b>
+│   ├─ 이재헌
+│   └─ <b class="lin">이재성 ⚭ 김주경</b>
+│       ├─ 이차은
+│       └─ 이차준
+│
+├─ 이옥자 ⚭ 문왕곤  <span class="dim">玉子</span>
+│   └─ 문석환
+│
+├─ 이진영 ⚭ 정진미  <span class="dim">振榮</span>
+│   ├─ 이재일
+│   │   ├─ 이하은
+│   │   └─ 이도준
+│   └─ 이형학  <span class="dim">炯學</span>
+│       ├─ 이지유
+│       └─ 이하준
+│
+└─ 이정미 ⚭ 김상동  <span class="dim">貞美</span>
+    ├─ 김소현
+    └─ 김소예</div>
+
+  <h3>17세 세대 일람</h3>
+  <table>
+    <thead><tr><th style="width:26mm">갈래</th><th style="width:52mm">인물 / 배우자</th><th>자녀</th></tr></thead>
+    <tbody>
+      <tr><td>성영 계</td><td>이형현 <span class="hj">炯賢</span> ⚭ 김잔디</td><td>이민준 · 이강준</td></tr>
+      <tr class="ours"><td>동영 계</td><td>이재헌</td><td>—</td></tr>
+      <tr class="ours"><td>동영 계</td><td>이재성 ⚭ 김주경</td><td>이차은 · 이차준</td></tr>
+      <tr><td>옥자 계</td><td>문석환</td><td class="dim">원본에 기재 없음</td></tr>
+      <tr><td>진영 계</td><td>이재일</td><td>이하은 · 이도준</td></tr>
+      <tr><td>진영 계</td><td>이형학 <span class="hj">炯學</span></td><td>이지유 · 이하준</td></tr>
+      <tr><td>정미 계</td><td>김소현 · 김소예</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <div class="rf"></div>
+</section>
+<!-- ═════ 8. 용어집 ═════ -->
+<section class="sheet">
+  <div class="rh"><b>용어집 — 족보에서 쓰는 말</b><span>전주이씨 해안군 정희공파</span></div>
+  <p class="lead">족보와 왕조 계보에 나오는 말들.</p>
+
+  <h3>족보에서 쓰는 말</h3>
+  <table>
+    <thead><tr><th style="width:30mm">용어</th><th>뜻</th><th style="width:56mm">이 족보에서</th></tr></thead>
+    <tbody>
+      <tr><td><b>족보 族譜</b><br>세보 · 대동보</td><td>한 성씨의 계보를 대의 순서로 적은 책. 한 파만 묶은 것이 세보</td><td>『全州李氏 海安君 靖僖公派世譜』</td></tr>
+      <tr><td><b>파조 派祖</b></td><td>한 갈래를 처음 연 조상</td><td>해안군 — 그 아래 1세~18세가 본가의 줄기</td></tr>
+      <tr><td><b>세 世 · 대 代</b></td><td>세는 파조부터 아래로, 대는 나부터 위로 센다</td><td>이재성 = 17세 / 12세 병근 = 5대조</td></tr>
+      <tr><td><b>항렬자 行列字</b></td><td>같은 세대가 이름에 함께 쓰는 글자</td><td>15세 漢 · 16세 榮 · 17세 炯 · 18세 浚</td></tr>
+      <tr><td><b>휘 諱</b></td><td>돌아가신 어른의 본이름</td><td>연계군의 휘 然虎, 화평군의 휘 時憲</td></tr>
+      <tr><td><b>초휘 初諱</b></td><td>족보에 오르기 전 쓰던 이름</td><td>기보의 초휘 允三, 철호의 초휘 鳳吉</td></tr>
+      <tr><td><b>자 字 · 호 號</b></td><td>자는 성인이 되어 받는 또 하나의 이름, 호는 별칭</td><td>해안군의 자 不崩</td></tr>
+      <tr><td><b>시호 諡號</b></td><td>죽은 뒤 나라에서 내리는 칭호</td><td>해안군의 시호 靖僖 → 정희공파</td></tr>
+      <tr><td><b>배위 配位</b></td><td>아내를 높여 이르는 말. 족보에는 配 또는 室</td><td>이한석의 배위 경주최씨</td></tr>
+      <tr><td><b>본관 本貫</b></td><td>그 성씨가 처음 자리 잡은 고장</td><td>전주 이씨 · 밀양 박씨 · 경주 최씨</td></tr>
+      <tr><td><b>계자 繼子 · 출계</b></td><td>대를 잇기 위해 아들을 들이거나 내보내는 일</td><td>5세와 6세의 생년이 어긋나 확인 중</td></tr>
+      <tr><td><b>생 生 · 졸 卒 · 향년</b></td><td>태어난 날 · 떠난 날 · 누린 나이</td><td>화평군 1634~1708, 향년 75세</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rf"></div>
+</section>
+
+<section class="sheet">
+  <div class="rh"><b>용어집 — 왕실 · 벼슬 · 날짜</b><span>전주이씨 해안군 정희공파</span></div>
+  <h3>왕실에서 쓰는 말</h3>
+  <table>
+    <thead><tr><th style="width:30mm">용어</th><th>뜻</th><th style="width:56mm">이 족보에서</th></tr></thead>
+    <tbody>
+      <tr><td><b>추존 追尊</b></td><td>왕이 되지 못하고 죽은 이에게 뒷날 왕의 칭호를 올리는 일</td><td>사도세자 → 장조. 조선에 다섯 분</td></tr>
+      <tr><td><b>묘호 廟號</b></td><td>왕이 죽은 뒤 종묘에 모시며 붙이는 이름</td><td>태조 · 세종 · 영조가 모두 묘호</td></tr>
+      <tr><td><b>대원군 大院君</b></td><td>왕이 된 아들을 둔 생부에게 주는 칭호</td><td>덕흥 · 정원 · 전계 · 흥선 네 분</td></tr>
+      <tr><td><b>군 君 · 대군 大君</b></td><td>왕비 소생은 대군, 후궁 소생은 군</td><td>해안군은 숙의 홍씨 소생이라 '군'</td></tr>
+      <tr><td><b>서자 庶子</b></td><td>첩이나 후궁이 낳은 아들</td><td>해안군은 중종의 서2남</td></tr>
+      <tr><td><b>어진 御眞</b></td><td>임금의 초상화. 지금 여섯 분만 전한다</td><td>태조·세조·영조·철종·고종·순종</td></tr>
+      <tr><td><b>능 陵 · 원 園 · 묘 墓</b></td><td>왕과 왕비는 능, 세자는 원, 그 밖은 묘</td><td>폐위된 연산군·광해군은 '묘'</td></tr>
+      <tr><td><b>반정 反正</b></td><td>신하들이 임금을 몰아내고 새 임금을 세우는 일</td><td>중종반정 · 인조반정</td></tr>
+    </tbody>
+  </table>
+
+  <h3>벼슬 · 묘소 · 날짜</h3>
+  <table>
+    <thead><tr><th style="width:30mm">용어</th><th>뜻</th><th style="width:56mm">이 족보에서</th></tr></thead>
+    <tbody>
+      <tr><td><b>증 贈</b></td><td>죽은 뒤에 벼슬을 올려 주는 일</td><td>9세 동원 — 贈 통정대부 사복시정</td></tr>
+      <tr><td><b>통정 · 통훈대부</b></td><td>정3품 벼슬의 등급</td><td>12세 병근 — 통훈대부 행 사헌부</td></tr>
+      <tr><td><b>감 監 · 정 正 · 도정</b></td><td>왕실 친척을 관리하던 종친부의 벼슬 이름</td><td>4세 화산감 · 화성감 · 화원감</td></tr>
+      <tr><td><b>좌향 坐向</b></td><td>무덤이 등을 댄 방향. 子坐는 북쪽, 乾坐는 북서쪽</td><td>7세 두영 子坐, 8세 기창 乾坐</td></tr>
+      <tr><td><b>간지 干支</b></td><td>60년마다 되풀이되는 해 이름. 왕의 재위 연도와 함께 보아야 한다</td><td>憲宗 丙午 = 1846년(12세 병근 생)</td></tr>
+      <tr><td><b>제적등본</b></td><td>호주제가 없어지기 전의 옛 호적 서류</td><td>이한석·최공녀 괄호 날짜가 호적상 생년월일임을 확인</td></tr>
+    </tbody>
+  </table>
+  <div class="rf"></div>
+</section>
+
+
+<script>
+/* 쪽번호와 목차를 자동으로 매긴다 — 면을 늘리거나 줄여도 손댈 곳이 없다 */
+(function () {
+  var sheets = [].slice.call(document.querySelectorAll('.sheet'));
+  var total = sheets.length;
+  var toc = document.querySelector('.cover-sheet .toc');
+  if (toc) toc.innerHTML = '';
+
+  sheets.forEach(function (s, i) {
+    var no = i + 1;
+    var rf = s.querySelector('.rf');
+    if (rf) {
+      rf.innerHTML = '<span>전주이씨 해안군 정희공파 가족 족보</span><span>' + no + ' / ' + total + '</span>';
+    }
+    if (!toc) return;
+    var head = s.querySelector('.rh b');
+    var title = head ? head.textContent.trim() : '표지';
+    var row = document.createElement('div');
+    row.innerHTML = '<span class="t">' + no + '. ' + title + '</span><span>' + no + '</span>';
+    toc.appendChild(row);
+  });
+
+  var cap = document.querySelector('.toolbar .cap');
+  if (cap) cap.textContent = 'A4 세로 · ' + total + '장';
+})();
+</script>
+</body>
+</html>
