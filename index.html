@@ -874,6 +874,91 @@
     .wrap > :not(nav) { max-width: 1180px; }
   }
 
+  /* ── PC 대형 글씨 (1100px 이상, 추가 1.5배) ── */
+  @media (min-width: 1100px) {
+    body { font-size: 28px; line-height: 1.8; }
+    .cover h1 { font-size: 76px; }
+    .cover .subtitle { font-size: 31px; }
+    .cover .meta { font-size: 24px; gap: 24px; }
+    .cover .seal { width: 124px; height: 124px; font-size: 34px; }
+    .cover .seal span { font-size: 18px; }
+    section { padding: 48px 54px; }
+    section h2 { font-size: 50px; }
+    section .lead { font-size: 26px; }
+    section h3 { font-size: 38px; }
+    section h4 { font-size: 30px; }
+    table { font-size: 26px; }
+    table th, table td { padding: 16px 18px; }
+    table td.gen { width: 130px; }
+    .quote { font-size: 26px; padding: 20px 28px; }
+    .quote .label { font-size: 21px; }
+    .gen-card { padding: 26px 32px; }
+    .gen-card .gen-no { font-size: 21px; padding: 5px 14px; }
+    .gen-card .name { font-size: 44px; }
+    .gen-card .name-han { font-size: 27px; }
+    .gen-card .dates { font-size: 27px; }
+    .gen-card .dates span.label { width: 128px; font-size: 24px; }
+    .gen-card .spouse { font-size: 27px; }
+    .gen-card .spouse div { font-size: 24px !important; }
+    .gen-card [style*="font-size:13px"] { font-size: 22px !important; }
+    .gen-card .note { font-size: 24px; padding: 12px 18px; }
+    .gen-card .portrait { width: 175px; min-height: 220px; }
+    .gen-card .portrait .pseal { font-size: 27px; letter-spacing: 8px; padding: 14px 8px; }
+    .gen-card .portrait .ph-note { font-size: 16px; }
+    .family-card { padding: 20px 24px; }
+    .family-card .role { font-size: 20px; }
+    .family-card .couple { font-size: 30px; }
+    .family-card .children { font-size: 24px; }
+    .family-grid { grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); }
+    .chain .cnode { font-size: 27px; padding: 14px 28px; }
+    .chain .cnode small { font-size: 21px; }
+    .chain .arr { font-size: 24px; }
+    .mermaid-wrap .caption { font-size: 21px; }
+    .tomb-box { font-size: 24px; }
+    footer { font-size: 24px; }
+    footer span[style] { font-size: 18px !important; }
+    .sec-deco svg { width: min(760px, 84%); }
+    .uncertain::after { font-size: 16px; }
+
+    .royal-line::before { left: 50px; }
+    .royal-line li { padding: 12px 0 12px 136px; min-height: 96px; }
+    .royal-line .st { left: 8px; width: 86px; height: 86px; font-size: 23px; border-width: 2px; }
+    .royal-line .stno { left: 74px; margin-top: 20px; width: 30px; height: 30px; font-size: 17px; }
+    .royal-line .kname { font-size: 31px; }
+    .royal-line .khan { font-size: 22px; margin-left: 10px; }
+    .royal-line .kdesc, .royal-line .knote { font-size: 22px; }
+    .origin-spur .spur { margin-left: 34px; padding: 18px 26px; }
+    .origin-spur .spur::before { left: -112px; width: 112px; }
+    .origin-spur .spur .t { font-size: 29px; }
+    .origin-spur .spur small { font-size: 22px; }
+    .spur-hj { width: 54px; height: 54px; font-size: 23px; margin-right: 14px; }
+
+    .otree { min-width: 1560px; }
+    .otree ul { padding-top: 34px; }
+    .otree ul::before { height: 34px; }
+    .otree li::before, .otree li::after { height: 34px; }
+    .otree li { padding: 34px 8px 0; }
+    .otree > li { padding-top: 0; }
+    .otree .p { font-size: 25px; padding: 12px 20px; }
+    .otree .p small { font-size: 19px; }
+    .otree .p.gp { font-size: 28px; }
+    .otree .p.kid { font-size: 23px; }
+
+    #kpreview img { width: min(500px, 42vw); }
+    #kpreview .cap { font-size: 20px; }
+
+    nav.toc { width: 22vw; min-width: 280px; max-width: 430px; padding: 34px 20px; }
+    nav.toc a { font-size: 24px; padding: 15px 18px; }
+    nav.toc::after { font-size: 17px; }
+    .side-brand { gap: 16px; padding: 6px 12px 22px; }
+    .brand-icon { width: 74px; height: 74px; border-radius: 16px; }
+    .brand-icon svg { width: 56px; height: 56px; }
+    .brand-title { font-size: 25px; }
+    .brand-title small { font-size: 14px; }
+    .wrap { margin-left: clamp(280px, 22vw, 430px); padding: 52px 3vw 90px; }
+    .wrap > :not(nav) { max-width: 1440px; }
+  }
+
   @media print {
     :root {
       --hanji-bg:#ffffff; --hanji-bg-dark:#ead9b8; --hanji-paper:#ffffff;
